@@ -23,7 +23,7 @@
         
         inherit (inputs.poetry2nix.lib.mkPoetry2Nix { inherit pkgs; }) mkPoetryEnv;
         poetryEnv = mkPoetryEnv {
-            projectDir = ./.;
+          projectDir = ./.;
         };
       in {
         # Per-system attributes can be defined here. The self' and inputs'
@@ -35,6 +35,8 @@
           packages = with pkgs; [
             detect-secrets
             poetry
+            nodejs
+            yarn
           ];
         };
       };
