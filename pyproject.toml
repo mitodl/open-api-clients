@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "open-api-clients"
-version = "0000.00.00"
+version = "2024.1.1"
 description = ""
 authors = []
 readme = "README.md"
@@ -15,23 +15,20 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [tool.bumpver]
-current_version = "0000.00.00"
+current_version = "2024.1.1"
 version_pattern = "YYYY.MM.DD[.INC0]"
-commit_message = "bump version {old_version} -> {new_version}"
-tag_message = "v{new_version}"
-tag_scope = "default"
-pre_commit_hook = ""
-post_commit_hook = ""
-commit = true
-tag = true
+commit = false
+tag = false
 push = false
 
 [tool.bumpver.file_patterns]
 "pyproject.toml" = [
-    'version = "{version}"',
-    'current_version = "{version}"',
+    '^version = "{version}"',
 ]
-"README.md" = [
-    "{version}",
+"src/typescript/mit-open-api-axios/package.json" = [
+    '"version": "{version}"',
+]
+"VERSION" = [
+    "^{version}",
 ]
 
