@@ -1,7 +1,0 @@
-generatorName: typescript-axios
-outputDir: /local/src/typescript/mit-open-api-axios/src/v1
-inputSpec: /open/openapi/v1/openapi_spec.yaml
-additionalProperties:
-  globalProperty: apis,models
-  paramNaming: original
-  useSingleRequestParameter: true

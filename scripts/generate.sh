@@ -13,7 +13,7 @@ fi
 OPEN_CLONE_DIR=$(mktemp -d)
 OPEN_REPO="https://github.com/mitodl/mit-open.git"
 
-GENERATOR_VERSION=v7.2.0
+GENERATOR_VERSION="$(cat OPENAPI-GENERATOR-VERSION)"
 GENERATOR_IMAGE=openapitools/openapi-generator-cli:${GENERATOR_VERSION}
 
 pushd $OPEN_CLONE_DIR
@@ -23,16 +23,13 @@ git checkout release
 
 popd
 
-for cfile in ./config/*.yaml; do
-	echo "Generating: $cfile"
-	docker run --rm \
-		-v "${PWD}:/local" \
-		-v "${OPEN_CLONE_DIR}:/open" \
-		$GENERATOR_IMAGE \
-		generate \
-		--ignore-file-override "/local/.openapi-generator-ignore" \
-		-c "/local/$cfile"
-done
+docker run --rm \
+  -v "${PWD}:/tmp/open-api-clients" \
+  -v "${OPEN_CLONE_DIR}:/tmp/mit-open" \
+  -w /tmp \
+  $GENERATOR_IMAGE \
+  ./open-api-clients/scripts/generate-inner.sh
+
 
 # set permissions to host permissions so that we can modify files
 docker run --rm \

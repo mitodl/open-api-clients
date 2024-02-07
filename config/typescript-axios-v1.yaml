@@ -1,0 +1,8 @@
+generatorName: typescript-axios
+outputDir: open-api-clients/src/typescript/mit-open-api-axios/src/v1
+inputSpec: mit-open/openapi/specs/v1.yaml
+ignoreFileOverride: open-api-clients/.openapi-generator-ignore
+additionalProperties:
+  globalProperty: apis,models
+  paramNaming: original
+  useSingleRequestParameter: true
