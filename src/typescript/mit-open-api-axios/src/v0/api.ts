@@ -24,114 +24,390 @@ import type { RequestArgs } from './base';
 import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerMap } from './base';
 
 /**
- * Serializer for FieldChannel
+ * Serializer for the ChannelDepartmentDetail model
  * @export
- * @interface FieldChannel
+ * @interface ChannelDepartmentDetail
  */
-export interface FieldChannel {
+export interface ChannelDepartmentDetail {
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof ChannelDepartmentDetail
      */
-    'name': string;
+    'department'?: string | null;
+}
+/**
+ * Serializer for the ChannelDepartmentDetail model
+ * @export
+ * @interface ChannelDepartmentDetailRequest
+ */
+export interface ChannelDepartmentDetailRequest {
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof ChannelDepartmentDetailRequest
      */
-    'title': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof FieldChannel
-     */
-    'about': any | null;
+    'department'?: string | null;
+}
+/**
+ * Serializer for the ChannelOfferorDetail model
+ * @export
+ * @interface ChannelOfferorDetail
+ */
+export interface ChannelOfferorDetail {
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof ChannelOfferorDetail
      */
-    'public_description': string;
+    'offeror'?: string | null;
+}
+/**
+ * Serializer for the ChannelOfferorDetail model
+ * @export
+ * @interface ChannelOfferorDetailRequest
+ */
+export interface ChannelOfferorDetailRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelOfferorDetailRequest
+     */
+    'offeror'?: string | null;
+}
+/**
+ * Serializer for the ChannelTopicDetail model
+ * @export
+ * @interface ChannelTopicDetail
+ */
+export interface ChannelTopicDetail {
+    /**
+     * 
+     * @type {number}
+     * @memberof ChannelTopicDetail
+     */
+    'topic'?: number | null;
+}
+/**
+ * Serializer for the ChannelTopicDetail model
+ * @export
+ * @interface ChannelTopicDetailRequest
+ */
+export interface ChannelTopicDetailRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof ChannelTopicDetailRequest
+     */
+    'topic'?: number | null;
+}
+/**
+ * * `topic` - Topic * `department` - Department * `offeror` - Offeror * `pathway` - Pathway
+ * @export
+ * @enum {string}
+ */
+
+export const ChannelTypeAe2Enum = {
+    Topic: 'topic',
+    Department: 'department',
+    Offeror: 'offeror',
+    Pathway: 'pathway'
+} as const;
+
+export type ChannelTypeAe2Enum = typeof ChannelTypeAe2Enum[keyof typeof ChannelTypeAe2Enum];
+
+
+/**
+ * * `topic` - topic * `department` - department * `offeror` - offeror * `pathway` - pathway
+ * @export
+ * @enum {string}
+ */
+
+export const ChannelTypeEnum = {
+    Topic: 'topic',
+    Department: 'department',
+    Offeror: 'offeror',
+    Pathway: 'pathway'
+} as const;
+
+export type ChannelTypeEnum = typeof ChannelTypeEnum[keyof typeof ChannelTypeEnum];
+
+
+/**
+ * Serializer for Channel model of type department
+ * @export
+ * @interface DepartmentChannel
+ */
+export interface DepartmentChannel {
+    /**
+     * 
+     * @type {number}
+     * @memberof DepartmentChannel
+     */
+    'id': number;
+    /**
+     * Get the avatar image URL
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'avatar'?: string | null;
+    /**
+     * Get the avatar image small URL
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'avatar_small': string | null;
+    /**
+     * Get the avatar image medium URL
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'avatar_medium': string | null;
+    /**
+     * Get the banner image URL
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'banner'?: string | null;
+    /**
+     * Return true if user is a moderator for the channel
+     * @type {boolean}
+     * @memberof DepartmentChannel
+     */
+    'is_moderator': boolean;
+    /**
+     * 
+     * @type {Array<LearningPathPreview>}
+     * @memberof DepartmentChannel
+     */
+    'lists': Array<LearningPathPreview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'channel_url': string;
+    /**
+     * 
+     * @type {DepartmentChannelFeaturedList}
+     * @memberof DepartmentChannel
+     */
+    'featured_list': DepartmentChannelFeaturedList | null;
     /**
      * 
      * @type {Array<Subfield>}
-     * @memberof FieldChannel
+     * @memberof DepartmentChannel
      */
     'subfields': Array<Subfield>;
     /**
      * 
-     * @type {FieldChannelFeaturedList}
-     * @memberof FieldChannel
+     * @type {DepartmentChannelChannelTypeEnum}
+     * @memberof DepartmentChannel
      */
-    'featured_list': FieldChannelFeaturedList;
+    'channel_type': DepartmentChannelChannelTypeEnum;
     /**
      * 
-     * @type {Array<LearningPathPreview>}
-     * @memberof FieldChannel
+     * @type {ChannelDepartmentDetail}
+     * @memberof DepartmentChannel
      */
-    'lists': Array<LearningPathPreview>;
-    /**
-     * Get the avatar image URL
-     * @type {string}
-     * @memberof FieldChannel
-     */
-    'avatar'?: string;
-    /**
-     * Get the avatar image medium URL
-     * @type {string}
-     * @memberof FieldChannel
-     */
-    'avatar_medium': string;
-    /**
-     * Get the avatar image small URL
-     * @type {string}
-     * @memberof FieldChannel
-     */
-    'avatar_small': string;
-    /**
-     * Get the banner image URL
-     * @type {string}
-     * @memberof FieldChannel
-     */
-    'banner'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof FieldChannel
-     */
-    'widget_list': number | null;
+    'department_detail': ChannelDepartmentDetail;
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof DepartmentChannel
+     */
+    'created_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
      */
     'updated_on': string;
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof DepartmentChannel
      */
-    'created_on': string;
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'title': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof DepartmentChannel
+     */
+    'about'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'ga_tracking_id'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof DepartmentChannel
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannel
+     */
+    'public_description'?: string;
     /**
      * 
      * @type {number}
-     * @memberof FieldChannel
+     * @memberof DepartmentChannel
+     */
+    'widget_list'?: number | null;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const DepartmentChannelChannelTypeEnum = {
+    Department: 'department'
+} as const;
+
+export type DepartmentChannelChannelTypeEnum = typeof DepartmentChannelChannelTypeEnum[keyof typeof DepartmentChannelChannelTypeEnum];
+
+
+/**
+ * Learning path featured in this field.
+ * @export
+ * @interface DepartmentChannelFeaturedList
+ */
+export interface DepartmentChannelFeaturedList {
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannelFeaturedList
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof DepartmentChannelFeaturedList
+     */
+    'url'?: string | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof DepartmentChannelFeaturedList
+     */
+    'id': number;
+}
+/**
+ * Serializer for FeedImage
+ * @export
+ * @interface FeedImage
+ */
+export interface FeedImage {
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedImage
      */
     'id': number;
     /**
      * 
      * @type {string}
-     * @memberof FieldChannel
+     * @memberof FeedImage
      */
-    'ga_tracking_id': string;
+    'url'?: string;
     /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof FieldChannel
+     * 
+     * @type {string}
+     * @memberof FeedImage
      */
-    'is_moderator': boolean;
+    'description'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedImage
+     */
+    'alt'?: string;
 }
+/**
+ * FeedSource serializer
+ * @export
+ * @interface FeedSource
+ */
+export interface FeedSource {
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedSource
+     */
+    'id': number;
+    /**
+     * 
+     * @type {FeedImage}
+     * @memberof FeedSource
+     */
+    'image': FeedImage;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedSource
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedSource
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedSource
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {FeedTypeEnum}
+     * @memberof FeedSource
+     */
+    'feed_type': FeedTypeEnum;
+}
+
+
+/**
+ * * `news` - News * `events` - Events
+ * @export
+ * @enum {string}
+ */
+
+export const FeedTypeEnum = {
+    News: 'news',
+    Events: 'events'
+} as const;
+
+export type FeedTypeEnum = typeof FeedTypeEnum[keyof typeof FeedTypeEnum];
+
+
+/**
+ * @type FieldChannel
+ * @export
+ */
+export type FieldChannel = { channel_type: 'department' } & DepartmentChannel | { channel_type: 'offeror' } & OfferorChannel | { channel_type: 'pathway' } & PathwayChannel | { channel_type: 'topic' } & TopicChannel;
+
 /**
  * Write serializer for FieldChannel. Uses primary keys for referenced objects during requests, and delegates to FieldChannelSerializer for responses.
  * @export
@@ -163,13 +439,13 @@ export interface FieldChannelCreateRequest {
      */
     'subfields'?: Array<string>;
     /**
-     * Learng path featured in this field.
+     * Learning path featured in this field.
      * @type {number}
      * @memberof FieldChannelCreateRequest
      */
     'featured_list'?: number | null;
     /**
-     * Learng paths in this field.
+     * Learning paths in this field.
      * @type {Array<number>}
      * @memberof FieldChannelCreateRequest
      */
@@ -192,32 +468,45 @@ export interface FieldChannelCreateRequest {
      * @memberof FieldChannelCreateRequest
      */
     'about'?: any | null;
-}
-/**
- * Learning path featured in this field.
- * @export
- * @interface FieldChannelFeaturedList
- */
-export interface FieldChannelFeaturedList {
+    /**
+     * 
+     * @type {ChannelTypeAe2Enum}
+     * @memberof FieldChannelCreateRequest
+     */
+    'channel_type'?: ChannelTypeAe2Enum;
     /**
      * 
      * @type {string}
-     * @memberof FieldChannelFeaturedList
+     * @memberof FieldChannelCreateRequest
      */
-    'title': string;
+    'search_filter'?: string;
     /**
      * 
-     * @type {string}
-     * @memberof FieldChannelFeaturedList
+     * @type {any}
+     * @memberof FieldChannelCreateRequest
      */
-    'url'?: string | null;
+    'configuration'?: any | null;
     /**
      * 
-     * @type {number}
-     * @memberof FieldChannelFeaturedList
+     * @type {ChannelTopicDetailRequest}
+     * @memberof FieldChannelCreateRequest
      */
-    'id': number;
+    'topic_detail'?: ChannelTopicDetailRequest | null;
+    /**
+     * 
+     * @type {ChannelDepartmentDetailRequest}
+     * @memberof FieldChannelCreateRequest
+     */
+    'department_detail'?: ChannelDepartmentDetailRequest | null;
+    /**
+     * 
+     * @type {ChannelOfferorDetailRequest}
+     * @memberof FieldChannelCreateRequest
+     */
+    'offeror_detail'?: ChannelOfferorDetailRequest | null;
 }
+
+
 /**
  * Serializer for moderators
  * @export
@@ -288,6 +577,191 @@ export interface LearningPathPreview {
     'id': number;
 }
 /**
+ * Serializer for Channel model of type offeror
+ * @export
+ * @interface OfferorChannel
+ */
+export interface OfferorChannel {
+    /**
+     * 
+     * @type {number}
+     * @memberof OfferorChannel
+     */
+    'id': number;
+    /**
+     * Get the avatar image URL
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'avatar'?: string | null;
+    /**
+     * Get the avatar image small URL
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'avatar_small': string | null;
+    /**
+     * Get the avatar image medium URL
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'avatar_medium': string | null;
+    /**
+     * Get the banner image URL
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'banner'?: string | null;
+    /**
+     * Return true if user is a moderator for the channel
+     * @type {boolean}
+     * @memberof OfferorChannel
+     */
+    'is_moderator': boolean;
+    /**
+     * 
+     * @type {Array<LearningPathPreview>}
+     * @memberof OfferorChannel
+     */
+    'lists': Array<LearningPathPreview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'channel_url': string;
+    /**
+     * 
+     * @type {DepartmentChannelFeaturedList}
+     * @memberof OfferorChannel
+     */
+    'featured_list': DepartmentChannelFeaturedList | null;
+    /**
+     * 
+     * @type {Array<Subfield>}
+     * @memberof OfferorChannel
+     */
+    'subfields': Array<Subfield>;
+    /**
+     * 
+     * @type {OfferorChannelChannelTypeEnum}
+     * @memberof OfferorChannel
+     */
+    'channel_type': OfferorChannelChannelTypeEnum;
+    /**
+     * 
+     * @type {ChannelOfferorDetail}
+     * @memberof OfferorChannel
+     */
+    'offeror_detail': ChannelOfferorDetail;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'created_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'updated_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'title': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof OfferorChannel
+     */
+    'about'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'ga_tracking_id'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof OfferorChannel
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof OfferorChannel
+     */
+    'public_description'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof OfferorChannel
+     */
+    'widget_list'?: number | null;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const OfferorChannelChannelTypeEnum = {
+    Offeror: 'offeror'
+} as const;
+
+export type OfferorChannelChannelTypeEnum = typeof OfferorChannelChannelTypeEnum[keyof typeof OfferorChannelChannelTypeEnum];
+
+
+/**
+ * 
+ * @export
+ * @interface PaginatedFeedSourceList
+ */
+export interface PaginatedFeedSourceList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedFeedSourceList
+     */
+    'count': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedFeedSourceList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedFeedSourceList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<FeedSource>}
+     * @memberof PaginatedFeedSourceList
+     */
+    'results': Array<FeedSource>;
+}
+/**
  * 
  * @export
  * @interface PaginatedFieldChannelList
@@ -298,7 +772,7 @@ export interface PaginatedFieldChannelList {
      * @type {number}
      * @memberof PaginatedFieldChannelList
      */
-    'count'?: number;
+    'count': number;
     /**
      * 
      * @type {string}
@@ -316,7 +790,7 @@ export interface PaginatedFieldChannelList {
      * @type {Array<FieldChannel>}
      * @memberof PaginatedFieldChannelList
      */
-    'results'?: Array<FieldChannel>;
+    'results': Array<FieldChannel>;
 }
 /**
  * Similar to FieldChannelCreateSerializer, with read-only name
@@ -324,6 +798,12 @@ export interface PaginatedFieldChannelList {
  * @interface PatchedFieldChannelWriteRequest
  */
 export interface PatchedFieldChannelWriteRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'name'?: string;
     /**
      * 
      * @type {string}
@@ -343,13 +823,13 @@ export interface PatchedFieldChannelWriteRequest {
      */
     'subfields'?: Array<string>;
     /**
-     * Learng path featured in this field.
+     * Learning path featured in this field.
      * @type {number}
      * @memberof PatchedFieldChannelWriteRequest
      */
     'featured_list'?: number | null;
     /**
-     * Learng paths in this field.
+     * Learning paths in this field.
      * @type {Array<number>}
      * @memberof PatchedFieldChannelWriteRequest
      */
@@ -359,20 +839,219 @@ export interface PatchedFieldChannelWriteRequest {
      * @type {string}
      * @memberof PatchedFieldChannelWriteRequest
      */
-    'avatar'?: string;
+    'avatar'?: string | null;
     /**
      * Get the banner image URL
      * @type {string}
      * @memberof PatchedFieldChannelWriteRequest
      */
-    'banner'?: string;
+    'banner'?: string | null;
     /**
      * 
      * @type {any}
      * @memberof PatchedFieldChannelWriteRequest
      */
     'about'?: any | null;
+    /**
+     * 
+     * @type {ChannelTypeAe2Enum}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'channel_type'?: ChannelTypeAe2Enum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {ChannelTopicDetailRequest}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'topic_detail'?: ChannelTopicDetailRequest | null;
+    /**
+     * 
+     * @type {ChannelDepartmentDetailRequest}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'department_detail'?: ChannelDepartmentDetailRequest | null;
+    /**
+     * 
+     * @type {ChannelOfferorDetailRequest}
+     * @memberof PatchedFieldChannelWriteRequest
+     */
+    'offeror_detail'?: ChannelOfferorDetailRequest | null;
 }
+
+
+/**
+ * Serializer for WidgetLists
+ * @export
+ * @interface PatchedWidgetListRequest
+ */
+export interface PatchedWidgetListRequest {
+    /**
+     * 
+     * @type {Array<WidgetInstance>}
+     * @memberof PatchedWidgetListRequest
+     */
+    'widgets'?: Array<WidgetInstance> | null;
+}
+/**
+ * Serializer for Channel model of type pathway
+ * @export
+ * @interface PathwayChannel
+ */
+export interface PathwayChannel {
+    /**
+     * 
+     * @type {number}
+     * @memberof PathwayChannel
+     */
+    'id': number;
+    /**
+     * Get the avatar image URL
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'avatar'?: string | null;
+    /**
+     * Get the avatar image small URL
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'avatar_small': string | null;
+    /**
+     * Get the avatar image medium URL
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'avatar_medium': string | null;
+    /**
+     * Get the banner image URL
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'banner'?: string | null;
+    /**
+     * Return true if user is a moderator for the channel
+     * @type {boolean}
+     * @memberof PathwayChannel
+     */
+    'is_moderator': boolean;
+    /**
+     * 
+     * @type {Array<LearningPathPreview>}
+     * @memberof PathwayChannel
+     */
+    'lists': Array<LearningPathPreview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'channel_url': string;
+    /**
+     * 
+     * @type {DepartmentChannelFeaturedList}
+     * @memberof PathwayChannel
+     */
+    'featured_list': DepartmentChannelFeaturedList | null;
+    /**
+     * 
+     * @type {Array<Subfield>}
+     * @memberof PathwayChannel
+     */
+    'subfields': Array<Subfield>;
+    /**
+     * 
+     * @type {PathwayChannelChannelTypeEnum}
+     * @memberof PathwayChannel
+     */
+    'channel_type': PathwayChannelChannelTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'created_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'updated_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'title': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof PathwayChannel
+     */
+    'about'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'ga_tracking_id'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof PathwayChannel
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PathwayChannel
+     */
+    'public_description'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof PathwayChannel
+     */
+    'widget_list'?: number | null;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const PathwayChannelChannelTypeEnum = {
+    Pathway: 'pathway'
+} as const;
+
+export type PathwayChannelChannelTypeEnum = typeof PathwayChannelChannelTypeEnum[keyof typeof PathwayChannelChannelTypeEnum];
+
+
 /**
  * Serializer for Profile
  * @export
@@ -484,6 +1163,160 @@ export interface Subfield {
     'position'?: number;
 }
 /**
+ * Serializer for Channel model of type topic
+ * @export
+ * @interface TopicChannel
+ */
+export interface TopicChannel {
+    /**
+     * 
+     * @type {number}
+     * @memberof TopicChannel
+     */
+    'id': number;
+    /**
+     * Get the avatar image URL
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'avatar'?: string | null;
+    /**
+     * Get the avatar image small URL
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'avatar_small': string | null;
+    /**
+     * Get the avatar image medium URL
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'avatar_medium': string | null;
+    /**
+     * Get the banner image URL
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'banner'?: string | null;
+    /**
+     * Return true if user is a moderator for the channel
+     * @type {boolean}
+     * @memberof TopicChannel
+     */
+    'is_moderator': boolean;
+    /**
+     * 
+     * @type {Array<LearningPathPreview>}
+     * @memberof TopicChannel
+     */
+    'lists': Array<LearningPathPreview>;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'channel_url': string;
+    /**
+     * 
+     * @type {DepartmentChannelFeaturedList}
+     * @memberof TopicChannel
+     */
+    'featured_list': DepartmentChannelFeaturedList | null;
+    /**
+     * 
+     * @type {Array<Subfield>}
+     * @memberof TopicChannel
+     */
+    'subfields': Array<Subfield>;
+    /**
+     * 
+     * @type {TopicChannelChannelTypeEnum}
+     * @memberof TopicChannel
+     */
+    'channel_type': TopicChannelChannelTypeEnum;
+    /**
+     * 
+     * @type {ChannelTopicDetail}
+     * @memberof TopicChannel
+     */
+    'topic_detail': ChannelTopicDetail;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'created_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'updated_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'title': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof TopicChannel
+     */
+    'about'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'ga_tracking_id'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof TopicChannel
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof TopicChannel
+     */
+    'public_description'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof TopicChannel
+     */
+    'widget_list'?: number | null;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const TopicChannelChannelTypeEnum = {
+    Topic: 'topic'
+} as const;
+
+export type TopicChannelChannelTypeEnum = typeof TopicChannelChannelTypeEnum[keyof typeof TopicChannelChannelTypeEnum];
+
+
+/**
  * Serializer for User
  * @export
  * @interface User
@@ -507,7 +1340,1022 @@ export interface User {
      * @memberof User
      */
     'profile': Profile;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'first_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'last_name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'is_article_editor': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof User
+     */
+    'is_learning_path_editor': string;
 }
+/**
+ * WidgetInstance serializer
+ * @export
+ * @interface WidgetInstance
+ */
+export interface WidgetInstance {
+    /**
+     * 
+     * @type {number}
+     * @memberof WidgetInstance
+     */
+    'id': number;
+    /**
+     * 
+     * @type {WidgetTypeEnum}
+     * @memberof WidgetInstance
+     */
+    'widget_type': WidgetTypeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof WidgetInstance
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WidgetInstance
+     */
+    'configuration'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WidgetInstance
+     */
+    'json': string;
+}
+
+
+/**
+ * Serializer for WidgetLists
+ * @export
+ * @interface WidgetList
+ */
+export interface WidgetList {
+    /**
+     * 
+     * @type {number}
+     * @memberof WidgetList
+     */
+    'id': number;
+    /**
+     * 
+     * @type {Array<WidgetInstance>}
+     * @memberof WidgetList
+     */
+    'widgets'?: Array<WidgetInstance> | null;
+    /**
+     * 
+     * @type {Array<WidgetListAvailableWidgetsInner>}
+     * @memberof WidgetList
+     */
+    'available_widgets': Array<WidgetListAvailableWidgetsInner>;
+}
+/**
+ * 
+ * @export
+ * @interface WidgetListAvailableWidgetsInner
+ */
+export interface WidgetListAvailableWidgetsInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof WidgetListAvailableWidgetsInner
+     */
+    'widget_type'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof WidgetListAvailableWidgetsInner
+     */
+    'description'?: string;
+    /**
+     * 
+     * @type {object}
+     * @memberof WidgetListAvailableWidgetsInner
+     */
+    'form_spec'?: object;
+}
+/**
+ * Serializer for WidgetLists
+ * @export
+ * @interface WidgetListRequest
+ */
+export interface WidgetListRequest {
+    /**
+     * 
+     * @type {Array<WidgetInstance>}
+     * @memberof WidgetListRequest
+     */
+    'widgets'?: Array<WidgetInstance> | null;
+}
+/**
+ * * `Markdown` - Markdown * `URL` - URL * `RSS Feed` - RSS Feed * `People` - People
+ * @export
+ * @enum {string}
+ */
+
+export const WidgetTypeEnum = {
+    Markdown: 'Markdown',
+    Url: 'URL',
+    RssFeed: 'RSS Feed',
+    People: 'People'
+} as const;
+
+export type WidgetTypeEnum = typeof WidgetTypeEnum[keyof typeof WidgetTypeEnum];
+
+
+
+/**
+ * ChannelsApi - axios parameter creator
+ * @export
+ */
+export const ChannelsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Create
+         * @param {FieldChannelCreateRequest} FieldChannelCreateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsCreate: async (FieldChannelCreateRequest: FieldChannelCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'FieldChannelCreateRequest' is not null or undefined
+            assertParamExists('channelsCreate', 'FieldChannelCreateRequest', FieldChannelCreateRequest)
+            const localVarPath = `/api/v0/channels/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(FieldChannelCreateRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Destroy
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsDestroy: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsDestroy', 'id', id)
+            const localVarPath = `/api/v0/channels/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary List
+         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
+         * @param {number} [limit] Number of results to return per page.
+         * @param {number} [offset] The initial index from which to return the results.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsList: async (channel_type?: ChannelsListChannelTypeEnum, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v0/channels/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (channel_type !== undefined) {
+                localVarQueryParameter['channel_type'] = channel_type;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators Create
+         * @param {string} id 
+         * @param {FieldModeratorRequest} [FieldModeratorRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsCreate: async (id: string, FieldModeratorRequest?: FieldModeratorRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsModeratorsCreate', 'id', id)
+            const localVarPath = `/api/v0/channels/{id}/moderators/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(FieldModeratorRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Remove the user from the moderator groups for this website
+         * @summary Field Moderators Destroy
+         * @param {string} id 
+         * @param {string} moderator_name 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsDestroy: async (id: string, moderator_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsModeratorsDestroy', 'id', id)
+            // verify required parameter 'moderator_name' is not null or undefined
+            assertParamExists('channelsModeratorsDestroy', 'moderator_name', moderator_name)
+            const localVarPath = `/api/v0/channels/{id}/moderators/{moderator_name}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)))
+                .replace(`{${"moderator_name"}}`, encodeURIComponent(String(moderator_name)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators List
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsList: async (id: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsModeratorsList', 'id', id)
+            const localVarPath = `/api/v0/channels/{id}/moderators/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Update
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {PatchedFieldChannelWriteRequest} [PatchedFieldChannelWriteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsPartialUpdate: async (id: number, PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsPartialUpdate', 'id', id)
+            const localVarPath = `/api/v0/channels/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(PatchedFieldChannelWriteRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Retrieve
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsRetrieve: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('channelsRetrieve', 'id', id)
+            const localVarPath = `/api/v0/channels/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * View for retrieving an individual field channel by type and name
+         * @summary FieldChannel Detail Lookup by channel type and name
+         * @param {string} channel_type 
+         * @param {string} name 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsTypeRetrieve: async (channel_type: string, name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'channel_type' is not null or undefined
+            assertParamExists('channelsTypeRetrieve', 'channel_type', channel_type)
+            // verify required parameter 'name' is not null or undefined
+            assertParamExists('channelsTypeRetrieve', 'name', name)
+            const localVarPath = `/api/v0/channels/type/{channel_type}/{name}/`
+                .replace(`{${"channel_type"}}`, encodeURIComponent(String(channel_type)))
+                .replace(`{${"name"}}`, encodeURIComponent(String(name)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * ChannelsApi - functional programming interface
+ * @export
+ */
+export const ChannelsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = ChannelsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Create
+         * @param {FieldChannelCreateRequest} FieldChannelCreateRequest 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsCreate(FieldChannelCreateRequest: FieldChannelCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsCreate(FieldChannelCreateRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsCreate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Destroy
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsDestroy(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsDestroy(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsDestroy']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary List
+         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
+         * @param {number} [limit] Number of results to return per page.
+         * @param {number} [offset] The initial index from which to return the results.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsList(channel_type?: ChannelsListChannelTypeEnum, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedFieldChannelList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsList(channel_type, limit, offset, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsList']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators Create
+         * @param {string} id 
+         * @param {FieldModeratorRequest} [FieldModeratorRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsModeratorsCreate(id: string, FieldModeratorRequest?: FieldModeratorRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldModerator>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsCreate(id, FieldModeratorRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsCreate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * Remove the user from the moderator groups for this website
+         * @summary Field Moderators Destroy
+         * @param {string} id 
+         * @param {string} moderator_name 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsModeratorsDestroy(id: string, moderator_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsDestroy(id, moderator_name, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsDestroy']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators List
+         * @param {string} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsModeratorsList(id: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FieldModerator>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsModeratorsList(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsModeratorsList']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Update
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {PatchedFieldChannelWriteRequest} [PatchedFieldChannelWriteRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsPartialUpdate(id: number, PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsPartialUpdate(id, PatchedFieldChannelWriteRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsPartialUpdate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Retrieve
+         * @param {number} id A unique integer value identifying this field channel.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsRetrieve(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsRetrieve']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * View for retrieving an individual field channel by type and name
+         * @summary FieldChannel Detail Lookup by channel type and name
+         * @param {string} channel_type 
+         * @param {string} name 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async channelsTypeRetrieve(channel_type: string, name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.channelsTypeRetrieve(channel_type, name, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['ChannelsApi.channelsTypeRetrieve']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * ChannelsApi - factory interface
+ * @export
+ */
+export const ChannelsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = ChannelsApiFp(configuration)
+    return {
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Create
+         * @param {ChannelsApiChannelsCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsCreate(requestParameters: ChannelsApiChannelsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
+            return localVarFp.channelsCreate(requestParameters.FieldChannelCreateRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Destroy
+         * @param {ChannelsApiChannelsDestroyRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsDestroy(requestParameters: ChannelsApiChannelsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.channelsDestroy(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary List
+         * @param {ChannelsApiChannelsListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsList(requestParameters: ChannelsApiChannelsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedFieldChannelList> {
+            return localVarFp.channelsList(requestParameters.channel_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators Create
+         * @param {ChannelsApiChannelsModeratorsCreateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsCreate(requestParameters: ChannelsApiChannelsModeratorsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldModerator> {
+            return localVarFp.channelsModeratorsCreate(requestParameters.id, requestParameters.FieldModeratorRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Remove the user from the moderator groups for this website
+         * @summary Field Moderators Destroy
+         * @param {ChannelsApiChannelsModeratorsDestroyRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsDestroy(requestParameters: ChannelsApiChannelsModeratorsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.channelsModeratorsDestroy(requestParameters.id, requestParameters.moderator_name, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * View for listing and adding moderators
+         * @summary Field Moderators List
+         * @param {ChannelsApiChannelsModeratorsListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsModeratorsList(requestParameters: ChannelsApiChannelsModeratorsListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<FieldModerator>> {
+            return localVarFp.channelsModeratorsList(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Update
+         * @param {ChannelsApiChannelsPartialUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsPartialUpdate(requestParameters: ChannelsApiChannelsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
+            return localVarFp.channelsPartialUpdate(requestParameters.id, requestParameters.PatchedFieldChannelWriteRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+         * @summary Retrieve
+         * @param {ChannelsApiChannelsRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsRetrieve(requestParameters: ChannelsApiChannelsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
+            return localVarFp.channelsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * View for retrieving an individual field channel by type and name
+         * @summary FieldChannel Detail Lookup by channel type and name
+         * @param {ChannelsApiChannelsTypeRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        channelsTypeRetrieve(requestParameters: ChannelsApiChannelsTypeRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
+            return localVarFp.channelsTypeRetrieve(requestParameters.channel_type, requestParameters.name, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for channelsCreate operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsCreateRequest
+ */
+export interface ChannelsApiChannelsCreateRequest {
+    /**
+     * 
+     * @type {FieldChannelCreateRequest}
+     * @memberof ChannelsApiChannelsCreate
+     */
+    readonly FieldChannelCreateRequest: FieldChannelCreateRequest
+}
+
+/**
+ * Request parameters for channelsDestroy operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsDestroyRequest
+ */
+export interface ChannelsApiChannelsDestroyRequest {
+    /**
+     * A unique integer value identifying this field channel.
+     * @type {number}
+     * @memberof ChannelsApiChannelsDestroy
+     */
+    readonly id: number
+}
+
+/**
+ * Request parameters for channelsList operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsListRequest
+ */
+export interface ChannelsApiChannelsListRequest {
+    /**
+     * * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
+     * @type {'department' | 'offeror' | 'pathway' | 'topic'}
+     * @memberof ChannelsApiChannelsList
+     */
+    readonly channel_type?: ChannelsListChannelTypeEnum
+
+    /**
+     * Number of results to return per page.
+     * @type {number}
+     * @memberof ChannelsApiChannelsList
+     */
+    readonly limit?: number
+
+    /**
+     * The initial index from which to return the results.
+     * @type {number}
+     * @memberof ChannelsApiChannelsList
+     */
+    readonly offset?: number
+}
+
+/**
+ * Request parameters for channelsModeratorsCreate operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsModeratorsCreateRequest
+ */
+export interface ChannelsApiChannelsModeratorsCreateRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsModeratorsCreate
+     */
+    readonly id: string
+
+    /**
+     * 
+     * @type {FieldModeratorRequest}
+     * @memberof ChannelsApiChannelsModeratorsCreate
+     */
+    readonly FieldModeratorRequest?: FieldModeratorRequest
+}
+
+/**
+ * Request parameters for channelsModeratorsDestroy operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsModeratorsDestroyRequest
+ */
+export interface ChannelsApiChannelsModeratorsDestroyRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsModeratorsDestroy
+     */
+    readonly id: string
+
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsModeratorsDestroy
+     */
+    readonly moderator_name: string
+}
+
+/**
+ * Request parameters for channelsModeratorsList operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsModeratorsListRequest
+ */
+export interface ChannelsApiChannelsModeratorsListRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsModeratorsList
+     */
+    readonly id: string
+}
+
+/**
+ * Request parameters for channelsPartialUpdate operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsPartialUpdateRequest
+ */
+export interface ChannelsApiChannelsPartialUpdateRequest {
+    /**
+     * A unique integer value identifying this field channel.
+     * @type {number}
+     * @memberof ChannelsApiChannelsPartialUpdate
+     */
+    readonly id: number
+
+    /**
+     * 
+     * @type {PatchedFieldChannelWriteRequest}
+     * @memberof ChannelsApiChannelsPartialUpdate
+     */
+    readonly PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest
+}
+
+/**
+ * Request parameters for channelsRetrieve operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsRetrieveRequest
+ */
+export interface ChannelsApiChannelsRetrieveRequest {
+    /**
+     * A unique integer value identifying this field channel.
+     * @type {number}
+     * @memberof ChannelsApiChannelsRetrieve
+     */
+    readonly id: number
+}
+
+/**
+ * Request parameters for channelsTypeRetrieve operation in ChannelsApi.
+ * @export
+ * @interface ChannelsApiChannelsTypeRetrieveRequest
+ */
+export interface ChannelsApiChannelsTypeRetrieveRequest {
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsTypeRetrieve
+     */
+    readonly channel_type: string
+
+    /**
+     * 
+     * @type {string}
+     * @memberof ChannelsApiChannelsTypeRetrieve
+     */
+    readonly name: string
+}
+
+/**
+ * ChannelsApi - object-oriented interface
+ * @export
+ * @class ChannelsApi
+ * @extends {BaseAPI}
+ */
+export class ChannelsApi extends BaseAPI {
+    /**
+     * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * @summary Create
+     * @param {ChannelsApiChannelsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsCreate(requestParameters: ChannelsApiChannelsCreateRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsCreate(requestParameters.FieldChannelCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * @summary Destroy
+     * @param {ChannelsApiChannelsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsDestroy(requestParameters: ChannelsApiChannelsDestroyRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsDestroy(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * @summary List
+     * @param {ChannelsApiChannelsListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsList(requestParameters: ChannelsApiChannelsListRequest = {}, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsList(requestParameters.channel_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * View for listing and adding moderators
+     * @summary Field Moderators Create
+     * @param {ChannelsApiChannelsModeratorsCreateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsModeratorsCreate(requestParameters: ChannelsApiChannelsModeratorsCreateRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsModeratorsCreate(requestParameters.id, requestParameters.FieldModeratorRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Remove the user from the moderator groups for this website
+     * @summary Field Moderators Destroy
+     * @param {ChannelsApiChannelsModeratorsDestroyRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsModeratorsDestroy(requestParameters: ChannelsApiChannelsModeratorsDestroyRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsModeratorsDestroy(requestParameters.id, requestParameters.moderator_name, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * View for listing and adding moderators
+     * @summary Field Moderators List
+     * @param {ChannelsApiChannelsModeratorsListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsModeratorsList(requestParameters: ChannelsApiChannelsModeratorsListRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsModeratorsList(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * @summary Update
+     * @param {ChannelsApiChannelsPartialUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsPartialUpdate(requestParameters: ChannelsApiChannelsPartialUpdateRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsPartialUpdate(requestParameters.id, requestParameters.PatchedFieldChannelWriteRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
+     * @summary Retrieve
+     * @param {ChannelsApiChannelsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsRetrieve(requestParameters: ChannelsApiChannelsRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * View for retrieving an individual field channel by type and name
+     * @summary FieldChannel Detail Lookup by channel type and name
+     * @param {ChannelsApiChannelsTypeRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof ChannelsApi
+     */
+    public channelsTypeRetrieve(requestParameters: ChannelsApiChannelsTypeRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return ChannelsApiFp(this.configuration).channelsTypeRetrieve(requestParameters.channel_type, requestParameters.name, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const ChannelsListChannelTypeEnum = {
+    Department: 'department',
+    Offeror: 'offeror',
+    Pathway: 'pathway',
+    Topic: 'topic'
+} as const;
+export type ChannelsListChannelTypeEnum = typeof ChannelsListChannelTypeEnum[keyof typeof ChannelsListChannelTypeEnum];
+
 
 /**
  * CkeditorApi - axios parameter creator
@@ -607,91 +2455,21 @@ export class CkeditorApi extends BaseAPI {
 
 
 /**
- * FieldsApi - axios parameter creator
+ * NewsEventsApi - axios parameter creator
  * @export
  */
-export const FieldsApiAxiosParamCreator = function (configuration?: Configuration) {
+export const NewsEventsApiAxiosParamCreator = function (configuration?: Configuration) {
     return {
         /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {FieldChannelCreateRequest} FieldChannelCreateRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsCreate: async (FieldChannelCreateRequest: FieldChannelCreateRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'FieldChannelCreateRequest' is not null or undefined
-            assertParamExists('fieldsCreate', 'FieldChannelCreateRequest', FieldChannelCreateRequest)
-            const localVarPath = `/api/v0/fields/`;
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(FieldChannelCreateRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsDestroy: async (field_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsDestroy', 'field_name', field_name)
-            const localVarPath = `/api/v0/fields/{field_name}/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary List
+         * Get a paginated list of feed items.
+         * @param {Array<NewsEventsListFeedTypeEnum>} [feed_type] The type of item  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fieldsList: async (limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            const localVarPath = `/api/v0/fields/`;
+        newsEventsList: async (feed_type?: Array<NewsEventsListFeedTypeEnum>, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v0/news_events/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -702,6 +2480,10 @@ export const FieldsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
+
+            if (feed_type) {
+                localVarQueryParameter['feed_type'] = feed_type;
+            }
 
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
@@ -723,165 +2505,16 @@ export const FieldsApiAxiosParamCreator = function (configuration?: Configuratio
             };
         },
         /**
-         * View for listing and adding moderators
-         * @summary Field Moderators Create
-         * @param {string} field_name 
-         * @param {FieldModeratorRequest} [FieldModeratorRequest] 
+         * Retrieve a single feed item.
+         * @param {number} id A unique integer value identifying this feed item.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fieldsModeratorsCreate: async (field_name: string, FieldModeratorRequest?: FieldModeratorRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsModeratorsCreate', 'field_name', field_name)
-            const localVarPath = `/api/v0/fields/{field_name}/moderators/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'POST', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(FieldModeratorRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Field Moderators Destroy
-         * @param {string} field_name 
-         * @param {string} moderator_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsModeratorsDestroy: async (field_name: string, moderator_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsModeratorsDestroy', 'field_name', field_name)
-            // verify required parameter 'moderator_name' is not null or undefined
-            assertParamExists('fieldsModeratorsDestroy', 'moderator_name', moderator_name)
-            const localVarPath = `/api/v0/fields/{field_name}/moderators/{moderator_name}/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)))
-                .replace(`{${"moderator_name"}}`, encodeURIComponent(String(moderator_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'DELETE', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Field Moderators List
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsModeratorsList: async (field_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsModeratorsList', 'field_name', field_name)
-            const localVarPath = `/api/v0/fields/{field_name}/moderators/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {string} field_name 
-         * @param {PatchedFieldChannelWriteRequest} [PatchedFieldChannelWriteRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsPartialUpdate: async (field_name: string, PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsPartialUpdate', 'field_name', field_name)
-            const localVarPath = `/api/v0/fields/{field_name}/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)));
-            // use dummy base URL string because the URL constructor only accepts absolute URLs.
-            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
-            let baseOptions;
-            if (configuration) {
-                baseOptions = configuration.baseOptions;
-            }
-
-            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
-            const localVarHeaderParameter = {} as any;
-            const localVarQueryParameter = {} as any;
-
-
-    
-            localVarHeaderParameter['Content-Type'] = 'application/json';
-
-            setSearchParams(localVarUrlObj, localVarQueryParameter);
-            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
-            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(PatchedFieldChannelWriteRequest, localVarRequestOptions, configuration)
-
-            return {
-                url: toPathString(localVarUrlObj),
-                options: localVarRequestOptions,
-            };
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Retrieve
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsRetrieve: async (field_name: string, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
-            // verify required parameter 'field_name' is not null or undefined
-            assertParamExists('fieldsRetrieve', 'field_name', field_name)
-            const localVarPath = `/api/v0/fields/{field_name}/`
-                .replace(`{${"field_name"}}`, encodeURIComponent(String(field_name)));
+        newsEventsRetrieve: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('newsEventsRetrieve', 'id', id)
+            const localVarPath = `/api/v0/news_events/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
             let baseOptions;
@@ -908,457 +2541,381 @@ export const FieldsApiAxiosParamCreator = function (configuration?: Configuratio
 };
 
 /**
- * FieldsApi - functional programming interface
+ * NewsEventsApi - functional programming interface
  * @export
  */
-export const FieldsApiFp = function(configuration?: Configuration) {
-    const localVarAxiosParamCreator = FieldsApiAxiosParamCreator(configuration)
+export const NewsEventsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NewsEventsApiAxiosParamCreator(configuration)
     return {
         /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {FieldChannelCreateRequest} FieldChannelCreateRequest 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsCreate(FieldChannelCreateRequest: FieldChannelCreateRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsCreate(FieldChannelCreateRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsCreate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsDestroy(field_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsDestroy(field_name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsDestroy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary List
+         * Get a paginated list of feed items.
+         * @param {Array<NewsEventsListFeedTypeEnum>} [feed_type] The type of item  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fieldsList(limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedFieldChannelList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsList(limit, offset, options);
+        async newsEventsList(feed_type?: Array<NewsEventsListFeedTypeEnum>, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsList(feed_type, limit, offset, options);
             const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsList']?.[index]?.url;
+            const operationBasePath = operationServerMap['NewsEventsApi.newsEventsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
         /**
-         * View for listing and adding moderators
-         * @summary Field Moderators Create
-         * @param {string} field_name 
-         * @param {FieldModeratorRequest} [FieldModeratorRequest] 
+         * Retrieve a single feed item.
+         * @param {number} id A unique integer value identifying this feed item.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async fieldsModeratorsCreate(field_name: string, FieldModeratorRequest?: FieldModeratorRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldModerator>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsModeratorsCreate(field_name, FieldModeratorRequest, options);
+        async newsEventsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsRetrieve(id, options);
             const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsModeratorsCreate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Field Moderators Destroy
-         * @param {string} field_name 
-         * @param {string} moderator_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsModeratorsDestroy(field_name: string, moderator_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsModeratorsDestroy(field_name, moderator_name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsModeratorsDestroy']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Field Moderators List
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsModeratorsList(field_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<FieldModerator>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsModeratorsList(field_name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsModeratorsList']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {string} field_name 
-         * @param {PatchedFieldChannelWriteRequest} [PatchedFieldChannelWriteRequest] 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsPartialUpdate(field_name: string, PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsPartialUpdate(field_name, PatchedFieldChannelWriteRequest, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsPartialUpdate']?.[index]?.url;
-            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Retrieve
-         * @param {string} field_name 
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        async fieldsRetrieve(field_name: string, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FieldChannel>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.fieldsRetrieve(field_name, options);
-            const index = configuration?.serverIndex ?? 0;
-            const operationBasePath = operationServerMap['FieldsApi.fieldsRetrieve']?.[index]?.url;
+            const operationBasePath = operationServerMap['NewsEventsApi.newsEventsRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
     }
 };
 
 /**
- * FieldsApi - factory interface
+ * NewsEventsApi - factory interface
  * @export
  */
-export const FieldsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
-    const localVarFp = FieldsApiFp(configuration)
+export const NewsEventsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NewsEventsApiFp(configuration)
     return {
         /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Create
-         * @param {FieldsApiFieldsCreateRequest} requestParameters Request parameters.
+         * Get a paginated list of feed items.
+         * @param {NewsEventsApiNewsEventsListRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fieldsCreate(requestParameters: FieldsApiFieldsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
-            return localVarFp.fieldsCreate(requestParameters.FieldChannelCreateRequest, options).then((request) => request(axios, basePath));
+        newsEventsList(requestParameters: NewsEventsApiNewsEventsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.newsEventsList(requestParameters.feed_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
         },
         /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Destroy
-         * @param {FieldsApiFieldsDestroyRequest} requestParameters Request parameters.
+         * Retrieve a single feed item.
+         * @param {NewsEventsApiNewsEventsRetrieveRequest} requestParameters Request parameters.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        fieldsDestroy(requestParameters: FieldsApiFieldsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.fieldsDestroy(requestParameters.field_name, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary List
-         * @param {FieldsApiFieldsListRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsList(requestParameters: FieldsApiFieldsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedFieldChannelList> {
-            return localVarFp.fieldsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Field Moderators Create
-         * @param {FieldsApiFieldsModeratorsCreateRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsModeratorsCreate(requestParameters: FieldsApiFieldsModeratorsCreateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldModerator> {
-            return localVarFp.fieldsModeratorsCreate(requestParameters.field_name, requestParameters.FieldModeratorRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * Remove the user from the moderator groups for this website
-         * @summary Field Moderators Destroy
-         * @param {FieldsApiFieldsModeratorsDestroyRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsModeratorsDestroy(requestParameters: FieldsApiFieldsModeratorsDestroyRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
-            return localVarFp.fieldsModeratorsDestroy(requestParameters.field_name, requestParameters.moderator_name, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * View for listing and adding moderators
-         * @summary Field Moderators List
-         * @param {FieldsApiFieldsModeratorsListRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsModeratorsList(requestParameters: FieldsApiFieldsModeratorsListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<FieldModerator>> {
-            return localVarFp.fieldsModeratorsList(requestParameters.field_name, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Update
-         * @param {FieldsApiFieldsPartialUpdateRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsPartialUpdate(requestParameters: FieldsApiFieldsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
-            return localVarFp.fieldsPartialUpdate(requestParameters.field_name, requestParameters.PatchedFieldChannelWriteRequest, options).then((request) => request(axios, basePath));
-        },
-        /**
-         * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-         * @summary Retrieve
-         * @param {FieldsApiFieldsRetrieveRequest} requestParameters Request parameters.
-         * @param {*} [options] Override http request option.
-         * @throws {RequiredError}
-         */
-        fieldsRetrieve(requestParameters: FieldsApiFieldsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<FieldChannel> {
-            return localVarFp.fieldsRetrieve(requestParameters.field_name, options).then((request) => request(axios, basePath));
+        newsEventsRetrieve(requestParameters: NewsEventsApiNewsEventsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+            return localVarFp.newsEventsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
         },
     };
 };
 
 /**
- * Request parameters for fieldsCreate operation in FieldsApi.
+ * Request parameters for newsEventsList operation in NewsEventsApi.
  * @export
- * @interface FieldsApiFieldsCreateRequest
+ * @interface NewsEventsApiNewsEventsListRequest
  */
-export interface FieldsApiFieldsCreateRequest {
+export interface NewsEventsApiNewsEventsListRequest {
     /**
-     * 
-     * @type {FieldChannelCreateRequest}
-     * @memberof FieldsApiFieldsCreate
+     * The type of item  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
+     * @type {Array<'events' | 'news'>}
+     * @memberof NewsEventsApiNewsEventsList
      */
-    readonly FieldChannelCreateRequest: FieldChannelCreateRequest
-}
+    readonly feed_type?: Array<NewsEventsListFeedTypeEnum>
 
-/**
- * Request parameters for fieldsDestroy operation in FieldsApi.
- * @export
- * @interface FieldsApiFieldsDestroyRequest
- */
-export interface FieldsApiFieldsDestroyRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsDestroy
-     */
-    readonly field_name: string
-}
-
-/**
- * Request parameters for fieldsList operation in FieldsApi.
- * @export
- * @interface FieldsApiFieldsListRequest
- */
-export interface FieldsApiFieldsListRequest {
     /**
      * Number of results to return per page.
      * @type {number}
-     * @memberof FieldsApiFieldsList
+     * @memberof NewsEventsApiNewsEventsList
      */
     readonly limit?: number
 
     /**
      * The initial index from which to return the results.
      * @type {number}
-     * @memberof FieldsApiFieldsList
+     * @memberof NewsEventsApiNewsEventsList
      */
     readonly offset?: number
 }
 
 /**
- * Request parameters for fieldsModeratorsCreate operation in FieldsApi.
+ * Request parameters for newsEventsRetrieve operation in NewsEventsApi.
  * @export
- * @interface FieldsApiFieldsModeratorsCreateRequest
+ * @interface NewsEventsApiNewsEventsRetrieveRequest
  */
-export interface FieldsApiFieldsModeratorsCreateRequest {
+export interface NewsEventsApiNewsEventsRetrieveRequest {
     /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsModeratorsCreate
+     * A unique integer value identifying this feed item.
+     * @type {number}
+     * @memberof NewsEventsApiNewsEventsRetrieve
      */
-    readonly field_name: string
-
-    /**
-     * 
-     * @type {FieldModeratorRequest}
-     * @memberof FieldsApiFieldsModeratorsCreate
-     */
-    readonly FieldModeratorRequest?: FieldModeratorRequest
+    readonly id: number
 }
 
 /**
- * Request parameters for fieldsModeratorsDestroy operation in FieldsApi.
+ * NewsEventsApi - object-oriented interface
  * @export
- * @interface FieldsApiFieldsModeratorsDestroyRequest
- */
-export interface FieldsApiFieldsModeratorsDestroyRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsModeratorsDestroy
-     */
-    readonly field_name: string
-
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsModeratorsDestroy
-     */
-    readonly moderator_name: string
-}
-
-/**
- * Request parameters for fieldsModeratorsList operation in FieldsApi.
- * @export
- * @interface FieldsApiFieldsModeratorsListRequest
- */
-export interface FieldsApiFieldsModeratorsListRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsModeratorsList
-     */
-    readonly field_name: string
-}
-
-/**
- * Request parameters for fieldsPartialUpdate operation in FieldsApi.
- * @export
- * @interface FieldsApiFieldsPartialUpdateRequest
- */
-export interface FieldsApiFieldsPartialUpdateRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsPartialUpdate
-     */
-    readonly field_name: string
-
-    /**
-     * 
-     * @type {PatchedFieldChannelWriteRequest}
-     * @memberof FieldsApiFieldsPartialUpdate
-     */
-    readonly PatchedFieldChannelWriteRequest?: PatchedFieldChannelWriteRequest
-}
-
-/**
- * Request parameters for fieldsRetrieve operation in FieldsApi.
- * @export
- * @interface FieldsApiFieldsRetrieveRequest
- */
-export interface FieldsApiFieldsRetrieveRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof FieldsApiFieldsRetrieve
-     */
-    readonly field_name: string
-}
-
-/**
- * FieldsApi - object-oriented interface
- * @export
- * @class FieldsApi
+ * @class NewsEventsApi
  * @extends {BaseAPI}
  */
-export class FieldsApi extends BaseAPI {
+export class NewsEventsApi extends BaseAPI {
     /**
-     * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Create
-     * @param {FieldsApiFieldsCreateRequest} requestParameters Request parameters.
+     * Get a paginated list of feed items.
+     * @param {NewsEventsApiNewsEventsListRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FieldsApi
+     * @memberof NewsEventsApi
      */
-    public fieldsCreate(requestParameters: FieldsApiFieldsCreateRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsCreate(requestParameters.FieldChannelCreateRequest, options).then((request) => request(this.axios, this.basePath));
+    public newsEventsList(requestParameters: NewsEventsApiNewsEventsListRequest = {}, options?: RawAxiosRequestConfig) {
+        return NewsEventsApiFp(this.configuration).newsEventsList(requestParameters.feed_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
-     * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Destroy
-     * @param {FieldsApiFieldsDestroyRequest} requestParameters Request parameters.
+     * Retrieve a single feed item.
+     * @param {NewsEventsApiNewsEventsRetrieveRequest} requestParameters Request parameters.
      * @param {*} [options] Override http request option.
      * @throws {RequiredError}
-     * @memberof FieldsApi
+     * @memberof NewsEventsApi
      */
-    public fieldsDestroy(requestParameters: FieldsApiFieldsDestroyRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsDestroy(requestParameters.field_name, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary List
-     * @param {FieldsApiFieldsListRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsList(requestParameters: FieldsApiFieldsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * View for listing and adding moderators
-     * @summary Field Moderators Create
-     * @param {FieldsApiFieldsModeratorsCreateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsModeratorsCreate(requestParameters: FieldsApiFieldsModeratorsCreateRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsModeratorsCreate(requestParameters.field_name, requestParameters.FieldModeratorRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * Remove the user from the moderator groups for this website
-     * @summary Field Moderators Destroy
-     * @param {FieldsApiFieldsModeratorsDestroyRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsModeratorsDestroy(requestParameters: FieldsApiFieldsModeratorsDestroyRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsModeratorsDestroy(requestParameters.field_name, requestParameters.moderator_name, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * View for listing and adding moderators
-     * @summary Field Moderators List
-     * @param {FieldsApiFieldsModeratorsListRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsModeratorsList(requestParameters: FieldsApiFieldsModeratorsListRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsModeratorsList(requestParameters.field_name, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Update
-     * @param {FieldsApiFieldsPartialUpdateRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsPartialUpdate(requestParameters: FieldsApiFieldsPartialUpdateRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsPartialUpdate(requestParameters.field_name, requestParameters.PatchedFieldChannelWriteRequest, options).then((request) => request(this.axios, this.basePath));
-    }
-
-    /**
-     * CRUD Operations related to Fields. Fields may represent groups or organizations at MIT and are a high-level categorization of content.
-     * @summary Retrieve
-     * @param {FieldsApiFieldsRetrieveRequest} requestParameters Request parameters.
-     * @param {*} [options] Override http request option.
-     * @throws {RequiredError}
-     * @memberof FieldsApi
-     */
-    public fieldsRetrieve(requestParameters: FieldsApiFieldsRetrieveRequest, options?: RawAxiosRequestConfig) {
-        return FieldsApiFp(this.configuration).fieldsRetrieve(requestParameters.field_name, options).then((request) => request(this.axios, this.basePath));
+    public newsEventsRetrieve(requestParameters: NewsEventsApiNewsEventsRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return NewsEventsApiFp(this.configuration).newsEventsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
+/**
+ * @export
+ */
+export const NewsEventsListFeedTypeEnum = {
+    Events: 'events',
+    News: 'news'
+} as const;
+export type NewsEventsListFeedTypeEnum = typeof NewsEventsListFeedTypeEnum[keyof typeof NewsEventsListFeedTypeEnum];
+
+
+/**
+ * NewsEventsSourcesApi - axios parameter creator
+ * @export
+ */
+export const NewsEventsSourcesApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * Get a paginated list of news/event feed sources.
+         * @param {Array<NewsEventsSourcesListFeedTypeEnum>} [feed_type] The type of source  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
+         * @param {number} [limit] Number of results to return per page.
+         * @param {number} [offset] The initial index from which to return the results.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        newsEventsSourcesList: async (feed_type?: Array<NewsEventsSourcesListFeedTypeEnum>, limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            const localVarPath = `/api/v0/news_events_sources/`;
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+            if (feed_type) {
+                localVarQueryParameter['feed_type'] = feed_type;
+            }
+
+            if (limit !== undefined) {
+                localVarQueryParameter['limit'] = limit;
+            }
+
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
+            }
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * Retrieve a single news/event feed source.
+         * @param {number} id A unique integer value identifying this feed source.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        newsEventsSourcesRetrieve: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('newsEventsSourcesRetrieve', 'id', id)
+            const localVarPath = `/api/v0/news_events_sources/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * NewsEventsSourcesApi - functional programming interface
+ * @export
+ */
+export const NewsEventsSourcesApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = NewsEventsSourcesApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * Get a paginated list of news/event feed sources.
+         * @param {Array<NewsEventsSourcesListFeedTypeEnum>} [feed_type] The type of source  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
+         * @param {number} [limit] Number of results to return per page.
+         * @param {number} [offset] The initial index from which to return the results.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async newsEventsSourcesList(feed_type?: Array<NewsEventsSourcesListFeedTypeEnum>, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedFeedSourceList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsSourcesList(feed_type, limit, offset, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['NewsEventsSourcesApi.newsEventsSourcesList']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * Retrieve a single news/event feed source.
+         * @param {number} id A unique integer value identifying this feed source.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async newsEventsSourcesRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedSource>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsSourcesRetrieve(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['NewsEventsSourcesApi.newsEventsSourcesRetrieve']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * NewsEventsSourcesApi - factory interface
+ * @export
+ */
+export const NewsEventsSourcesApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = NewsEventsSourcesApiFp(configuration)
+    return {
+        /**
+         * Get a paginated list of news/event feed sources.
+         * @param {NewsEventsSourcesApiNewsEventsSourcesListRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        newsEventsSourcesList(requestParameters: NewsEventsSourcesApiNewsEventsSourcesListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedFeedSourceList> {
+            return localVarFp.newsEventsSourcesList(requestParameters.feed_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Retrieve a single news/event feed source.
+         * @param {NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        newsEventsSourcesRetrieve(requestParameters: NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedSource> {
+            return localVarFp.newsEventsSourcesRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for newsEventsSourcesList operation in NewsEventsSourcesApi.
+ * @export
+ * @interface NewsEventsSourcesApiNewsEventsSourcesListRequest
+ */
+export interface NewsEventsSourcesApiNewsEventsSourcesListRequest {
+    /**
+     * The type of source  * &#x60;news&#x60; - News * &#x60;events&#x60; - Events
+     * @type {Array<'events' | 'news'>}
+     * @memberof NewsEventsSourcesApiNewsEventsSourcesList
+     */
+    readonly feed_type?: Array<NewsEventsSourcesListFeedTypeEnum>
+
+    /**
+     * Number of results to return per page.
+     * @type {number}
+     * @memberof NewsEventsSourcesApiNewsEventsSourcesList
+     */
+    readonly limit?: number
+
+    /**
+     * The initial index from which to return the results.
+     * @type {number}
+     * @memberof NewsEventsSourcesApiNewsEventsSourcesList
+     */
+    readonly offset?: number
+}
+
+/**
+ * Request parameters for newsEventsSourcesRetrieve operation in NewsEventsSourcesApi.
+ * @export
+ * @interface NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest
+ */
+export interface NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest {
+    /**
+     * A unique integer value identifying this feed source.
+     * @type {number}
+     * @memberof NewsEventsSourcesApiNewsEventsSourcesRetrieve
+     */
+    readonly id: number
+}
+
+/**
+ * NewsEventsSourcesApi - object-oriented interface
+ * @export
+ * @class NewsEventsSourcesApi
+ * @extends {BaseAPI}
+ */
+export class NewsEventsSourcesApi extends BaseAPI {
+    /**
+     * Get a paginated list of news/event feed sources.
+     * @param {NewsEventsSourcesApiNewsEventsSourcesListRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NewsEventsSourcesApi
+     */
+    public newsEventsSourcesList(requestParameters: NewsEventsSourcesApiNewsEventsSourcesListRequest = {}, options?: RawAxiosRequestConfig) {
+        return NewsEventsSourcesApiFp(this.configuration).newsEventsSourcesList(requestParameters.feed_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Retrieve a single news/event feed source.
+     * @param {NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof NewsEventsSourcesApi
+     */
+    public newsEventsSourcesRetrieve(requestParameters: NewsEventsSourcesApiNewsEventsSourcesRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return NewsEventsSourcesApiFp(this.configuration).newsEventsSourcesRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+/**
+ * @export
+ */
+export const NewsEventsSourcesListFeedTypeEnum = {
+    Events: 'events',
+    News: 'news'
+} as const;
+export type NewsEventsSourcesListFeedTypeEnum = typeof NewsEventsSourcesListFeedTypeEnum[keyof typeof NewsEventsSourcesListFeedTypeEnum];
 
 
 /**
@@ -1453,6 +3010,306 @@ export class UsersApi extends BaseAPI {
      */
     public usersMeRetrieve(options?: RawAxiosRequestConfig) {
         return UsersApiFp(this.configuration).usersMeRetrieve(options).then((request) => request(this.axios, this.basePath));
+    }
+}
+
+
+
+/**
+ * WidgetListsApi - axios parameter creator
+ * @export
+ */
+export const WidgetListsApiAxiosParamCreator = function (configuration?: Configuration) {
+    return {
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {PatchedWidgetListRequest} [PatchedWidgetListRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsPartialUpdate: async (id: number, PatchedWidgetListRequest?: PatchedWidgetListRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('widgetListsPartialUpdate', 'id', id)
+            const localVarPath = `/api/v0/widget_lists/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PATCH', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(PatchedWidgetListRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsRetrieve: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('widgetListsRetrieve', 'id', id)
+            const localVarPath = `/api/v0/widget_lists/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {WidgetListRequest} [WidgetListRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsUpdate: async (id: number, WidgetListRequest?: WidgetListRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('widgetListsUpdate', 'id', id)
+            const localVarPath = `/api/v0/widget_lists/{id}/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'PUT', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            localVarHeaderParameter['Content-Type'] = 'application/json';
+
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+            localVarRequestOptions.data = serializeDataIfNeeded(WidgetListRequest, localVarRequestOptions, configuration)
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
+    }
+};
+
+/**
+ * WidgetListsApi - functional programming interface
+ * @export
+ */
+export const WidgetListsApiFp = function(configuration?: Configuration) {
+    const localVarAxiosParamCreator = WidgetListsApiAxiosParamCreator(configuration)
+    return {
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {PatchedWidgetListRequest} [PatchedWidgetListRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async widgetListsPartialUpdate(id: number, PatchedWidgetListRequest?: PatchedWidgetListRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WidgetList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.widgetListsPartialUpdate(id, PatchedWidgetListRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WidgetListsApi.widgetListsPartialUpdate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async widgetListsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WidgetList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.widgetListsRetrieve(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WidgetListsApi.widgetListsRetrieve']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+        /**
+         * API for managing widget lists
+         * @param {number} id A unique integer value identifying this widget list.
+         * @param {WidgetListRequest} [WidgetListRequest] 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async widgetListsUpdate(id: number, WidgetListRequest?: WidgetListRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<WidgetList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.widgetListsUpdate(id, WidgetListRequest, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['WidgetListsApi.widgetListsUpdate']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
+    }
+};
+
+/**
+ * WidgetListsApi - factory interface
+ * @export
+ */
+export const WidgetListsApiFactory = function (configuration?: Configuration, basePath?: string, axios?: AxiosInstance) {
+    const localVarFp = WidgetListsApiFp(configuration)
+    return {
+        /**
+         * API for managing widget lists
+         * @param {WidgetListsApiWidgetListsPartialUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsPartialUpdate(requestParameters: WidgetListsApiWidgetListsPartialUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<WidgetList> {
+            return localVarFp.widgetListsPartialUpdate(requestParameters.id, requestParameters.PatchedWidgetListRequest, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * API for managing widget lists
+         * @param {WidgetListsApiWidgetListsRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsRetrieve(requestParameters: WidgetListsApiWidgetListsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<WidgetList> {
+            return localVarFp.widgetListsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * API for managing widget lists
+         * @param {WidgetListsApiWidgetListsUpdateRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        widgetListsUpdate(requestParameters: WidgetListsApiWidgetListsUpdateRequest, options?: RawAxiosRequestConfig): AxiosPromise<WidgetList> {
+            return localVarFp.widgetListsUpdate(requestParameters.id, requestParameters.WidgetListRequest, options).then((request) => request(axios, basePath));
+        },
+    };
+};
+
+/**
+ * Request parameters for widgetListsPartialUpdate operation in WidgetListsApi.
+ * @export
+ * @interface WidgetListsApiWidgetListsPartialUpdateRequest
+ */
+export interface WidgetListsApiWidgetListsPartialUpdateRequest {
+    /**
+     * A unique integer value identifying this widget list.
+     * @type {number}
+     * @memberof WidgetListsApiWidgetListsPartialUpdate
+     */
+    readonly id: number
+
+    /**
+     * 
+     * @type {PatchedWidgetListRequest}
+     * @memberof WidgetListsApiWidgetListsPartialUpdate
+     */
+    readonly PatchedWidgetListRequest?: PatchedWidgetListRequest
+}
+
+/**
+ * Request parameters for widgetListsRetrieve operation in WidgetListsApi.
+ * @export
+ * @interface WidgetListsApiWidgetListsRetrieveRequest
+ */
+export interface WidgetListsApiWidgetListsRetrieveRequest {
+    /**
+     * A unique integer value identifying this widget list.
+     * @type {number}
+     * @memberof WidgetListsApiWidgetListsRetrieve
+     */
+    readonly id: number
+}
+
+/**
+ * Request parameters for widgetListsUpdate operation in WidgetListsApi.
+ * @export
+ * @interface WidgetListsApiWidgetListsUpdateRequest
+ */
+export interface WidgetListsApiWidgetListsUpdateRequest {
+    /**
+     * A unique integer value identifying this widget list.
+     * @type {number}
+     * @memberof WidgetListsApiWidgetListsUpdate
+     */
+    readonly id: number
+
+    /**
+     * 
+     * @type {WidgetListRequest}
+     * @memberof WidgetListsApiWidgetListsUpdate
+     */
+    readonly WidgetListRequest?: WidgetListRequest
+}
+
+/**
+ * WidgetListsApi - object-oriented interface
+ * @export
+ * @class WidgetListsApi
+ * @extends {BaseAPI}
+ */
+export class WidgetListsApi extends BaseAPI {
+    /**
+     * API for managing widget lists
+     * @param {WidgetListsApiWidgetListsPartialUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WidgetListsApi
+     */
+    public widgetListsPartialUpdate(requestParameters: WidgetListsApiWidgetListsPartialUpdateRequest, options?: RawAxiosRequestConfig) {
+        return WidgetListsApiFp(this.configuration).widgetListsPartialUpdate(requestParameters.id, requestParameters.PatchedWidgetListRequest, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * API for managing widget lists
+     * @param {WidgetListsApiWidgetListsRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WidgetListsApi
+     */
+    public widgetListsRetrieve(requestParameters: WidgetListsApiWidgetListsRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return WidgetListsApiFp(this.configuration).widgetListsRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * API for managing widget lists
+     * @param {WidgetListsApiWidgetListsUpdateRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof WidgetListsApi
+     */
+    public widgetListsUpdate(requestParameters: WidgetListsApiWidgetListsUpdateRequest, options?: RawAxiosRequestConfig) {
+        return WidgetListsApiFp(this.configuration).widgetListsUpdate(requestParameters.id, requestParameters.WidgetListRequest, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
