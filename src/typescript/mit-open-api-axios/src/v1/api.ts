@@ -470,7 +470,7 @@ export interface CourseResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof CourseResource
      */
@@ -888,7 +888,7 @@ export interface LearningPathResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof LearningPathResource
      */
@@ -3090,7 +3090,7 @@ export interface PodcastEpisodeResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof PodcastEpisodeResource
      */
@@ -3360,7 +3360,7 @@ export interface PodcastResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof PodcastResource
      */
@@ -3857,7 +3857,7 @@ export interface ProgramResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof ProgramResource
      */
@@ -4416,7 +4416,7 @@ export interface VideoPlaylistResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof VideoPlaylistResource
      */
@@ -4680,7 +4680,7 @@ export interface VideoResource {
      */
     'departments': Array<LearningResourceDepartment> | null;
     /**
-     * Returns the certification for the learning resource
+     * 
      * @type {boolean}
      * @memberof VideoResource
      */
