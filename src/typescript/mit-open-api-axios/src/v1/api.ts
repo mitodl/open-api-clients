@@ -1858,6 +1858,12 @@ export interface LearningResourceTopic {
      */
     'name': string;
     /**
+     * 
+     * @type {number}
+     * @memberof LearningResourceTopic
+     */
+    'parent'?: number | null;
+    /**
      * Get the channel url for the topic if it exists
      * @type {string}
      * @memberof LearningResourceTopic
@@ -12858,12 +12864,15 @@ export const TopicsApiAxiosParamCreator = function (configuration?: Configuratio
         /**
          * Topics covered by learning resources
          * @summary List
+         * @param {boolean} [is_toplevel] Filter top-level topics
          * @param {number} [limit] Number of results to return per page.
+         * @param {Array<string>} [name] Multiple values may be separated by commas.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {Array<string>} [parent_topic_name] Multiple values may be separated by commas.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        topicsList: async (limit?: number, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        topicsList: async (is_toplevel?: boolean, limit?: number, name?: Array<string>, offset?: number, parent_topic_name?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/topics/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -12876,12 +12885,24 @@ export const TopicsApiAxiosParamCreator = function (configuration?: Configuratio
             const localVarHeaderParameter = {} as any;
             const localVarQueryParameter = {} as any;
 
+            if (is_toplevel !== undefined) {
+                localVarQueryParameter['is_toplevel'] = is_toplevel;
+            }
+
             if (limit !== undefined) {
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (name) {
+                localVarQueryParameter['name'] = name.join(COLLECTION_FORMATS.csv);
+            }
+
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
+            }
+
+            if (parent_topic_name) {
+                localVarQueryParameter['parent_topic_name'] = parent_topic_name.join(COLLECTION_FORMATS.csv);
             }
 
 
@@ -12942,13 +12963,16 @@ export const TopicsApiFp = function(configuration?: Configuration) {
         /**
          * Topics covered by learning resources
          * @summary List
+         * @param {boolean} [is_toplevel] Filter top-level topics
          * @param {number} [limit] Number of results to return per page.
+         * @param {Array<string>} [name] Multiple values may be separated by commas.
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {Array<string>} [parent_topic_name] Multiple values may be separated by commas.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async topicsList(limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceTopicList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.topicsList(limit, offset, options);
+        async topicsList(is_toplevel?: boolean, limit?: number, name?: Array<string>, offset?: number, parent_topic_name?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceTopicList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.topicsList(is_toplevel, limit, name, offset, parent_topic_name, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['TopicsApi.topicsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -12984,7 +13008,7 @@ export const TopicsApiFactory = function (configuration?: Configuration, basePat
          * @throws {RequiredError}
          */
         topicsList(requestParameters: TopicsApiTopicsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceTopicList> {
-            return localVarFp.topicsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
+            return localVarFp.topicsList(requestParameters.is_toplevel, requestParameters.limit, requestParameters.name, requestParameters.offset, requestParameters.parent_topic_name, options).then((request) => request(axios, basePath));
         },
         /**
          * Topics covered by learning resources
@@ -13006,6 +13030,13 @@ export const TopicsApiFactory = function (configuration?: Configuration, basePat
  */
 export interface TopicsApiTopicsListRequest {
     /**
+     * Filter top-level topics
+     * @type {boolean}
+     * @memberof TopicsApiTopicsList
+     */
+    readonly is_toplevel?: boolean
+
+    /**
      * Number of results to return per page.
      * @type {number}
      * @memberof TopicsApiTopicsList
@@ -13013,11 +13044,25 @@ export interface TopicsApiTopicsListRequest {
     readonly limit?: number
 
     /**
+     * Multiple values may be separated by commas.
+     * @type {Array<string>}
+     * @memberof TopicsApiTopicsList
+     */
+    readonly name?: Array<string>
+
+    /**
      * The initial index from which to return the results.
      * @type {number}
      * @memberof TopicsApiTopicsList
      */
     readonly offset?: number
+
+    /**
+     * Multiple values may be separated by commas.
+     * @type {Array<string>}
+     * @memberof TopicsApiTopicsList
+     */
+    readonly parent_topic_name?: Array<string>
 }
 
 /**
@@ -13050,7 +13095,7 @@ export class TopicsApi extends BaseAPI {
      * @memberof TopicsApi
      */
     public topicsList(requestParameters: TopicsApiTopicsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return TopicsApiFp(this.configuration).topicsList(requestParameters.limit, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+        return TopicsApiFp(this.configuration).topicsList(requestParameters.is_toplevel, requestParameters.limit, requestParameters.name, requestParameters.offset, requestParameters.parent_topic_name, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
