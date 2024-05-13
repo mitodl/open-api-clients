@@ -31,4 +31,3 @@ push = false
 "VERSION" = [
     "^{version}",
 ]
-
