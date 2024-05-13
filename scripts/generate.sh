@@ -24,12 +24,11 @@ git checkout release
 popd
 
 docker run --rm \
-  -v "${PWD}:/tmp/mit-open-api-clients" \
-  -v "${OPEN_CLONE_DIR}:/tmp/mit-open" \
-  -w /tmp \
-  $GENERATOR_IMAGE \
-  ./mit-open-api-clients/scripts/generate-inner.sh
-
+	-v "${PWD}:/tmp/mit-open-api-clients" \
+	-v "${OPEN_CLONE_DIR}:/tmp/mit-open" \
+	-w /tmp \
+	$GENERATOR_IMAGE \
+	./mit-open-api-clients/scripts/generate-inner.sh
 
 # set permissions to host permissions so that we can modify files
 docker run --rm \
