@@ -103,6 +103,19 @@ export interface Attestation {
     'channels': Array<number>;
 }
 /**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const BlankEnum = {
+    Empty: ''
+} as const;
+
+export type BlankEnum = typeof BlankEnum[keyof typeof BlankEnum];
+
+
+/**
  * Serializer for CKEditor settings
  * @export
  * @interface CKEditorSettings
@@ -115,6 +128,21 @@ export interface CKEditorSettings {
      */
     'token': string | null;
 }
+/**
+ * * `yes` - Yes * `no` - No * `not-sure-yet` - Not Sure Yet
+ * @export
+ * @enum {string}
+ */
+
+export const CertificateDesiredEnum = {
+    Yes: 'yes',
+    No: 'no',
+    NotSureYet: 'not-sure-yet'
+} as const;
+
+export type CertificateDesiredEnum = typeof CertificateDesiredEnum[keyof typeof CertificateDesiredEnum];
+
+
 /**
  * Serializer for the ChannelDepartmentDetail model
  * @export
@@ -207,6 +235,38 @@ export const ChannelTypeEnum = {
 } as const;
 
 export type ChannelTypeEnum = typeof ChannelTypeEnum[keyof typeof ChannelTypeEnum];
+
+
+/**
+ * * `online` - Online * `in-person` - In-Person * `hybrid` - Hybrid
+ * @export
+ * @enum {string}
+ */
+
+export const CourseFormatEnum = {
+    Online: 'online',
+    InPerson: 'in-person',
+    Hybrid: 'hybrid'
+} as const;
+
+export type CourseFormatEnum = typeof CourseFormatEnum[keyof typeof CourseFormatEnum];
+
+
+/**
+ * * `no-formal` - No Formal Education * `primary` - Primary Education * `secondary-or-high-school` - Secondary Education or High School * `ged` - GED * `vocational-qualification` - Vocational Qualification
+ * @export
+ * @enum {string}
+ */
+
+export const CurrentEducationEnum = {
+    NoFormal: 'no-formal',
+    Primary: 'primary',
+    SecondaryOrHighSchool: 'secondary-or-high-school',
+    Ged: 'ged',
+    VocationalQualification: 'vocational-qualification'
+} as const;
+
+export type CurrentEducationEnum = typeof CurrentEducationEnum[keyof typeof CurrentEducationEnum];
 
 
 /**
@@ -389,6 +449,125 @@ export type DepartmentChannelTypeEnum = typeof DepartmentChannelTypeEnum[keyof t
 
 
 /**
+ * Serializer for News FeedItem
+ * @export
+ * @interface EventFeedItem
+ */
+export interface EventFeedItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof EventFeedItem
+     */
+    'id': number;
+    /**
+     * 
+     * @type {EventFeedItemFeedTypeEnum}
+     * @memberof EventFeedItem
+     */
+    'feed_type': EventFeedItemFeedTypeEnum;
+    /**
+     * 
+     * @type {FeedImage}
+     * @memberof EventFeedItem
+     */
+    'image': FeedImage;
+    /**
+     * 
+     * @type {FeedEventDetail}
+     * @memberof EventFeedItem
+     */
+    'event_details': FeedEventDetail;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventFeedItem
+     */
+    'guid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventFeedItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventFeedItem
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventFeedItem
+     */
+    'summary'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof EventFeedItem
+     */
+    'content'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof EventFeedItem
+     */
+    'source': number;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const EventFeedItemFeedTypeEnum = {
+    Events: 'events'
+} as const;
+
+export type EventFeedItemFeedTypeEnum = typeof EventFeedItemFeedTypeEnum[keyof typeof EventFeedItemFeedTypeEnum];
+
+
+/**
+ * FeedEventDetail serializer
+ * @export
+ * @interface FeedEventDetail
+ */
+export interface FeedEventDetail {
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedEventDetail
+     */
+    'id': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FeedEventDetail
+     */
+    'audience': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FeedEventDetail
+     */
+    'location': Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FeedEventDetail
+     */
+    'event_type': Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedEventDetail
+     */
+    'event_datetime': string;
+}
+/**
  * Serializer for FeedImage
  * @export
  * @interface FeedImage
@@ -418,6 +597,43 @@ export interface FeedImage {
      * @memberof FeedImage
      */
     'alt'?: string;
+}
+/**
+ * @type FeedItem
+ * @export
+ */
+export type FeedItem = { resource_type: 'events' } & EventFeedItem | { resource_type: 'news' } & NewsFeedItem;
+
+/**
+ * FeedNewsDetail serializer
+ * @export
+ * @interface FeedNewsDetail
+ */
+export interface FeedNewsDetail {
+    /**
+     * 
+     * @type {number}
+     * @memberof FeedNewsDetail
+     */
+    'id': number;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FeedNewsDetail
+     */
+    'authors'?: Array<string>;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof FeedNewsDetail
+     */
+    'topics'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof FeedNewsDetail
+     */
+    'publish_date': string;
 }
 /**
  * FeedSource serializer
@@ -457,10 +673,10 @@ export interface FeedSource {
     'description'?: string;
     /**
      * 
-     * @type {FeedTypeEnum}
+     * @type {FeedSourceFeedTypeEnum}
      * @memberof FeedSource
      */
-    'feed_type': FeedTypeEnum;
+    'feed_type': FeedSourceFeedTypeEnum;
 }
 
 
@@ -470,12 +686,12 @@ export interface FeedSource {
  * @enum {string}
  */
 
-export const FeedTypeEnum = {
+export const FeedSourceFeedTypeEnum = {
     News: 'news',
     Events: 'events'
 } as const;
 
-export type FeedTypeEnum = typeof FeedTypeEnum[keyof typeof FeedTypeEnum];
+export type FeedSourceFeedTypeEnum = typeof FeedSourceFeedTypeEnum[keyof typeof FeedSourceFeedTypeEnum];
 
 
 /**
@@ -628,6 +844,51 @@ export interface FieldModeratorRequest {
     'email'?: string;
 }
 /**
+ * * `career-growth` - Career Growth * `supplemental-learning` - Supplemental Learning * `just-to-learn` - Just to Learn
+ * @export
+ * @enum {string}
+ */
+
+export const GoalsEnum = {
+    CareerGrowth: 'career-growth',
+    SupplementalLearning: 'supplemental-learning',
+    JustToLearn: 'just-to-learn'
+} as const;
+
+export type GoalsEnum = typeof GoalsEnum[keyof typeof GoalsEnum];
+
+
+/**
+ * * `computer-science` - Computer Science * `business` - Business * `engineering` - Engineering * `leadership` - Leadership * `organized-behavior` - Organized Behavior * `management` - Management * `electrical-engineering` - Electrical Engineering * `information-technology` - Information Technology * `biology` - Biology * `earth-science` - Earth Science * `environmental-engineering` - Environmental Engineering * `health-and-medicine` - Health & Medicine * `probability-and-stats` - Probability & Stats * `economics` - Economics * `history` - History * `mathematics` - Mathematics * `mechanical-engineering` - Mechanical Engineering * `other` - Other
+ * @export
+ * @enum {string}
+ */
+
+export const InterestsEnum = {
+    ComputerScience: 'computer-science',
+    Business: 'business',
+    Engineering: 'engineering',
+    Leadership: 'leadership',
+    OrganizedBehavior: 'organized-behavior',
+    Management: 'management',
+    ElectricalEngineering: 'electrical-engineering',
+    InformationTechnology: 'information-technology',
+    Biology: 'biology',
+    EarthScience: 'earth-science',
+    EnvironmentalEngineering: 'environmental-engineering',
+    HealthAndMedicine: 'health-and-medicine',
+    ProbabilityAndStats: 'probability-and-stats',
+    Economics: 'economics',
+    History: 'history',
+    Mathematics: 'mathematics',
+    MechanicalEngineering: 'mechanical-engineering',
+    Other: 'other'
+} as const;
+
+export type InterestsEnum = typeof InterestsEnum[keyof typeof InterestsEnum];
+
+
+/**
  * Serializer for a minimal preview of Learning Paths
  * @export
  * @interface LearningPathPreview
@@ -652,6 +913,88 @@ export interface LearningPathPreview {
      */
     'id': number;
 }
+/**
+ * Serializer for News FeedItem
+ * @export
+ * @interface NewsFeedItem
+ */
+export interface NewsFeedItem {
+    /**
+     * 
+     * @type {number}
+     * @memberof NewsFeedItem
+     */
+    'id': number;
+    /**
+     * 
+     * @type {NewsFeedItemFeedTypeEnum}
+     * @memberof NewsFeedItem
+     */
+    'feed_type': NewsFeedItemFeedTypeEnum;
+    /**
+     * 
+     * @type {FeedImage}
+     * @memberof NewsFeedItem
+     */
+    'image': FeedImage;
+    /**
+     * 
+     * @type {FeedNewsDetail}
+     * @memberof NewsFeedItem
+     */
+    'news_details': FeedNewsDetail;
+    /**
+     * 
+     * @type {string}
+     * @memberof NewsFeedItem
+     */
+    'guid': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NewsFeedItem
+     */
+    'title': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NewsFeedItem
+     */
+    'url': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NewsFeedItem
+     */
+    'summary'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof NewsFeedItem
+     */
+    'content'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof NewsFeedItem
+     */
+    'source': number;
+}
+
+
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NewsFeedItemFeedTypeEnum = {
+    News: 'news'
+} as const;
+
+export type NewsFeedItemFeedTypeEnum = typeof NewsFeedItemFeedTypeEnum[keyof typeof NewsFeedItemFeedTypeEnum];
+
+
 /**
  * Serializer for Channel model of type offeror
  * @export
@@ -836,6 +1179,37 @@ export interface PaginatedAttestationList {
      * @memberof PaginatedAttestationList
      */
     'results': Array<Attestation>;
+}
+/**
+ * 
+ * @export
+ * @interface PaginatedFeedItemList
+ */
+export interface PaginatedFeedItemList {
+    /**
+     * 
+     * @type {number}
+     * @memberof PaginatedFeedItemList
+     */
+    'count': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedFeedItemList
+     */
+    'next'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof PaginatedFeedItemList
+     */
+    'previous'?: string | null;
+    /**
+     * 
+     * @type {Array<FeedItem>}
+     * @memberof PaginatedFeedItemList
+     */
+    'results': Array<FeedItem>;
 }
 /**
  * 
@@ -1030,24 +1404,6 @@ export interface PatchedProfileRequest {
     'image_medium'?: string | null;
     /**
      * 
-     * @type {File}
-     * @memberof PatchedProfileRequest
-     */
-    'image_file'?: File | null;
-    /**
-     * 
-     * @type {File}
-     * @memberof PatchedProfileRequest
-     */
-    'image_small_file'?: File | null;
-    /**
-     * 
-     * @type {File}
-     * @memberof PatchedProfileRequest
-     */
-    'image_medium_file'?: File | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof PatchedProfileRequest
      */
@@ -1076,7 +1432,67 @@ export interface PatchedProfileRequest {
      * @memberof PatchedProfileRequest
      */
     'location'?: any | null;
+    /**
+     * 
+     * @type {Array<InterestsEnum>}
+     * @memberof PatchedProfileRequest
+     */
+    'interests'?: Array<InterestsEnum>;
+    /**
+     * 
+     * @type {Array<GoalsEnum>}
+     * @memberof PatchedProfileRequest
+     */
+    'goals'?: Array<GoalsEnum>;
+    /**
+     * 
+     * @type {PatchedProfileRequestCurrentEducation}
+     * @memberof PatchedProfileRequest
+     */
+    'current_education'?: PatchedProfileRequestCurrentEducation;
+    /**
+     * 
+     * @type {PatchedProfileRequestCertificateDesired}
+     * @memberof PatchedProfileRequest
+     */
+    'certificate_desired'?: PatchedProfileRequestCertificateDesired;
+    /**
+     * 
+     * @type {PatchedProfileRequestTimeCommitment}
+     * @memberof PatchedProfileRequest
+     */
+    'time_commitment'?: PatchedProfileRequestTimeCommitment;
+    /**
+     * 
+     * @type {PatchedProfileRequestCourseFormat}
+     * @memberof PatchedProfileRequest
+     */
+    'course_format'?: PatchedProfileRequestCourseFormat;
 }
+/**
+ * @type PatchedProfileRequestCertificateDesired
+ * @export
+ */
+export type PatchedProfileRequestCertificateDesired = BlankEnum | CertificateDesiredEnum;
+
+/**
+ * @type PatchedProfileRequestCourseFormat
+ * @export
+ */
+export type PatchedProfileRequestCourseFormat = BlankEnum | CourseFormatEnum;
+
+/**
+ * @type PatchedProfileRequestCurrentEducation
+ * @export
+ */
+export type PatchedProfileRequestCurrentEducation = BlankEnum | CurrentEducationEnum;
+
+/**
+ * @type PatchedProfileRequestTimeCommitment
+ * @export
+ */
+export type PatchedProfileRequestTimeCommitment = BlankEnum | TimeCommitmentEnum;
+
 /**
  * Serializer for User
  * @export
@@ -1292,19 +1708,19 @@ export interface Profile {
      * @type {string}
      * @memberof Profile
      */
-    'image_file'?: string | null;
+    'image_file': string | null;
     /**
      * 
      * @type {string}
      * @memberof Profile
      */
-    'image_small_file'?: string | null;
+    'image_small_file': string | null;
     /**
      * 
      * @type {string}
      * @memberof Profile
      */
-    'image_medium_file'?: string | null;
+    'image_medium_file': string | null;
     /**
      * Custom getter for small profile image
      * @type {string}
@@ -1341,6 +1757,42 @@ export interface Profile {
      * @memberof Profile
      */
     'placename': string;
+    /**
+     * 
+     * @type {Array<InterestsEnum>}
+     * @memberof Profile
+     */
+    'interests'?: Array<InterestsEnum>;
+    /**
+     * 
+     * @type {Array<GoalsEnum>}
+     * @memberof Profile
+     */
+    'goals'?: Array<GoalsEnum>;
+    /**
+     * 
+     * @type {PatchedProfileRequestCurrentEducation}
+     * @memberof Profile
+     */
+    'current_education'?: PatchedProfileRequestCurrentEducation;
+    /**
+     * 
+     * @type {PatchedProfileRequestCertificateDesired}
+     * @memberof Profile
+     */
+    'certificate_desired'?: PatchedProfileRequestCertificateDesired;
+    /**
+     * 
+     * @type {PatchedProfileRequestTimeCommitment}
+     * @memberof Profile
+     */
+    'time_commitment'?: PatchedProfileRequestTimeCommitment;
+    /**
+     * 
+     * @type {PatchedProfileRequestCourseFormat}
+     * @memberof Profile
+     */
+    'course_format'?: PatchedProfileRequestCourseFormat;
 }
 /**
  * Serializer for Profile
@@ -1374,24 +1826,6 @@ export interface ProfileRequest {
     'image_medium'?: string | null;
     /**
      * 
-     * @type {File}
-     * @memberof ProfileRequest
-     */
-    'image_file'?: File | null;
-    /**
-     * 
-     * @type {File}
-     * @memberof ProfileRequest
-     */
-    'image_small_file'?: File | null;
-    /**
-     * 
-     * @type {File}
-     * @memberof ProfileRequest
-     */
-    'image_medium_file'?: File | null;
-    /**
-     * 
      * @type {boolean}
      * @memberof ProfileRequest
      */
@@ -1420,6 +1854,42 @@ export interface ProfileRequest {
      * @memberof ProfileRequest
      */
     'location'?: any | null;
+    /**
+     * 
+     * @type {Array<InterestsEnum>}
+     * @memberof ProfileRequest
+     */
+    'interests'?: Array<InterestsEnum>;
+    /**
+     * 
+     * @type {Array<GoalsEnum>}
+     * @memberof ProfileRequest
+     */
+    'goals'?: Array<GoalsEnum>;
+    /**
+     * 
+     * @type {PatchedProfileRequestCurrentEducation}
+     * @memberof ProfileRequest
+     */
+    'current_education'?: PatchedProfileRequestCurrentEducation;
+    /**
+     * 
+     * @type {PatchedProfileRequestCertificateDesired}
+     * @memberof ProfileRequest
+     */
+    'certificate_desired'?: PatchedProfileRequestCertificateDesired;
+    /**
+     * 
+     * @type {PatchedProfileRequestTimeCommitment}
+     * @memberof ProfileRequest
+     */
+    'time_commitment'?: PatchedProfileRequestTimeCommitment;
+    /**
+     * 
+     * @type {PatchedProfileRequestCourseFormat}
+     * @memberof ProfileRequest
+     */
+    'course_format'?: PatchedProfileRequestCourseFormat;
 }
 /**
  * Serializer for Program Certificates
@@ -1555,6 +2025,20 @@ export interface ProgramCertificate {
     'program_completion_timestamp'?: string | null;
 }
 /**
+ * * `news` - news * `events` - events
+ * @export
+ * @enum {string}
+ */
+
+export const ResourceTypeEnum = {
+    News: 'news',
+    Events: 'events'
+} as const;
+
+export type ResourceTypeEnum = typeof ResourceTypeEnum[keyof typeof ResourceTypeEnum];
+
+
+/**
  * * `facebook` - facebook * `linkedin` - linkedin * `personal` - personal * `twitter` - twitter
  * @export
  * @enum {string}
@@ -1595,6 +2079,23 @@ export interface Subfield {
      */
     'position'?: number;
 }
+/**
+ * * `0-to-5-hours` - <5 hours/week * `5-to-10-hours` - 5-10 hours/week * `10-to-20-hours` - 10-20 hours/week * `20-to-30-hours` - 20-30 hours/week * `30-plus-hours` - 30+ hours/week
+ * @export
+ * @enum {string}
+ */
+
+export const TimeCommitmentEnum = {
+    _0To5Hours: '0-to-5-hours',
+    _5To10Hours: '5-to-10-hours',
+    _10To20Hours: '10-to-20-hours',
+    _20To30Hours: '20-to-30-hours',
+    _30PlusHours: '30-plus-hours'
+} as const;
+
+export type TimeCommitmentEnum = typeof TimeCommitmentEnum[keyof typeof TimeCommitmentEnum];
+
+
 /**
  * Serializer for Channel model of type topic
  * @export
@@ -3059,7 +3560,7 @@ export const NewsEventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async newsEventsList(feed_type?: Array<NewsEventsListFeedTypeEnum>, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async newsEventsList(feed_type?: Array<NewsEventsListFeedTypeEnum>, limit?: number, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedFeedItemList>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsList(feed_type, limit, offset, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['NewsEventsApi.newsEventsList']?.[index]?.url;
@@ -3071,7 +3572,7 @@ export const NewsEventsApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async newsEventsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<void>> {
+        async newsEventsRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<FeedItem>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.newsEventsRetrieve(id, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['NewsEventsApi.newsEventsRetrieve']?.[index]?.url;
@@ -3093,7 +3594,7 @@ export const NewsEventsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        newsEventsList(requestParameters: NewsEventsApiNewsEventsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        newsEventsList(requestParameters: NewsEventsApiNewsEventsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedFeedItemList> {
             return localVarFp.newsEventsList(requestParameters.feed_type, requestParameters.limit, requestParameters.offset, options).then((request) => request(axios, basePath));
         },
         /**
@@ -3102,7 +3603,7 @@ export const NewsEventsApiFactory = function (configuration?: Configuration, bas
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        newsEventsRetrieve(requestParameters: NewsEventsApiNewsEventsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<void> {
+        newsEventsRetrieve(requestParameters: NewsEventsApiNewsEventsRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<FeedItem> {
             return localVarFp.newsEventsRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
         },
     };
