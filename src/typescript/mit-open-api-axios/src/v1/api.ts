@@ -518,6 +518,12 @@ export interface CourseResource {
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
     /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof CourseResource
+     */
+    'free': boolean;
+    /**
      * 
      * @type {CourseResourceResourceTypeEnum}
      * @memberof CourseResource
@@ -935,6 +941,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
+    /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof LearningPathResource
+     */
+    'free': boolean;
     /**
      * 
      * @type {LearningPathResourceResourceTypeEnum}
@@ -1944,136 +1956,6 @@ export interface LearningResourceTopic {
     'channel_url': string | null;
 }
 /**
- * 
- * @export
- * @interface LearningResourcesSearchRequestRequest
- */
-export interface LearningResourcesSearchRequestRequest {
-    /**
-     * The search text
-     * @type {string}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'q'?: string;
-    /**
-     * The initial index from which to return the results
-     * @type {number}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'offset'?: number;
-    /**
-     * Number of results to return per page
-     * @type {number}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'limit'?: number;
-    /**
-     * The organization that offers the learning resource               * `mitx` - MITx * `ocw` - OCW * `bootcamps` - Bootcamps * `xpro` - xPRO * `mitpe` - Professional Education * `see` - Sloan Executive Education
-     * @type {Array<OfferedByEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'offered_by'?: Array<OfferedByEnum>;
-    /**
-     * The platform on which the learning resource is offered               * `edx` - edX * `ocw` - OCW * `oll` - Open Learning Library * `mitxonline` - MITx Online * `bootcamps` - Bootcamps * `xpro` - xPRO * `csail` - CSAIL * `mitpe` - Professional Education * `see` - Sloan Executive Education * `scc` - Schwarzman College of Computing * `ctl` - Center for Transportation & Logistics * `whu` - WHU * `susskind` - Susskind * `globalalumni` - Global Alumni * `simplilearn` - Simplilearn * `emeritus` - Emeritus * `podcast` - Podcast * `youtube` - YouTube
-     * @type {Array<PlatformEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'platform'?: Array<PlatformEnum>;
-    /**
-     * The topic name. To see a list of options go to api/v1/topics/
-     * @type {Array<string>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'topic'?: Array<string>;
-    /**
-     * The id value for the learning resource
-     * @type {Array<number>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'id'?: Array<number>;
-    /**
-     * 
-     * @type {SortbyEnum}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'sortby'?: SortbyEnum;
-    /**
-     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist
-     * @type {Array<LearningResourcesSearchRequestResourceTypeEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'resource_type'?: Array<LearningResourcesSearchRequestResourceTypeEnum>;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'free'?: boolean | null;
-    /**
-     * 
-     * @type {boolean}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'professional'?: boolean | null;
-    /**
-     * True if the learning resource offers a certificate
-     * @type {boolean}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'certification'?: boolean | null;
-    /**
-     * The department that offers the learning resource               * `1` - Civil and Environmental Engineering * `2` - Mechanical Engineering * `3` - Materials Science and Engineering * `4` - Architecture * `5` - Chemistry * `6` - Electrical Engineering and Computer Science * `7` - Biology * `8` - Physics * `9` - Brain and Cognitive Sciences * `10` - Chemical Engineering * `11` - Urban Studies and Planning * `12` - Earth, Atmospheric, and Planetary Sciences * `14` - Economics * `15` - Sloan School of Management * `16` - Aeronautics and Astronautics * `17` - Political Science * `18` - Mathematics * `20` - Biological Engineering * `21A` - Anthropology * `21G` - Global Studies and Languages * `21H` - History * `21L` - Literature * `21M` - Music and Theater Arts * `22` - Nuclear Science and Engineering * `24` - Linguistics and Philosophy * `CC` - Concourse * `CMS-W` - Comparative Media Studies/Writing * `EC` - Edgerton Center * `ES` - Experimental Study Group * `ESD` - Engineering Systems Division * `HST` - Health Sciences and Technology * `IDS` - Institute for Data, Systems, and Society * `MAS` - Media Arts and Sciences * `PE` - Athletics, Physical Education and Recreation * `RES` - Supplemental Resources * `STS` - Science, Technology, and Society * `WGS` - Women\'s and Gender Studies
-     * @type {Array<DepartmentEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'department'?: Array<DepartmentEnum>;
-    /**
-     * 
-     * @type {Array<LevelEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'level'?: Array<LevelEnum>;
-    /**
-     * The course feature. Possible options are at api/v1/course_features/
-     * @type {Array<string>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'course_feature'?: Array<string>;
-    /**
-     * Show resource counts by category
-     * @type {Array<AggregationsEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'aggregations'?: Array<AggregationsEnum>;
-    /**
-     * The format(s) in which the learning resource is offered               * `online` - Online * `hybrid` - Hybrid * `in_person` - In person
-     * @type {Array<LearningFormatEnum>}
-     * @memberof LearningResourcesSearchRequestRequest
-     */
-    'learning_format'?: Array<LearningFormatEnum>;
-}
-
-
-/**
- * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist
- * @export
- * @enum {string}
- */
-
-export const LearningResourcesSearchRequestResourceTypeEnum = {
-    Course: 'course',
-    Program: 'program',
-    LearningPath: 'learning_path',
-    Podcast: 'podcast',
-    PodcastEpisode: 'podcast_episode',
-    Video: 'video',
-    VideoPlaylist: 'video_playlist'
-} as const;
-
-export type LearningResourcesSearchRequestResourceTypeEnum = typeof LearningResourcesSearchRequestResourceTypeEnum[keyof typeof LearningResourcesSearchRequestResourceTypeEnum];
-
-
-/**
  * * `undergraduate` - Undergraduate * `graduate` - Graduate * `high_school` - High School * `noncredit` - Non-Credit * `advanced` - Advanced * `intermediate` - Intermediate * `introductory` - Introductory
  * @export
  * @enum {string}
@@ -2989,6 +2871,142 @@ export interface PercolateQuery {
 
 
 /**
+ * PercolateQuerySubscriptionRequestSerializer with OpenAPI annotations for Percolate Subscription requests
+ * @export
+ * @interface PercolateQuerySubscriptionRequestRequest
+ */
+export interface PercolateQuerySubscriptionRequestRequest {
+    /**
+     * The search text
+     * @type {string}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'q'?: string;
+    /**
+     * The initial index from which to return the results
+     * @type {number}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'offset'?: number;
+    /**
+     * Number of results to return per page
+     * @type {number}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'limit'?: number;
+    /**
+     * The organization that offers the learning resource               * `mitx` - MITx * `ocw` - OCW * `bootcamps` - Bootcamps * `xpro` - xPRO * `mitpe` - Professional Education * `see` - Sloan Executive Education
+     * @type {Array<OfferedByEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'offered_by'?: Array<OfferedByEnum>;
+    /**
+     * The platform on which the learning resource is offered               * `edx` - edX * `ocw` - OCW * `oll` - Open Learning Library * `mitxonline` - MITx Online * `bootcamps` - Bootcamps * `xpro` - xPRO * `csail` - CSAIL * `mitpe` - Professional Education * `see` - Sloan Executive Education * `scc` - Schwarzman College of Computing * `ctl` - Center for Transportation & Logistics * `whu` - WHU * `susskind` - Susskind * `globalalumni` - Global Alumni * `simplilearn` - Simplilearn * `emeritus` - Emeritus * `podcast` - Podcast * `youtube` - YouTube
+     * @type {Array<PlatformEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'platform'?: Array<PlatformEnum>;
+    /**
+     * The topic name. To see a list of options go to api/v1/topics/
+     * @type {Array<string>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'topic'?: Array<string>;
+    /**
+     * The id value for the learning resource
+     * @type {Array<number>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'id'?: Array<number>;
+    /**
+     * 
+     * @type {SortbyEnum}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'sortby'?: SortbyEnum;
+    /**
+     * The type of learning resource               * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist
+     * @type {Array<PercolateQuerySubscriptionRequestResourceTypeEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'resource_type'?: Array<PercolateQuerySubscriptionRequestResourceTypeEnum>;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'free'?: boolean | null;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'professional'?: boolean | null;
+    /**
+     * True if the learning resource offers a certificate
+     * @type {boolean}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'certification'?: boolean | null;
+    /**
+     * The department that offers the learning resource               * `1` - Civil and Environmental Engineering * `2` - Mechanical Engineering * `3` - Materials Science and Engineering * `4` - Architecture * `5` - Chemistry * `6` - Electrical Engineering and Computer Science * `7` - Biology * `8` - Physics * `9` - Brain and Cognitive Sciences * `10` - Chemical Engineering * `11` - Urban Studies and Planning * `12` - Earth, Atmospheric, and Planetary Sciences * `14` - Economics * `15` - Sloan School of Management * `16` - Aeronautics and Astronautics * `17` - Political Science * `18` - Mathematics * `20` - Biological Engineering * `21A` - Anthropology * `21G` - Global Studies and Languages * `21H` - History * `21L` - Literature * `21M` - Music and Theater Arts * `22` - Nuclear Science and Engineering * `24` - Linguistics and Philosophy * `CC` - Concourse * `CMS-W` - Comparative Media Studies/Writing * `EC` - Edgerton Center * `ES` - Experimental Study Group * `ESD` - Engineering Systems Division * `HST` - Health Sciences and Technology * `IDS` - Institute for Data, Systems, and Society * `MAS` - Media Arts and Sciences * `PE` - Athletics, Physical Education and Recreation * `RES` - Supplemental Resources * `STS` - Science, Technology, and Society * `WGS` - Women\'s and Gender Studies
+     * @type {Array<DepartmentEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'department'?: Array<DepartmentEnum>;
+    /**
+     * 
+     * @type {Array<LevelEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'level'?: Array<LevelEnum>;
+    /**
+     * The course feature. Possible options are at api/v1/course_features/
+     * @type {Array<string>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'course_feature'?: Array<string>;
+    /**
+     * Show resource counts by category
+     * @type {Array<AggregationsEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'aggregations'?: Array<AggregationsEnum>;
+    /**
+     * The format(s) in which the learning resource is offered               * `online` - Online * `hybrid` - Hybrid * `in_person` - In person
+     * @type {Array<LearningFormatEnum>}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'learning_format'?: Array<LearningFormatEnum>;
+    /**
+     * 
+     * @type {SourceTypeEnum}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'source_type'?: SourceTypeEnum;
+}
+
+
+/**
+ * * `course` - course * `program` - program * `learning_path` - learning path * `podcast` - podcast * `podcast_episode` - podcast episode * `video` - video * `video_playlist` - video playlist
+ * @export
+ * @enum {string}
+ */
+
+export const PercolateQuerySubscriptionRequestResourceTypeEnum = {
+    Course: 'course',
+    Program: 'program',
+    LearningPath: 'learning_path',
+    Podcast: 'podcast',
+    PodcastEpisode: 'podcast_episode',
+    Video: 'video',
+    VideoPlaylist: 'video_playlist'
+} as const;
+
+export type PercolateQuerySubscriptionRequestResourceTypeEnum = typeof PercolateQuerySubscriptionRequestResourceTypeEnum[keyof typeof PercolateQuerySubscriptionRequestResourceTypeEnum];
+
+
+/**
  * * `edx` - edX * `ocw` - OCW * `oll` - Open Learning Library * `mitxonline` - MITx Online * `bootcamps` - Bootcamps * `xpro` - xPRO * `csail` - CSAIL * `mitpe` - Professional Education * `see` - Sloan Executive Education * `scc` - Schwarzman College of Computing * `ctl` - Center for Transportation & Logistics * `whu` - WHU * `susskind` - Susskind * `globalalumni` - Global Alumni * `simplilearn` - Simplilearn * `emeritus` - Emeritus * `podcast` - Podcast * `youtube` - YouTube
  * @export
  * @enum {string}
@@ -3213,6 +3231,12 @@ export interface PodcastEpisodeResource {
      * @memberof PodcastEpisodeResource
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
+    /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof PodcastEpisodeResource
+     */
+    'free': boolean;
     /**
      * 
      * @type {PodcastEpisodeResourceResourceTypeEnum}
@@ -3483,6 +3507,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
+    /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof PodcastResource
+     */
+    'free': boolean;
     /**
      * 
      * @type {PodcastResourceResourceTypeEnum}
@@ -3981,6 +4011,12 @@ export interface ProgramResource {
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
     /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof ProgramResource
+     */
+    'free': boolean;
+    /**
      * 
      * @type {ProgramResourceResourceTypeEnum}
      * @memberof ProgramResource
@@ -4197,13 +4233,14 @@ export type SortbyEnum = typeof SortbyEnum[keyof typeof SortbyEnum];
 
 
 /**
- * * `search_subscription_type` - search_subscription_type
+ * * `search_subscription_type` - search_subscription_type * `channel_subscription_type` - channel_subscription_type
  * @export
  * @enum {string}
  */
 
 export const SourceTypeEnum = {
-    SearchSubscriptionType: 'search_subscription_type'
+    SearchSubscriptionType: 'search_subscription_type',
+    ChannelSubscriptionType: 'channel_subscription_type'
 } as const;
 
 export type SourceTypeEnum = typeof SourceTypeEnum[keyof typeof SourceTypeEnum];
@@ -4540,6 +4577,12 @@ export interface VideoPlaylistResource {
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
     /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof VideoPlaylistResource
+     */
+    'free': boolean;
+    /**
      * 
      * @type {VideoPlaylistResourceResourceTypeEnum}
      * @memberof VideoPlaylistResource
@@ -4803,6 +4846,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'learning_format': Array<CourseResourceLearningFormatInner>;
+    /**
+     * Return true if the resource is free/has a free option
+     * @type {boolean}
+     * @memberof VideoResource
+     */
+    'free': boolean;
     /**
      * 
      * @type {VideoResourceResourceTypeEnum}
@@ -9418,11 +9467,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {string} [q] The search text
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
+         * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/check/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9497,6 +9547,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
 
             if (sortby !== undefined) {
                 localVarQueryParameter['sortby'] = sortby;
+            }
+
+            if (source_type !== undefined) {
+                localVarQueryParameter['source_type'] = source_type;
             }
 
             if (topic) {
@@ -9648,12 +9702,13 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {string} [q] The search text
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
+         * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
-         * @param {LearningResourcesSearchRequestRequest} [LearningResourcesSearchRequestRequest] 
+         * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, topic?: Array<string>, LearningResourcesSearchRequestRequest?: LearningResourcesSearchRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/subscribe/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9730,6 +9785,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['sortby'] = sortby;
             }
 
+            if (source_type !== undefined) {
+                localVarQueryParameter['source_type'] = source_type;
+            }
+
             if (topic) {
                 localVarQueryParameter['topic'] = topic;
             }
@@ -9741,7 +9800,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
             setSearchParams(localVarUrlObj, localVarQueryParameter);
             let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
             localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
-            localVarRequestOptions.data = serializeDataIfNeeded(LearningResourcesSearchRequestRequest, localVarRequestOptions, configuration)
+            localVarRequestOptions.data = serializeDataIfNeeded(PercolateQuerySubscriptionRequestRequest, localVarRequestOptions, configuration)
 
             return {
                 url: toPathString(localVarUrlObj),
@@ -9811,12 +9870,13 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {string} [q] The search text
          * @param {Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
+         * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_type, sortby, topic, options);
+        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_type, sortby, source_type, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionCheckList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9869,13 +9929,14 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {string} [q] The search text
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
+         * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
-         * @param {LearningResourcesSearchRequestRequest} [LearningResourcesSearchRequestRequest] 
+         * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, topic?: Array<string>, LearningResourcesSearchRequestRequest?: LearningResourcesSearchRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_type, sortby, topic, LearningResourcesSearchRequestRequest, options);
+        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_type, sortby, source_type, topic, PercolateQuerySubscriptionRequestRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionSubscribeCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9911,7 +9972,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * View for listing percolate query subscriptions for a user
@@ -9931,7 +9992,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PercolateQuery> {
-            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.LearningResourcesSearchRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsubscribe a user from a query  Args: pk (integer): The id of the query  Returns: PercolateQuerySerializer: The percolate query
@@ -10063,6 +10124,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum
+
+    /**
+     * The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
+     * @type {'search_subscription_type' | 'channel_subscription_type'}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum
 
     /**
      * The topic name. To see a list of options go to api/v1/topics/
@@ -10317,6 +10385,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum
 
     /**
+     * The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
+     * @type {'search_subscription_type' | 'channel_subscription_type'}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum
+
+    /**
      * The topic name. To see a list of options go to api/v1/topics/
      * @type {Array<string>}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
@@ -10325,10 +10400,10 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
 
     /**
      * 
-     * @type {LearningResourcesSearchRequestRequest}
+     * @type {PercolateQuerySubscriptionRequestRequest}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
-    readonly LearningResourcesSearchRequestRequest?: LearningResourcesSearchRequestRequest
+    readonly PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest
 }
 
 /**
@@ -10361,7 +10436,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10385,7 +10460,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.LearningResourcesSearchRequestRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10552,6 +10627,14 @@ export const LearningResourcesUserSubscriptionCheckListSortbyEnum = {
     Upcoming: 'upcoming'
 } as const;
 export type LearningResourcesUserSubscriptionCheckListSortbyEnum = typeof LearningResourcesUserSubscriptionCheckListSortbyEnum[keyof typeof LearningResourcesUserSubscriptionCheckListSortbyEnum];
+/**
+ * @export
+ */
+export const LearningResourcesUserSubscriptionCheckListSourceTypeEnum = {
+    SearchSubscriptionType: 'search_subscription_type',
+    ChannelSubscriptionType: 'channel_subscription_type'
+} as const;
+export type LearningResourcesUserSubscriptionCheckListSourceTypeEnum = typeof LearningResourcesUserSubscriptionCheckListSourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionCheckListSourceTypeEnum];
 /**
  * @export
  */
@@ -10854,6 +10937,14 @@ export const LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum = {
     Upcoming: 'upcoming'
 } as const;
 export type LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum];
+/**
+ * @export
+ */
+export const LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum = {
+    SearchSubscriptionType: 'search_subscription_type',
+    ChannelSubscriptionType: 'channel_subscription_type'
+} as const;
+export type LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum = typeof LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum[keyof typeof LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum];
 
 
 /**
