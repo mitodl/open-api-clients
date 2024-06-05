@@ -225,21 +225,6 @@ export type ChannelTypeEnum = typeof ChannelTypeEnum[keyof typeof ChannelTypeEnu
 
 
 /**
- * * `online` - Online * `in-person` - In-Person * `hybrid` - Hybrid
- * @export
- * @enum {string}
- */
-
-export const CourseFormatEnum = {
-    Online: 'online',
-    InPerson: 'in-person',
-    Hybrid: 'hybrid'
-} as const;
-
-export type CourseFormatEnum = typeof CourseFormatEnum[keyof typeof CourseFormatEnum];
-
-
-/**
  * * `no-formal` - No Formal Education * `primary` - Primary Education * `secondary-or-high-school` - Secondary Education or High School * `ged` - GED * `vocational-qualification` - Vocational Qualification
  * @export
  * @enum {string}
@@ -840,33 +825,18 @@ export type GoalsEnum = typeof GoalsEnum[keyof typeof GoalsEnum];
 
 
 /**
- * * `computer-science` - Computer Science * `business` - Business * `engineering` - Engineering * `leadership` - Leadership * `organized-behavior` - Organized Behavior * `management` - Management * `electrical-engineering` - Electrical Engineering * `information-technology` - Information Technology * `biology` - Biology * `earth-science` - Earth Science * `environmental-engineering` - Environmental Engineering * `health-and-medicine` - Health & Medicine * `probability-and-stats` - Probability & Stats * `economics` - Economics * `history` - History * `mathematics` - Mathematics * `mechanical-engineering` - Mechanical Engineering * `other` - Other
+ * * `online` - Online * `hybrid` - Hybrid * `in_person` - In person
  * @export
  * @enum {string}
  */
 
-export const InterestsEnum = {
-    ComputerScience: 'computer-science',
-    Business: 'business',
-    Engineering: 'engineering',
-    Leadership: 'leadership',
-    OrganizedBehavior: 'organized-behavior',
-    Management: 'management',
-    ElectricalEngineering: 'electrical-engineering',
-    InformationTechnology: 'information-technology',
-    Biology: 'biology',
-    EarthScience: 'earth-science',
-    EnvironmentalEngineering: 'environmental-engineering',
-    HealthAndMedicine: 'health-and-medicine',
-    ProbabilityAndStats: 'probability-and-stats',
-    Economics: 'economics',
-    History: 'history',
-    Mathematics: 'mathematics',
-    MechanicalEngineering: 'mechanical-engineering',
-    Other: 'other'
+export const LearningFormatEnum = {
+    Online: 'online',
+    Hybrid: 'hybrid',
+    InPerson: 'in_person'
 } as const;
 
-export type InterestsEnum = typeof InterestsEnum[keyof typeof InterestsEnum];
+export type LearningFormatEnum = typeof LearningFormatEnum[keyof typeof LearningFormatEnum];
 
 
 /**
@@ -966,6 +936,12 @@ export interface LearningResourceOfferorDetail {
      * @memberof LearningResourceOfferorDetail
      */
     'more_information'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceOfferorDetail
+     */
+    'value_prop'?: string;
 }
 /**
  * Serializer for LearningResourceOfferor with all details
@@ -1033,6 +1009,43 @@ export interface LearningResourceOfferorDetailRequest {
      * @memberof LearningResourceOfferorDetailRequest
      */
     'more_information'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceOfferorDetailRequest
+     */
+    'value_prop'?: string;
+}
+/**
+ * Serializer for LearningResourceTopic model
+ * @export
+ * @interface LearningResourceTopic
+ */
+export interface LearningResourceTopic {
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningResourceTopic
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourceTopic
+     */
+    'name': string;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningResourceTopic
+     */
+    'parent'?: number | null;
+    /**
+     * Get the channel url for the topic if it exists
+     * @type {string}
+     * @memberof LearningResourceTopic
+     */
+    'channel_url': string | null;
 }
 /**
  * Serializer for News FeedItem
@@ -1549,10 +1562,10 @@ export interface PatchedProfileRequest {
     'location'?: any | null;
     /**
      * 
-     * @type {Array<InterestsEnum>}
+     * @type {Array<number>}
      * @memberof PatchedProfileRequest
      */
-    'interests'?: Array<InterestsEnum>;
+    'topic_interests'?: Array<number>;
     /**
      * 
      * @type {Array<GoalsEnum>}
@@ -1579,10 +1592,10 @@ export interface PatchedProfileRequest {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {PatchedProfileRequestCourseFormat}
+     * @type {PatchedProfileRequestLearningFormat}
      * @memberof PatchedProfileRequest
      */
-    'course_format'?: PatchedProfileRequestCourseFormat;
+    'learning_format'?: PatchedProfileRequestLearningFormat;
 }
 /**
  * @type PatchedProfileRequestCertificateDesired
@@ -1591,16 +1604,16 @@ export interface PatchedProfileRequest {
 export type PatchedProfileRequestCertificateDesired = BlankEnum | CertificateDesiredEnum;
 
 /**
- * @type PatchedProfileRequestCourseFormat
- * @export
- */
-export type PatchedProfileRequestCourseFormat = BlankEnum | CourseFormatEnum;
-
-/**
  * @type PatchedProfileRequestCurrentEducation
  * @export
  */
 export type PatchedProfileRequestCurrentEducation = BlankEnum | CurrentEducationEnum;
+
+/**
+ * @type PatchedProfileRequestLearningFormat
+ * @export
+ */
+export type PatchedProfileRequestLearningFormat = BlankEnum | LearningFormatEnum;
 
 /**
  * @type PatchedProfileRequestTimeCommitment
@@ -1874,10 +1887,10 @@ export interface Profile {
     'placename': string;
     /**
      * 
-     * @type {Array<InterestsEnum>}
+     * @type {Array<LearningResourceTopic>}
      * @memberof Profile
      */
-    'interests'?: Array<InterestsEnum>;
+    'topic_interests'?: Array<LearningResourceTopic>;
     /**
      * 
      * @type {Array<GoalsEnum>}
@@ -1904,10 +1917,10 @@ export interface Profile {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {PatchedProfileRequestCourseFormat}
+     * @type {PatchedProfileRequestLearningFormat}
      * @memberof Profile
      */
-    'course_format'?: PatchedProfileRequestCourseFormat;
+    'learning_format'?: PatchedProfileRequestLearningFormat;
 }
 /**
  * Serializer for Profile
@@ -1971,10 +1984,10 @@ export interface ProfileRequest {
     'location'?: any | null;
     /**
      * 
-     * @type {Array<InterestsEnum>}
+     * @type {Array<number>}
      * @memberof ProfileRequest
      */
-    'interests'?: Array<InterestsEnum>;
+    'topic_interests'?: Array<number>;
     /**
      * 
      * @type {Array<GoalsEnum>}
@@ -2001,10 +2014,10 @@ export interface ProfileRequest {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {PatchedProfileRequestCourseFormat}
+     * @type {PatchedProfileRequestLearningFormat}
      * @memberof ProfileRequest
      */
-    'course_format'?: PatchedProfileRequestCourseFormat;
+    'learning_format'?: PatchedProfileRequestLearningFormat;
 }
 /**
  * Serializer for Program Certificates
