@@ -100,7 +100,13 @@ export interface Attestation {
      * @type {Array<number>}
      * @memberof Attestation
      */
-    'channels': Array<number>;
+    'channels'?: Array<number>;
+    /**
+     * The offerors that this attestation can appear on
+     * @type {Array<string>}
+     * @memberof Attestation
+     */
+    'offerors'?: Array<string>;
 }
 /**
  * 
@@ -744,12 +750,6 @@ export interface FieldChannelCreateRequest {
      * @memberof FieldChannelCreateRequest
      */
     'search_filter'?: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof FieldChannelCreateRequest
-     */
-    'configuration'?: any | null;
     /**
      * 
      * @type {ChannelTopicDetailRequest}
@@ -1481,12 +1481,6 @@ export interface PatchedFieldChannelWriteRequest {
     'search_filter'?: string;
     /**
      * 
-     * @type {any}
-     * @memberof PatchedFieldChannelWriteRequest
-     */
-    'configuration'?: any | null;
-    /**
-     * 
      * @type {ChannelTopicDetailRequest}
      * @memberof PatchedFieldChannelWriteRequest
      */
@@ -1802,6 +1796,31 @@ export type PathwayChannelTypeEnum = typeof PathwayChannelTypeEnum[keyof typeof 
 
 
 /**
+ * Serializer for profile search preference filters
+ * @export
+ * @interface PreferencesSearch
+ */
+export interface PreferencesSearch {
+    /**
+     * 
+     * @type {boolean}
+     * @memberof PreferencesSearch
+     */
+    'certification'?: boolean;
+    /**
+     * 
+     * @type {Array<string>}
+     * @memberof PreferencesSearch
+     */
+    'topic'?: Array<string>;
+    /**
+     * 
+     * @type {string}
+     * @memberof PreferencesSearch
+     */
+    'learning_format'?: string;
+}
+/**
  * Serializer for Profile
  * @export
  * @interface Profile
@@ -1921,6 +1940,12 @@ export interface Profile {
      * @memberof Profile
      */
     'learning_format'?: PatchedProfileRequestLearningFormat;
+    /**
+     * 
+     * @type {PreferencesSearch}
+     * @memberof Profile
+     */
+    'preference_search_filters': PreferencesSearch;
 }
 /**
  * Serializer for Profile
@@ -4519,12 +4544,12 @@ export const TestimonialsApiAxiosParamCreator = function (configuration?: Config
          * @summary List
          * @param {Array<number>} [channels] The channels the attestation is for
          * @param {number} [limit] Number of results to return per page.
+         * @param {Array<string>} [offerors] The offerors the attestation is for
          * @param {number} [offset] The initial index from which to return the results.
-         * @param {boolean} [published] Only return published testimonials
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testimonialsList: async (channels?: Array<number>, limit?: number, offset?: number, published?: boolean, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        testimonialsList: async (channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/testimonials/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4545,12 +4570,12 @@ export const TestimonialsApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['limit'] = limit;
             }
 
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
+            if (offerors) {
+                localVarQueryParameter['offerors'] = offerors;
             }
 
-            if (published !== undefined) {
-                localVarQueryParameter['published'] = published;
+            if (offset !== undefined) {
+                localVarQueryParameter['offset'] = offset;
             }
 
 
@@ -4613,13 +4638,13 @@ export const TestimonialsApiFp = function(configuration?: Configuration) {
          * @summary List
          * @param {Array<number>} [channels] The channels the attestation is for
          * @param {number} [limit] Number of results to return per page.
+         * @param {Array<string>} [offerors] The offerors the attestation is for
          * @param {number} [offset] The initial index from which to return the results.
-         * @param {boolean} [published] Only return published testimonials
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testimonialsList(channels?: Array<number>, limit?: number, offset?: number, published?: boolean, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAttestationList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.testimonialsList(channels, limit, offset, published, options);
+        async testimonialsList(channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAttestationList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.testimonialsList(channels, limit, offerors, offset, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['TestimonialsApi.testimonialsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -4655,7 +4680,7 @@ export const TestimonialsApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         testimonialsList(requestParameters: TestimonialsApiTestimonialsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedAttestationList> {
-            return localVarFp.testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offset, requestParameters.published, options).then((request) => request(axios, basePath));
+            return localVarFp.testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a testimonial.
@@ -4691,18 +4716,18 @@ export interface TestimonialsApiTestimonialsListRequest {
     readonly limit?: number
 
     /**
+     * The offerors the attestation is for
+     * @type {Array<string>}
+     * @memberof TestimonialsApiTestimonialsList
+     */
+    readonly offerors?: Array<string>
+
+    /**
      * The initial index from which to return the results.
      * @type {number}
      * @memberof TestimonialsApiTestimonialsList
      */
     readonly offset?: number
-
-    /**
-     * Only return published testimonials
-     * @type {boolean}
-     * @memberof TestimonialsApiTestimonialsList
-     */
-    readonly published?: boolean
 }
 
 /**
@@ -4735,7 +4760,7 @@ export class TestimonialsApi extends BaseAPI {
      * @memberof TestimonialsApi
      */
     public testimonialsList(requestParameters: TestimonialsApiTestimonialsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return TestimonialsApiFp(this.configuration).testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offset, requestParameters.published, options).then((request) => request(this.axios, this.basePath));
+        return TestimonialsApiFp(this.configuration).testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
