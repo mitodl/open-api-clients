@@ -30,17 +30,53 @@ import { BASE_PATH, COLLECTION_FORMATS, BaseAPI, RequiredError, operationServerM
  */
 
 export const AggregationsEnum = {
+    /**
+    * resource_type
+    */
     ResourceType: 'resource_type',
+    /**
+    * certification
+    */
     Certification: 'certification',
+    /**
+    * certification_type
+    */
     CertificationType: 'certification_type',
+    /**
+    * offered_by
+    */
     OfferedBy: 'offered_by',
+    /**
+    * platform
+    */
     Platform: 'platform',
+    /**
+    * topic
+    */
     Topic: 'topic',
+    /**
+    * department
+    */
     Department: 'department',
+    /**
+    * level
+    */
     Level: 'level',
+    /**
+    * course_feature
+    */
     CourseFeature: 'course_feature',
+    /**
+    * professional
+    */
     Professional: 'professional',
+    /**
+    * free
+    */
     Free: 'free',
+    /**
+    * learning_format
+    */
     LearningFormat: 'learning_format'
 } as const;
 
@@ -98,9 +134,21 @@ export interface ArticleRequest {
  */
 
 export const CertificationTypeEnum = {
+    /**
+    * Micromasters Credential
+    */
     Micromasters: 'micromasters',
+    /**
+    * Professional Certificate
+    */
     Professional: 'professional',
+    /**
+    * Certificate of Completion
+    */
     Completion: 'completion',
+    /**
+    * No Certificate
+    */
     None: 'none'
 } as const;
 
@@ -360,8 +408,17 @@ export interface ContentFileSearchResponseMetadataAggregationsValueInner {
  */
 
 export const ContentTypeEnum = {
+    /**
+    * page
+    */
     Page: 'page',
+    /**
+    * file
+    */
     File: 'file',
+    /**
+    * vertical
+    */
     Vertical: 'vertical'
 } as const;
 
@@ -765,42 +822,153 @@ export type CourseResourceResourceTypeEnum = typeof CourseResourceResourceTypeEn
  */
 
 export const DepartmentEnum = {
+    /**
+    * Civil and Environmental Engineering
+    */
     _1: '1',
+    /**
+    * Mechanical Engineering
+    */
     _2: '2',
+    /**
+    * Materials Science and Engineering
+    */
     _3: '3',
+    /**
+    * Architecture
+    */
     _4: '4',
+    /**
+    * Chemistry
+    */
     _5: '5',
+    /**
+    * Electrical Engineering and Computer Science
+    */
     _6: '6',
+    /**
+    * Biology
+    */
     _7: '7',
+    /**
+    * Physics
+    */
     _8: '8',
+    /**
+    * Brain and Cognitive Sciences
+    */
     _9: '9',
+    /**
+    * Chemical Engineering
+    */
     _10: '10',
+    /**
+    * Urban Studies and Planning
+    */
     _11: '11',
+    /**
+    * Earth, Atmospheric, and Planetary Sciences
+    */
     _12: '12',
+    /**
+    * Economics
+    */
     _14: '14',
+    /**
+    * Sloan School of Management
+    */
     _15: '15',
+    /**
+    * Aeronautics and Astronautics
+    */
     _16: '16',
+    /**
+    * Political Science
+    */
     _17: '17',
+    /**
+    * Mathematics
+    */
     _18: '18',
+    /**
+    * Biological Engineering
+    */
     _20: '20',
+    /**
+    * Anthropology
+    */
     _21A: '21A',
+    /**
+    * Global Studies and Languages
+    */
     _21G: '21G',
+    /**
+    * History
+    */
     _21H: '21H',
+    /**
+    * Literature
+    */
     _21L: '21L',
+    /**
+    * Music and Theater Arts
+    */
     _21M: '21M',
+    /**
+    * Nuclear Science and Engineering
+    */
     _22: '22',
+    /**
+    * Linguistics and Philosophy
+    */
     _24: '24',
+    /**
+    * Concourse
+    */
     Cc: 'CC',
+    /**
+    * Comparative Media Studies/Writing
+    */
     CmsW: 'CMS-W',
+    /**
+    * Edgerton Center
+    */
     Ec: 'EC',
+    /**
+    * Experimental Study Group
+    */
     Es: 'ES',
+    /**
+    * Engineering Systems Division
+    */
     Esd: 'ESD',
+    /**
+    * Health Sciences and Technology
+    */
     Hst: 'HST',
+    /**
+    * Institute for Data, Systems, and Society
+    */
     Ids: 'IDS',
+    /**
+    * Media Arts and Sciences
+    */
     Mas: 'MAS',
+    /**
+    * Athletics, Physical Education and Recreation
+    */
     Pe: 'PE',
+    /**
+    * Supplemental Resources
+    */
     Res: 'RES',
+    /**
+    * Science, Technology, and Society
+    */
     Sts: 'STS',
+    /**
+    * Women&#39;s and Gender Studies
+    */
     Wgs: 'WGS'
 } as const;
 
@@ -814,8 +982,17 @@ export type DepartmentEnum = typeof DepartmentEnum[keyof typeof DepartmentEnum];
  */
 
 export const LearningFormatEnum = {
+    /**
+    * Online
+    */
     Online: 'online',
+    /**
+    * Hybrid
+    */
     Hybrid: 'hybrid',
+    /**
+    * In person
+    */
     InPerson: 'in_person'
 } as const;
 
@@ -2026,12 +2203,33 @@ export interface LearningResourceTopic {
  */
 
 export const LevelEnum = {
+    /**
+    * Undergraduate
+    */
     Undergraduate: 'undergraduate',
+    /**
+    * Graduate
+    */
     Graduate: 'graduate',
+    /**
+    * High School
+    */
     HighSchool: 'high_school',
+    /**
+    * Non-Credit
+    */
     Noncredit: 'noncredit',
+    /**
+    * Advanced
+    */
     Advanced: 'advanced',
+    /**
+    * Intermediate
+    */
     Intermediate: 'intermediate',
+    /**
+    * Introductory
+    */
     Introductory: 'introductory'
 } as const;
 
@@ -2095,11 +2293,29 @@ export interface MicroUserListRelationship {
  */
 
 export const OfferedByEnum = {
+    /**
+    * MITx
+    */
     Mitx: 'mitx',
+    /**
+    * OCW
+    */
     Ocw: 'ocw',
+    /**
+    * Bootcamps
+    */
     Bootcamps: 'bootcamps',
+    /**
+    * xPRO
+    */
     Xpro: 'xpro',
+    /**
+    * Professional Education
+    */
     Mitpe: 'mitpe',
+    /**
+    * Sloan Executive Education
+    */
     See: 'see'
 } as const;
 
@@ -3064,12 +3280,33 @@ export interface PercolateQuerySubscriptionRequestRequest {
  */
 
 export const PercolateQuerySubscriptionRequestResourceTypeEnum = {
+    /**
+    * course
+    */
     Course: 'course',
+    /**
+    * program
+    */
     Program: 'program',
+    /**
+    * learning path
+    */
     LearningPath: 'learning_path',
+    /**
+    * podcast
+    */
     Podcast: 'podcast',
+    /**
+    * podcast episode
+    */
     PodcastEpisode: 'podcast_episode',
+    /**
+    * video
+    */
     Video: 'video',
+    /**
+    * video playlist
+    */
     VideoPlaylist: 'video_playlist'
 } as const;
 
@@ -3083,23 +3320,77 @@ export type PercolateQuerySubscriptionRequestResourceTypeEnum = typeof Percolate
  */
 
 export const PlatformEnum = {
+    /**
+    * edX
+    */
     Edx: 'edx',
+    /**
+    * OCW
+    */
     Ocw: 'ocw',
+    /**
+    * Open Learning Library
+    */
     Oll: 'oll',
+    /**
+    * MITx Online
+    */
     Mitxonline: 'mitxonline',
+    /**
+    * Bootcamps
+    */
     Bootcamps: 'bootcamps',
+    /**
+    * xPRO
+    */
     Xpro: 'xpro',
+    /**
+    * CSAIL
+    */
     Csail: 'csail',
+    /**
+    * Professional Education
+    */
     Mitpe: 'mitpe',
+    /**
+    * Sloan Executive Education
+    */
     See: 'see',
+    /**
+    * Schwarzman College of Computing
+    */
     Scc: 'scc',
+    /**
+    * Center for Transportation &amp; Logistics
+    */
     Ctl: 'ctl',
+    /**
+    * WHU
+    */
     Whu: 'whu',
+    /**
+    * Susskind
+    */
     Susskind: 'susskind',
+    /**
+    * Global Alumni
+    */
     Globalalumni: 'globalalumni',
+    /**
+    * Simplilearn
+    */
     Simplilearn: 'simplilearn',
+    /**
+    * Emeritus
+    */
     Emeritus: 'emeritus',
+    /**
+    * Podcast
+    */
     Podcast: 'podcast',
+    /**
+    * YouTube
+    */
     Youtube: 'youtube'
 } as const;
 
@@ -3757,7 +4048,13 @@ export type PodcastResourceResourceTypeEnum = typeof PodcastResourceResourceType
  */
 
 export const PrivacyLevelEnum = {
+    /**
+    * private
+    */
     Private: 'private',
+    /**
+    * unlisted
+    */
     Unlisted: 'unlisted'
 } as const;
 
@@ -4266,9 +4563,21 @@ export type ProgramResourceResourceTypeEnum = typeof ProgramResourceResourceType
  */
 
 export const RelationTypeEnum = {
+    /**
+    * Program Courses
+    */
     ProgramCourses: 'PROGRAM_COURSES',
+    /**
+    * Learning Path Items
+    */
     LearningPathItems: 'LEARNING_PATH_ITEMS',
+    /**
+    * Podcast Episodes
+    */
     PodcastEpisodes: 'PODCAST_EPISODES',
+    /**
+    * Playlist Videos
+    */
     PlaylistVideos: 'PLAYLIST_VIDEOS'
 } as const;
 
@@ -4282,12 +4591,33 @@ export type RelationTypeEnum = typeof RelationTypeEnum[keyof typeof RelationType
  */
 
 export const ResourceTypeEnum = {
+    /**
+    * course
+    */
     Course: 'course',
+    /**
+    * program
+    */
     Program: 'program',
+    /**
+    * learning_path
+    */
     LearningPath: 'learning_path',
+    /**
+    * podcast
+    */
     Podcast: 'podcast',
+    /**
+    * podcast_episode
+    */
     PodcastEpisode: 'podcast_episode',
+    /**
+    * video
+    */
     Video: 'video',
+    /**
+    * video_playlist
+    */
     VideoPlaylist: 'video_playlist'
 } as const;
 
@@ -4301,19 +4631,61 @@ export type ResourceTypeEnum = typeof ResourceTypeEnum[keyof typeof ResourceType
  */
 
 export const SortbyEnum = {
+    /**
+    * Object ID ascending
+    */
     Id: 'id',
+    /**
+    * Object ID descending
+    */
     Id2: '-id',
+    /**
+    * Readable ID ascending
+    */
     ReadableId: 'readable_id',
+    /**
+    * Readable ID descending
+    */
     ReadableId2: '-readable_id',
+    /**
+    * Last Modified Date ascending
+    */
     LastModified: 'last_modified',
+    /**
+    * Last Modified Date descending
+    */
     LastModified2: '-last_modified',
+    /**
+    * Newest resources first
+    */
     New: 'new',
+    /**
+    * Start Date ascending
+    */
     StartDate: 'start_date',
+    /**
+    * Start Date descending
+    */
     StartDate2: '-start_date',
+    /**
+    * MIT course number ascending
+    */
     Mitcoursenumber: 'mitcoursenumber',
+    /**
+    * MIT course number descending
+    */
     Mitcoursenumber2: '-mitcoursenumber',
+    /**
+    * Popularity ascending
+    */
     Views: 'views',
+    /**
+    * Popularity descending
+    */
     Views2: '-views',
+    /**
+    * Next start date ascending
+    */
     Upcoming: 'upcoming'
 } as const;
 
@@ -4327,7 +4699,13 @@ export type SortbyEnum = typeof SortbyEnum[keyof typeof SortbyEnum];
  */
 
 export const SourceTypeEnum = {
+    /**
+    * search_subscription_type
+    */
     SearchSubscriptionType: 'search_subscription_type',
+    /**
+    * channel_subscription_type
+    */
     ChannelSubscriptionType: 'channel_subscription_type'
 } as const;
 

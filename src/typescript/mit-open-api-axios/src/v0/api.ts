@@ -90,6 +90,12 @@ export interface Attestation {
      */
     'quote': string;
     /**
+     * The position the attestation should occupy
+     * @type {number}
+     * @memberof Attestation
+     */
+    'position'?: number;
+    /**
      * The datetime to show the testimonial
      * @type {string}
      * @memberof Attestation
@@ -141,8 +147,17 @@ export interface CKEditorSettings {
  */
 
 export const CertificateDesiredEnum = {
+    /**
+    * Yes
+    */
     Yes: 'yes',
+    /**
+    * No
+    */
     No: 'no',
+    /**
+    * Not Sure Yet
+    */
     NotSureYet: 'not-sure-yet'
 } as const;
 
@@ -176,19 +191,6 @@ export interface ChannelDepartmentDetailRequest {
     'department'?: string | null;
 }
 /**
- * Serializer for the ChannelOfferorDetail model
- * @export
- * @interface ChannelOfferorDetail
- */
-export interface ChannelOfferorDetail {
-    /**
-     * 
-     * @type {LearningResourceOfferorDetail}
-     * @memberof ChannelOfferorDetail
-     */
-    'offeror': LearningResourceOfferorDetail;
-}
-/**
  * Serializer for the ChannelTopicDetail model
  * @export
  * @interface ChannelTopicDetail
@@ -215,15 +217,27 @@ export interface ChannelTopicDetailRequest {
     'topic'?: number | null;
 }
 /**
- * * `topic` - Topic * `department` - Department * `offeror` - Offeror * `pathway` - Pathway
+ * * `topic` - Topic * `department` - Department * `unit` - Unit * `pathway` - Pathway
  * @export
  * @enum {string}
  */
 
 export const ChannelTypeEnum = {
+    /**
+    * Topic
+    */
     Topic: 'topic',
+    /**
+    * Department
+    */
     Department: 'department',
-    Offeror: 'offeror',
+    /**
+    * Unit
+    */
+    Unit: 'unit',
+    /**
+    * Pathway
+    */
     Pathway: 'pathway'
 } as const;
 
@@ -231,17 +245,61 @@ export type ChannelTypeEnum = typeof ChannelTypeEnum[keyof typeof ChannelTypeEnu
 
 
 /**
- * * `no-formal` - No Formal Education * `primary` - Primary Education * `secondary-or-high-school` - Secondary Education or High School * `ged` - GED * `vocational-qualification` - Vocational Qualification
+ * Serializer for the ChannelOfferorDetail model
+ * @export
+ * @interface ChannelUnitDetail
+ */
+export interface ChannelUnitDetail {
+    /**
+     * 
+     * @type {LearningResourceOfferorDetail}
+     * @memberof ChannelUnitDetail
+     */
+    'unit': LearningResourceOfferorDetail;
+}
+/**
+ * * `` - ---- * `Doctorate` - Doctorate * `Master\'s or professional degree` - Master\'s or professional degree * `Bachelor\'s degree` - Bachelor\'s degree * `Associate degree` - Associate degree * `Secondary/high school` - Secondary/high school * `Junior secondary/junior high/middle school` - Junior secondary/junior high/middle school * `Elementary/primary school` - Elementary/primary school * `No formal education` - No formal education * `Other education` - Other education
  * @export
  * @enum {string}
  */
 
 export const CurrentEducationEnum = {
-    NoFormal: 'no-formal',
-    Primary: 'primary',
-    SecondaryOrHighSchool: 'secondary-or-high-school',
-    Ged: 'ged',
-    VocationalQualification: 'vocational-qualification'
+    /**
+    * Doctorate
+    */
+    Doctorate: 'Doctorate',
+    /**
+    * Master&#39;s or professional degree
+    */
+    MastersOrProfessionalDegree: 'Master\'s or professional degree',
+    /**
+    * Bachelor&#39;s degree
+    */
+    BachelorsDegree: 'Bachelor\'s degree',
+    /**
+    * Associate degree
+    */
+    AssociateDegree: 'Associate degree',
+    /**
+    * Secondary/high school
+    */
+    SecondaryHighSchool: 'Secondary/high school',
+    /**
+    * Junior secondary/junior high/middle school
+    */
+    JuniorSecondaryJuniorHighMiddleSchool: 'Junior secondary/junior high/middle school',
+    /**
+    * Elementary/primary school
+    */
+    ElementaryPrimarySchool: 'Elementary/primary school',
+    /**
+    * No formal education
+    */
+    NoFormalEducation: 'No formal education',
+    /**
+    * Other education
+    */
+    OtherEducation: 'Other education'
 } as const;
 
 export type CurrentEducationEnum = typeof CurrentEducationEnum[keyof typeof CurrentEducationEnum];
@@ -420,6 +478,9 @@ export interface DepartmentChannelFeaturedList {
  */
 
 export const DepartmentChannelTypeEnum = {
+    /**
+    * Department
+    */
     Department: 'department'
 } as const;
 
@@ -665,7 +726,13 @@ export interface FeedSource {
  */
 
 export const FeedSourceFeedTypeEnum = {
+    /**
+    * News
+    */
     News: 'news',
+    /**
+    * Events
+    */
     Events: 'events'
 } as const;
 
@@ -676,7 +743,7 @@ export type FeedSourceFeedTypeEnum = typeof FeedSourceFeedTypeEnum[keyof typeof 
  * @type FieldChannel
  * @export
  */
-export type FieldChannel = { channel_type: 'department' } & DepartmentChannel | { channel_type: 'offeror' } & OfferorChannel | { channel_type: 'pathway' } & PathwayChannel | { channel_type: 'topic' } & TopicChannel;
+export type FieldChannel = { channel_type: 'department' } & DepartmentChannel | { channel_type: 'pathway' } & PathwayChannel | { channel_type: 'topic' } & TopicChannel | { channel_type: 'unit' } & UnitChannel;
 
 /**
  * Write serializer for FieldChannel. Uses primary keys for referenced objects during requests, and delegates to FieldChannelSerializer for responses.
@@ -816,8 +883,17 @@ export interface FieldModeratorRequest {
  */
 
 export const GoalsEnum = {
+    /**
+    * Career Growth
+    */
     CareerGrowth: 'career-growth',
+    /**
+    * Supplemental Learning
+    */
     SupplementalLearning: 'supplemental-learning',
+    /**
+    * Just to Learn
+    */
     JustToLearn: 'just-to-learn'
 } as const;
 
@@ -831,8 +907,17 @@ export type GoalsEnum = typeof GoalsEnum[keyof typeof GoalsEnum];
  */
 
 export const LearningFormatEnum = {
+    /**
+    * Online
+    */
     Online: 'online',
+    /**
+    * Hybrid
+    */
     Hybrid: 'hybrid',
+    /**
+    * In person
+    */
     InPerson: 'in_person'
 } as const;
 
@@ -1127,160 +1212,6 @@ export const NewsFeedItemFeedTypeEnum = {
 } as const;
 
 export type NewsFeedItemFeedTypeEnum = typeof NewsFeedItemFeedTypeEnum[keyof typeof NewsFeedItemFeedTypeEnum];
-
-
-/**
- * Serializer for Channel model of type offeror
- * @export
- * @interface OfferorChannel
- */
-export interface OfferorChannel {
-    /**
-     * 
-     * @type {number}
-     * @memberof OfferorChannel
-     */
-    'id': number;
-    /**
-     * Get the avatar image URL
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'avatar'?: string | null;
-    /**
-     * Get the avatar image small URL
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'avatar_small': string | null;
-    /**
-     * Get the avatar image medium URL
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'avatar_medium': string | null;
-    /**
-     * Get the banner image URL
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'banner'?: string | null;
-    /**
-     * Return true if user is a moderator for the channel
-     * @type {boolean}
-     * @memberof OfferorChannel
-     */
-    'is_moderator': boolean;
-    /**
-     * 
-     * @type {Array<LearningPathPreview>}
-     * @memberof OfferorChannel
-     */
-    'lists': Array<LearningPathPreview>;
-    /**
-     * Get the URL for the channel
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'channel_url': string;
-    /**
-     * 
-     * @type {DepartmentChannelFeaturedList}
-     * @memberof OfferorChannel
-     */
-    'featured_list': DepartmentChannelFeaturedList | null;
-    /**
-     * 
-     * @type {Array<Subfield>}
-     * @memberof OfferorChannel
-     */
-    'subfields': Array<Subfield>;
-    /**
-     * 
-     * @type {OfferorChannelTypeEnum}
-     * @memberof OfferorChannel
-     */
-    'channel_type': OfferorChannelTypeEnum;
-    /**
-     * 
-     * @type {ChannelOfferorDetail}
-     * @memberof OfferorChannel
-     */
-    'offeror_detail': ChannelOfferorDetail;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'created_on': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'updated_on': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'name': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'title': string;
-    /**
-     * 
-     * @type {any}
-     * @memberof OfferorChannel
-     */
-    'about'?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'ga_tracking_id'?: string;
-    /**
-     * 
-     * @type {any}
-     * @memberof OfferorChannel
-     */
-    'configuration'?: any | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'search_filter'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof OfferorChannel
-     */
-    'public_description'?: string;
-    /**
-     * 
-     * @type {number}
-     * @memberof OfferorChannel
-     */
-    'widget_list'?: number | null;
-}
-
-
-/**
- * * `offeror` - Offeror
- * @export
- * @enum {string}
- */
-
-export const OfferorChannelTypeEnum = {
-    Offeror: 'offeror'
-} as const;
-
-export type OfferorChannelTypeEnum = typeof OfferorChannelTypeEnum[keyof typeof OfferorChannelTypeEnum];
 
 
 /**
@@ -1789,6 +1720,9 @@ export interface PathwayChannel {
  */
 
 export const PathwayChannelTypeEnum = {
+    /**
+    * Pathway
+    */
     Pathway: 'pathway'
 } as const;
 
@@ -2184,7 +2118,13 @@ export interface ProgramCertificate {
  */
 
 export const ResourceTypeEnum = {
+    /**
+    * news
+    */
     News: 'news',
+    /**
+    * events
+    */
     Events: 'events'
 } as const;
 
@@ -2198,9 +2138,21 @@ export type ResourceTypeEnum = typeof ResourceTypeEnum[keyof typeof ResourceType
  */
 
 export const SiteTypeEnum = {
+    /**
+    * facebook
+    */
     Facebook: 'facebook',
+    /**
+    * linkedin
+    */
     Linkedin: 'linkedin',
+    /**
+    * personal
+    */
     Personal: 'personal',
+    /**
+    * twitter
+    */
     Twitter: 'twitter'
 } as const;
 
@@ -2239,10 +2191,25 @@ export interface Subfield {
  */
 
 export const TimeCommitmentEnum = {
+    /**
+    * &lt;5 hours/week
+    */
     _0To5Hours: '0-to-5-hours',
+    /**
+    * 5-10 hours/week
+    */
     _5To10Hours: '5-to-10-hours',
+    /**
+    * 10-20 hours/week
+    */
     _10To20Hours: '10-to-20-hours',
+    /**
+    * 20-30 hours/week
+    */
     _20To30Hours: '20-to-30-hours',
+    /**
+    * 30+ hours/week
+    */
     _30PlusHours: '30-plus-hours'
 } as const;
 
@@ -2397,10 +2364,170 @@ export interface TopicChannel {
  */
 
 export const TopicChannelTypeEnum = {
+    /**
+    * Topic
+    */
     Topic: 'topic'
 } as const;
 
 export type TopicChannelTypeEnum = typeof TopicChannelTypeEnum[keyof typeof TopicChannelTypeEnum];
+
+
+/**
+ * Serializer for Channel model of type unit
+ * @export
+ * @interface UnitChannel
+ */
+export interface UnitChannel {
+    /**
+     * 
+     * @type {number}
+     * @memberof UnitChannel
+     */
+    'id': number;
+    /**
+     * Get the avatar image URL
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'avatar'?: string | null;
+    /**
+     * Get the avatar image small URL
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'avatar_small': string | null;
+    /**
+     * Get the avatar image medium URL
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'avatar_medium': string | null;
+    /**
+     * Get the banner image URL
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'banner'?: string | null;
+    /**
+     * Return true if user is a moderator for the channel
+     * @type {boolean}
+     * @memberof UnitChannel
+     */
+    'is_moderator': boolean;
+    /**
+     * 
+     * @type {Array<LearningPathPreview>}
+     * @memberof UnitChannel
+     */
+    'lists': Array<LearningPathPreview>;
+    /**
+     * Get the URL for the channel
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'channel_url': string;
+    /**
+     * 
+     * @type {DepartmentChannelFeaturedList}
+     * @memberof UnitChannel
+     */
+    'featured_list': DepartmentChannelFeaturedList | null;
+    /**
+     * 
+     * @type {Array<Subfield>}
+     * @memberof UnitChannel
+     */
+    'subfields': Array<Subfield>;
+    /**
+     * 
+     * @type {UnitChannelTypeEnum}
+     * @memberof UnitChannel
+     */
+    'channel_type': UnitChannelTypeEnum;
+    /**
+     * 
+     * @type {ChannelUnitDetail}
+     * @memberof UnitChannel
+     */
+    'unit_detail': ChannelUnitDetail;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'created_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'updated_on': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'name': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'title': string;
+    /**
+     * 
+     * @type {any}
+     * @memberof UnitChannel
+     */
+    'about'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'ga_tracking_id'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof UnitChannel
+     */
+    'configuration'?: any | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'search_filter'?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof UnitChannel
+     */
+    'public_description'?: string;
+    /**
+     * 
+     * @type {number}
+     * @memberof UnitChannel
+     */
+    'widget_list'?: number | null;
+}
+
+
+/**
+ * * `unit` - Unit
+ * @export
+ * @enum {string}
+ */
+
+export const UnitChannelTypeEnum = {
+    /**
+    * Unit
+    */
+    Unit: 'unit'
+} as const;
+
+export type UnitChannelTypeEnum = typeof UnitChannelTypeEnum[keyof typeof UnitChannelTypeEnum];
 
 
 /**
@@ -2632,9 +2759,21 @@ export interface WidgetListRequest {
  */
 
 export const WidgetTypeEnum = {
+    /**
+    * Markdown
+    */
     Markdown: 'Markdown',
+    /**
+    * URL
+    */
     Url: 'URL',
+    /**
+    * RSS Feed
+    */
     RssFeed: 'RSS Feed',
+    /**
+    * People
+    */
     People: 'People'
 } as const;
 
@@ -2721,7 +2860,7 @@ export const ChannelsApiAxiosParamCreator = function (configuration?: Configurat
         /**
          * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
          * @summary List
-         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
+         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;unit&#x60; - Unit * &#x60;pathway&#x60; - Pathway
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
          * @param {*} [options] Override http request option.
@@ -3022,7 +3161,7 @@ export const ChannelsApiFp = function(configuration?: Configuration) {
         /**
          * CRUD Operations related to FieldChannels. Channels may represent groups or organizations at MIT and are a high-level categorization of content.
          * @summary List
-         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
+         * @param {ChannelsListChannelTypeEnum} [channel_type] * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;unit&#x60; - Unit * &#x60;pathway&#x60; - Pathway
          * @param {number} [limit] Number of results to return per page.
          * @param {number} [offset] The initial index from which to return the results.
          * @param {*} [options] Override http request option.
@@ -3254,8 +3393,8 @@ export interface ChannelsApiChannelsDestroyRequest {
  */
 export interface ChannelsApiChannelsListRequest {
     /**
-     * * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;offeror&#x60; - Offeror * &#x60;pathway&#x60; - Pathway
-     * @type {'department' | 'offeror' | 'pathway' | 'topic'}
+     * * &#x60;topic&#x60; - Topic * &#x60;department&#x60; - Department * &#x60;unit&#x60; - Unit * &#x60;pathway&#x60; - Pathway
+     * @type {'department' | 'pathway' | 'topic' | 'unit'}
      * @memberof ChannelsApiChannelsList
      */
     readonly channel_type?: ChannelsListChannelTypeEnum
@@ -3508,9 +3647,9 @@ export class ChannelsApi extends BaseAPI {
  */
 export const ChannelsListChannelTypeEnum = {
     Department: 'department',
-    Offeror: 'offeror',
     Pathway: 'pathway',
-    Topic: 'topic'
+    Topic: 'topic',
+    Unit: 'unit'
 } as const;
 export type ChannelsListChannelTypeEnum = typeof ChannelsListChannelTypeEnum[keyof typeof ChannelsListChannelTypeEnum];
 
@@ -4546,10 +4685,11 @@ export const TestimonialsApiAxiosParamCreator = function (configuration?: Config
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<string>} [offerors] The offerors the attestation is for
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [position] Only show items that exist at this position
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        testimonialsList: async (channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        testimonialsList: async (channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, position?: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/testimonials/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -4576,6 +4716,10 @@ export const TestimonialsApiAxiosParamCreator = function (configuration?: Config
 
             if (offset !== undefined) {
                 localVarQueryParameter['offset'] = offset;
+            }
+
+            if (position !== undefined) {
+                localVarQueryParameter['position'] = position;
             }
 
 
@@ -4640,11 +4784,12 @@ export const TestimonialsApiFp = function(configuration?: Configuration) {
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<string>} [offerors] The offerors the attestation is for
          * @param {number} [offset] The initial index from which to return the results.
+         * @param {number} [position] Only show items that exist at this position
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async testimonialsList(channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAttestationList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.testimonialsList(channels, limit, offerors, offset, options);
+        async testimonialsList(channels?: Array<number>, limit?: number, offerors?: Array<string>, offset?: number, position?: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedAttestationList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.testimonialsList(channels, limit, offerors, offset, position, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['TestimonialsApi.testimonialsList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -4680,7 +4825,7 @@ export const TestimonialsApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         testimonialsList(requestParameters: TestimonialsApiTestimonialsListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedAttestationList> {
-            return localVarFp.testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, options).then((request) => request(axios, basePath));
+            return localVarFp.testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, requestParameters.position, options).then((request) => request(axios, basePath));
         },
         /**
          * Retrieve a testimonial.
@@ -4728,6 +4873,13 @@ export interface TestimonialsApiTestimonialsListRequest {
      * @memberof TestimonialsApiTestimonialsList
      */
     readonly offset?: number
+
+    /**
+     * Only show items that exist at this position
+     * @type {number}
+     * @memberof TestimonialsApiTestimonialsList
+     */
+    readonly position?: number
 }
 
 /**
@@ -4760,7 +4912,7 @@ export class TestimonialsApi extends BaseAPI {
      * @memberof TestimonialsApi
      */
     public testimonialsList(requestParameters: TestimonialsApiTestimonialsListRequest = {}, options?: RawAxiosRequestConfig) {
-        return TestimonialsApiFp(this.configuration).testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, options).then((request) => request(this.axios, this.basePath));
+        return TestimonialsApiFp(this.configuration).testimonialsList(requestParameters.channels, requestParameters.limit, requestParameters.offerors, requestParameters.offset, requestParameters.position, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
