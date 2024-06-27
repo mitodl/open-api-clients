@@ -2133,43 +2133,6 @@ export interface LearningResourceSchool {
     'departments': Array<LearningResourceBaseDepartment>;
 }
 /**
- * SearchResponseSerializer with OpenAPI annotations for Learning Resources search
- * @export
- * @interface LearningResourceSearchResponse
- */
-export interface LearningResourceSearchResponse {
-    /**
-     * 
-     * @type {number}
-     * @memberof LearningResourceSearchResponse
-     */
-    'count': number;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceSearchResponse
-     */
-    'next': string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceSearchResponse
-     */
-    'previous': string | null;
-    /**
-     * 
-     * @type {Array<LearningResource>}
-     * @memberof LearningResourceSearchResponse
-     */
-    'results': Array<LearningResource>;
-    /**
-     * 
-     * @type {ContentFileSearchResponseMetadata}
-     * @memberof LearningResourceSearchResponse
-     */
-    'metadata': ContentFileSearchResponseMetadata;
-}
-/**
  * Serializer for LearningResourceTopic model
  * @export
  * @interface LearningResourceTopic
@@ -2199,6 +2162,43 @@ export interface LearningResourceTopic {
      * @memberof LearningResourceTopic
      */
     'channel_url': string | null;
+}
+/**
+ * SearchResponseSerializer with OpenAPI annotations for Learning Resources search
+ * @export
+ * @interface LearningResourcesSearchResponse
+ */
+export interface LearningResourcesSearchResponse {
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningResourcesSearchResponse
+     */
+    'count': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourcesSearchResponse
+     */
+    'next': string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof LearningResourcesSearchResponse
+     */
+    'previous': string | null;
+    /**
+     * 
+     * @type {Array<LearningResource>}
+     * @memberof LearningResourcesSearchResponse
+     */
+    'results': Array<LearningResource>;
+    /**
+     * 
+     * @type {ContentFileSearchResponseMetadata}
+     * @memberof LearningResourcesSearchResponse
+     */
+    'metadata': ContentFileSearchResponseMetadata;
 }
 /**
  * * `undergraduate` - Undergraduate * `graduate` - Graduate * `high_school` - High School * `noncredit` - Non-Credit * `advanced` - Advanced * `intermediate` - Intermediate * `introductory` - Introductory
@@ -3116,7 +3116,7 @@ export interface PatchedUserListRequest {
 
 
 /**
- * 
+ * Serializer for PercolateQuery objects
  * @export
  * @interface PercolateQuery
  */
@@ -9677,7 +9677,7 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, is_learning_material?: boolean | null, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourceSearchResponse>> {
+        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, is_learning_material?: boolean | null, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
             const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, free, id, is_learning_material, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_type, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesSearchApi.learningResourcesSearchRetrieve']?.[index]?.url;
@@ -9700,7 +9700,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourceSearchResponse> {
+        learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesSearchResponse> {
             return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.is_learning_material, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
     };
