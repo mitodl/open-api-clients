@@ -4119,18 +4119,6 @@ export interface ProgramCertificate {
      * @type {string}
      * @memberof ProgramCertificate
      */
-    'program_letter_generate_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProgramCertificate
-     */
-    'program_letter_share_url': string;
-    /**
-     * 
-     * @type {string}
-     * @memberof ProgramCertificate
-     */
     'program_title': string;
     /**
      * 

@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "open-api-clients"
-version = "2024.7.2"
+version = "2024.7.10"
 description = ""
 authors = []
 readme = "README.md"
