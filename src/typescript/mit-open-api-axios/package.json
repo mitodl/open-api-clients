@@ -1,6 +1,6 @@
 {
   "name": "@mitodl/open-api-axios",
-  "version": "2024.7.17",
+  "version": "2024.7.18",
   "description": "Library for requesting data from mit-open APIs",
   "main": "dist/cjs/index.js",
   "scripts": {

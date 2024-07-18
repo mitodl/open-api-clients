@@ -4097,10 +4097,10 @@ export type PrivacyLevelEnum = typeof PrivacyLevelEnum[keyof typeof PrivacyLevel
 export interface Program {
     /**
      * 
-     * @type {Array<CourseResource>}
+     * @type {number}
      * @memberof Program
      */
-    'courses': Array<CourseResource> | null;
+    'course_count': number;
 }
 /**
  * Serializer for Program Certificates
