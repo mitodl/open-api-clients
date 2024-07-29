@@ -2163,6 +2163,12 @@ export interface LearningResourceTopic {
      */
     'name': string;
     /**
+     * The icon to display for the topic.
+     * @type {string}
+     * @memberof LearningResourceTopic
+     */
+    'icon'?: string;
+    /**
      * 
      * @type {number}
      * @memberof LearningResourceTopic
@@ -3232,6 +3238,12 @@ export interface PercolateQuerySubscriptionRequestRequest {
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
     'professional'?: boolean | null;
+    /**
+     * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'yearly_decay_percent'?: number | null;
     /**
      * True if the learning resource offers a certificate
      * @type {boolean}
@@ -9659,10 +9671,11 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9751,6 +9764,10 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (yearly_decay_percent !== undefined) {
+                localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -9794,11 +9811,12 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {Array<LearningResourcesSearchRetrieveResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, options);
+        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesSearchApi.learningResourcesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9821,7 +9839,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
          * @throws {RequiredError}
          */
         learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesSearchResponse> {
-            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9964,6 +9982,13 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
     readonly topic?: Array<string>
+
+    /**
+     * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
+     */
+    readonly yearly_decay_percent?: number | null
 }
 
 /**
@@ -9982,7 +10007,7 @@ export class LearningResourcesSearchApi extends BaseAPI {
      * @memberof LearningResourcesSearchApi
      */
     public learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10189,10 +10214,11 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/check/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10285,6 +10311,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (yearly_decay_percent !== undefined) {
+                localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10318,10 +10348,11 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10410,6 +10441,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (yearly_decay_percent !== undefined) {
+                localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -10444,11 +10479,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/subscribe/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10541,6 +10577,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (yearly_decay_percent !== undefined) {
+                localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
+            }
+
 
     
             localVarHeaderParameter['Content-Type'] = 'application/json';
@@ -10622,11 +10662,12 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, options);
+        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionCheckList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10653,11 +10694,12 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionListResourceTypeEnum>} [resource_type] The type of learning resource               * &#x60;course&#x60; - course * &#x60;program&#x60; - program * &#x60;learning_path&#x60; - learning path * &#x60;podcast&#x60; - podcast * &#x60;podcast_episode&#x60; - podcast episode * &#x60;video&#x60; - video * &#x60;video_playlist&#x60; - video playlist
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, options);
+        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10685,12 +10727,13 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, PercolateQuerySubscriptionRequestRequest, options);
+        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionSubscribeCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10726,7 +10769,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * View for listing percolate query subscriptions for a user
@@ -10736,7 +10779,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * Subscribe a user to query
@@ -10746,7 +10789,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PercolateQuery> {
-            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsubscribe a user from a query  Args: pk (integer): The id of the query  Returns: PercolateQuerySerializer: The percolate query
@@ -10906,6 +10949,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly topic?: Array<string>
+
+    /**
+     * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly yearly_decay_percent?: number | null
 }
 
 /**
@@ -11046,6 +11096,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
     readonly topic?: Array<string>
+
+    /**
+     * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
+     */
+    readonly yearly_decay_percent?: number | null
 }
 
 /**
@@ -11195,6 +11252,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly topic?: Array<string>
 
     /**
+     * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly yearly_decay_percent?: number | null
+
+    /**
      * 
      * @type {PercolateQuerySubscriptionRequestRequest}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
@@ -11232,7 +11296,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11244,7 +11308,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11256,7 +11320,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
