@@ -132,6 +132,26 @@ export interface ArticleRequest {
     'title': string;
 }
 /**
+ * * `dated` - Dated * `anytime` - Anytime
+ * @export
+ * @enum {string}
+ */
+
+export const AvailabilityEnum = {
+    /**
+    * Dated
+    */
+    Dated: 'dated',
+    /**
+    * Anytime
+    */
+    Anytime: 'anytime'
+} as const;
+
+export type AvailabilityEnum = typeof AvailabilityEnum[keyof typeof AvailabilityEnum];
+
+
+/**
  * * `micromasters` - Micromasters Credential * `professional` - Professional Certificate * `completion` - Certificate of Completion * `none` - No Certificate
  * @export
  * @enum {string}
@@ -685,6 +705,12 @@ export interface CourseResource {
      * @memberof CourseResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof CourseResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -811,7 +837,15 @@ export interface CourseResourceRequest {
      * @memberof CourseResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof CourseResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -1270,6 +1304,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof LearningPathResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -1339,7 +1379,15 @@ export interface LearningPathResourceRequest {
      * @memberof LearningPathResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof LearningPathResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -1910,12 +1958,6 @@ export interface LearningResourceRun {
      * @type {string}
      * @memberof LearningResourceRun
      */
-    'availability'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceRun
-     */
     'semester'?: string | null;
     /**
      * 
@@ -2058,12 +2100,6 @@ export interface LearningResourceRunRequest {
      * @memberof LearningResourceRunRequest
      */
     'slug'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof LearningResourceRunRequest
-     */
-    'availability'?: string | null;
     /**
      * 
      * @type {string}
@@ -2308,6 +2344,19 @@ export interface MicroUserListRelationship {
      */
     'child': number;
 }
+/**
+ * 
+ * @export
+ * @enum {string}
+ */
+
+export const NullEnum = {
+    Null: 'null'
+} as const;
+
+export type NullEnum = typeof NullEnum[keyof typeof NullEnum];
+
+
 /**
  * * `mitx` - MITx * `ocw` - MIT OpenCourseWare * `bootcamps` - Bootcamps * `xpro` - MIT xPRO * `mitpe` - MIT Professional Education * `see` - MIT Sloan Executive Education
  * @export
@@ -3074,7 +3123,15 @@ export interface PatchedLearningPathResourceRequest {
      * @memberof PatchedLearningPathResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof PatchedLearningPathResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * Serializer for UserListRelationship model
  * @export
@@ -3208,6 +3265,12 @@ export interface PercolateQuerySubscriptionRequestRequest {
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
     'topic'?: Array<string>;
+    /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'dev_mode'?: boolean | null;
     /**
      * The id value for the learning resource
      * @type {Array<number>}
@@ -3710,6 +3773,12 @@ export interface PodcastEpisodeResource {
      * @memberof PodcastEpisodeResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof PodcastEpisodeResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -3779,7 +3848,15 @@ export interface PodcastEpisodeResourceRequest {
      * @memberof PodcastEpisodeResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof PodcastEpisodeResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -3998,6 +4075,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof PodcastResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -4067,7 +4150,15 @@ export interface PodcastResourceRequest {
      * @memberof PodcastResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof PodcastResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -4507,6 +4598,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof ProgramResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -4576,7 +4673,15 @@ export interface ProgramResourceRequest {
      * @memberof ProgramResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof ProgramResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -5190,6 +5295,12 @@ export interface VideoPlaylistResource {
      * @memberof VideoPlaylistResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof VideoPlaylistResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -5259,7 +5370,15 @@ export interface VideoPlaylistResourceRequest {
      * @memberof VideoPlaylistResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof VideoPlaylistResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -5472,6 +5591,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof VideoResource
+     */
+    'availability'?: AvailabilityEnum | null;
 }
 
 
@@ -5541,7 +5666,15 @@ export interface VideoResourceRequest {
      * @memberof VideoResourceRequest
      */
     'next_start_date'?: string | null;
+    /**
+     * 
+     * @type {AvailabilityEnum}
+     * @memberof VideoResourceRequest
+     */
+    'availability'?: AvailabilityEnum | null;
 }
+
+
 /**
  * 
  * @export
@@ -6049,6 +6182,7 @@ export const ContentFileSearchApiAxiosParamCreator = function (configuration?: C
          * @summary Search
          * @param {Array<ContentFileSearchRetrieveAggregationsEnum>} [aggregations] Show resource counts by category
          * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {Array<number>} [id] The id value for the content file
          * @param {number} [limit] Number of results to return per page
          * @param {Array<ContentFileSearchRetrieveOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
@@ -6062,7 +6196,7 @@ export const ContentFileSearchApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contentFileSearchRetrieve: async (aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contentFileSearchRetrieve: async (aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/content_file_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6081,6 +6215,10 @@ export const ContentFileSearchApiAxiosParamCreator = function (configuration?: C
 
             if (content_feature_type) {
                 localVarQueryParameter['content_feature_type'] = content_feature_type;
+            }
+
+            if (dev_mode !== undefined) {
+                localVarQueryParameter['dev_mode'] = dev_mode;
             }
 
             if (id) {
@@ -6149,6 +6287,7 @@ export const ContentFileSearchApiFp = function(configuration?: Configuration) {
          * @summary Search
          * @param {Array<ContentFileSearchRetrieveAggregationsEnum>} [aggregations] Show resource counts by category
          * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {Array<number>} [id] The id value for the content file
          * @param {number} [limit] Number of results to return per page
          * @param {Array<ContentFileSearchRetrieveOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
@@ -6162,8 +6301,8 @@ export const ContentFileSearchApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contentFileSearchRetrieve(aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contentFileSearchRetrieve(aggregations, content_feature_type, id, limit, offered_by, offset, platform, q, resource_id, run_id, sortby, topic, options);
+        async contentFileSearchRetrieve(aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.contentFileSearchRetrieve(aggregations, content_feature_type, dev_mode, id, limit, offered_by, offset, platform, q, resource_id, run_id, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['ContentFileSearchApi.contentFileSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -6186,7 +6325,7 @@ export const ContentFileSearchApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         contentFileSearchRetrieve(requestParameters: ContentFileSearchApiContentFileSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileSearchResponse> {
-            return localVarFp.contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6210,6 +6349,13 @@ export interface ContentFileSearchApiContentFileSearchRetrieveRequest {
      * @memberof ContentFileSearchApiContentFileSearchRetrieve
      */
     readonly content_feature_type?: Array<string>
+
+    /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof ContentFileSearchApiContentFileSearchRetrieve
+     */
+    readonly dev_mode?: boolean | null
 
     /**
      * The id value for the content file
@@ -6298,7 +6444,7 @@ export class ContentFileSearchApi extends BaseAPI {
      * @memberof ContentFileSearchApi
      */
     public contentFileSearchRetrieve(requestParameters: ContentFileSearchApiContentFileSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return ContentFileSearchApiFp(this.configuration).contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return ContentFileSearchApiFp(this.configuration).contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -9657,6 +9803,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {Array<LearningResourcesSearchRetrieveCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesSearchRetrieveDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesSearchRetrieveLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -9675,7 +9822,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9706,6 +9853,10 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
 
             if (department) {
                 localVarQueryParameter['department'] = department;
+            }
+
+            if (dev_mode !== undefined) {
+                localVarQueryParameter['dev_mode'] = dev_mode;
             }
 
             if (free !== undefined) {
@@ -9797,6 +9948,7 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {Array<LearningResourcesSearchRetrieveCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesSearchRetrieveDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesSearchRetrieveLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -9815,8 +9967,8 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesSearchApi.learningResourcesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9839,7 +9991,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
          * @throws {RequiredError}
          */
         learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesSearchResponse> {
-            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9884,6 +10036,13 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
      */
     readonly department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>
+
+    /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
+     */
+    readonly dev_mode?: boolean | null
 
     /**
      * 
@@ -10007,7 +10166,7 @@ export class LearningResourcesSearchApi extends BaseAPI {
      * @memberof LearningResourcesSearchApi
      */
     public learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10199,6 +10358,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10218,7 +10378,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/check/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10249,6 +10409,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
 
             if (department) {
                 localVarQueryParameter['department'] = department;
+            }
+
+            if (dev_mode !== undefined) {
+                localVarQueryParameter['dev_mode'] = dev_mode;
             }
 
             if (free !== undefined) {
@@ -10334,6 +10498,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10352,7 +10517,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10383,6 +10548,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
 
             if (department) {
                 localVarQueryParameter['department'] = department;
+            }
+
+            if (dev_mode !== undefined) {
+                localVarQueryParameter['dev_mode'] = dev_mode;
             }
 
             if (free !== undefined) {
@@ -10464,6 +10633,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10484,7 +10654,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/subscribe/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10515,6 +10685,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
 
             if (department) {
                 localVarQueryParameter['department'] = department;
+            }
+
+            if (dev_mode !== undefined) {
+                localVarQueryParameter['dev_mode'] = dev_mode;
             }
 
             if (free !== undefined) {
@@ -10647,6 +10821,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10666,8 +10841,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionCheckList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10680,6 +10855,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionListDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10698,8 +10874,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, topic, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10712,6 +10888,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>} [certification_type] The type of certificate               * &#x60;micromasters&#x60; - Micromasters Credential * &#x60;professional&#x60; - Professional Certificate * &#x60;completion&#x60; - Certificate of Completion * &#x60;none&#x60; - No Certificate
          * @param {Array<string>} [course_feature] The course feature. Possible options are at api/v1/course_features/
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>} [department] The department that offers the learning resource               * &#x60;1&#x60; - Civil and Environmental Engineering * &#x60;2&#x60; - Mechanical Engineering * &#x60;3&#x60; - Materials Science and Engineering * &#x60;4&#x60; - Architecture * &#x60;5&#x60; - Chemistry * &#x60;6&#x60; - Electrical Engineering and Computer Science * &#x60;7&#x60; - Biology * &#x60;8&#x60; - Physics * &#x60;9&#x60; - Brain and Cognitive Sciences * &#x60;10&#x60; - Chemical Engineering * &#x60;11&#x60; - Urban Studies and Planning * &#x60;12&#x60; - Earth, Atmospheric, and Planetary Sciences * &#x60;14&#x60; - Economics * &#x60;15&#x60; - Management * &#x60;16&#x60; - Aeronautics and Astronautics * &#x60;17&#x60; - Political Science * &#x60;18&#x60; - Mathematics * &#x60;20&#x60; - Biological Engineering * &#x60;21A&#x60; - Anthropology * &#x60;21G&#x60; - Global Languages * &#x60;21H&#x60; - History * &#x60;21L&#x60; - Literature * &#x60;21M&#x60; - Music and Theater Arts * &#x60;22&#x60; - Nuclear Science and Engineering * &#x60;24&#x60; - Linguistics and Philosophy * &#x60;CC&#x60; - Concourse * &#x60;CMS-W&#x60; - Comparative Media Studies/Writing * &#x60;EC&#x60; - Edgerton Center * &#x60;ES&#x60; - Experimental Study Group * &#x60;ESD&#x60; - Engineering Systems Division * &#x60;HST&#x60; - Medical Engineering and Science * &#x60;IDS&#x60; - Data, Systems, and Society * &#x60;MAS&#x60; - Media Arts and Sciences * &#x60;PE&#x60; - Athletics, Physical Education and Recreation * &#x60;RES&#x60; - Supplemental Resources * &#x60;STS&#x60; - Science, Technology, and Society * &#x60;WGS&#x60; - Women\&#39;s and Gender Studies
+         * @param {boolean | null} [dev_mode] If true return raw open search results with score explanations
          * @param {boolean | null} [free] 
          * @param {Array<number>} [id] The id value for the learning resource
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
@@ -10732,8 +10909,8 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
+        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, offered_by, offset, platform, professional, q, resource_category, resource_type, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionSubscribeCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10769,7 +10946,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * View for listing percolate query subscriptions for a user
@@ -10779,7 +10956,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * Subscribe a user to query
@@ -10789,7 +10966,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PercolateQuery> {
-            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsubscribe a user from a query  Args: pk (integer): The id of the query  Returns: PercolateQuerySerializer: The percolate query
@@ -10844,6 +11021,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>
+
+    /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly dev_mode?: boolean | null
 
     /**
      * 
@@ -11000,6 +11184,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>
 
     /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
+     */
+    readonly dev_mode?: boolean | null
+
+    /**
      * 
      * @type {boolean}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
@@ -11145,6 +11336,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
      */
     readonly department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>
+
+    /**
+     * If true return raw open search results with score explanations
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly dev_mode?: boolean | null
 
     /**
      * 
@@ -11296,7 +11494,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11308,7 +11506,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11320,7 +11518,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
