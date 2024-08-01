@@ -877,14 +877,14 @@ export type FeedSourceFeedTypeEnum = typeof FeedSourceFeedTypeEnum[keyof typeof 
 
 
 /**
- * * `academic-excellence` - Academic Excellence * `career-growth` - Career Growth * `lifelong-learning` - Lifelong Learning
+ * * `academic-excellence` - Academic Boost * `career-growth` - Career Growth * `lifelong-learning` - Lifelong Learning
  * @export
  * @enum {string}
  */
 
 export const GoalsEnum = {
     /**
-    * Academic Excellence
+    * Academic Boost
     */
     AcademicExcellence: 'academic-excellence',
     /**
