@@ -602,15 +602,15 @@ export interface CourseResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof CourseResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof CourseResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof CourseResource
      */
@@ -1201,15 +1201,15 @@ export interface LearningPathResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof LearningPathResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof LearningPathResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof LearningPathResource
      */
@@ -1408,7 +1408,7 @@ export type LearningPathResourceResourceTypeEnum = typeof LearningPathResourceRe
 export type LearningResource = { resource_type: 'course' } & CourseResource | { resource_type: 'learning_path' } & LearningPathResource | { resource_type: 'podcast' } & PodcastResource | { resource_type: 'podcast_episode' } & PodcastEpisodeResource | { resource_type: 'program' } & ProgramResource | { resource_type: 'video' } & VideoResource | { resource_type: 'video_playlist' } & VideoPlaylistResource;
 
 /**
- * Serializer for LearningResourceDepartment, minus school
+ * Serializer for LearningResourceDepartment, minus school  The absence of the departments list is to avoid a circular serialization structure.
  * @export
  * @interface LearningResourceBaseDepartment
  */
@@ -1426,14 +1426,14 @@ export interface LearningResourceBaseDepartment {
      */
     'name': string;
     /**
-     * Get the channel url for the department if it exists
+     * 
      * @type {string}
      * @memberof LearningResourceBaseDepartment
      */
     'channel_url': string | null;
 }
 /**
- * Base serializer for LearningResourceSchool model, minus departments list
+ * Base serializer for LearningResourceSchool model, minus departments list  The absence of the departments list is to avoid a circular serialization structure.
  * @export
  * @interface LearningResourceBaseSchool
  */
@@ -1458,7 +1458,7 @@ export interface LearningResourceBaseSchool {
     'url': string;
 }
 /**
- * Base serializer for LearningResourceSchool model, minus departments list
+ * Base serializer for LearningResourceSchool model, minus departments list  The absence of the departments list is to avoid a circular serialization structure.
  * @export
  * @interface LearningResourceBaseSchoolRequest
  */
@@ -1514,7 +1514,7 @@ export interface LearningResourceDepartment {
      */
     'name': string;
     /**
-     * Get the channel url for the department if it exists
+     * 
      * @type {string}
      * @memberof LearningResourceDepartment
      */
@@ -3204,6 +3204,18 @@ export interface PercolateQuery {
     'id': number;
     /**
      * 
+     * @type {string}
+     * @memberof PercolateQuery
+     */
+    'source_description': string;
+    /**
+     * 
+     * @type {string}
+     * @memberof PercolateQuery
+     */
+    'source_label': string;
+    /**
+     * 
      * @type {any}
      * @memberof PercolateQuery
      */
@@ -3501,7 +3513,7 @@ export interface Podcast {
      */
     'id': number;
     /**
-     * Return the number of episodes in the podcast
+     * 
      * @type {number}
      * @memberof Podcast
      */
@@ -3670,15 +3682,15 @@ export interface PodcastEpisodeResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof PodcastEpisodeResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof PodcastEpisodeResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof PodcastEpisodeResource
      */
@@ -3878,6 +3890,12 @@ export type PodcastEpisodeResourceResourceTypeEnum = typeof PodcastEpisodeResour
 export interface PodcastRequest {
     /**
      * 
+     * @type {number}
+     * @memberof PodcastRequest
+     */
+    'episode_count': number;
+    /**
+     * 
      * @type {string}
      * @memberof PodcastRequest
      */
@@ -3972,15 +3990,15 @@ export interface PodcastResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof PodcastResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof PodcastResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof PodcastResource
      */
@@ -4495,15 +4513,15 @@ export interface ProgramResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof ProgramResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof ProgramResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof ProgramResource
      */
@@ -5109,9 +5127,22 @@ export interface VideoPlaylist {
      */
     'channel': VideoChannel | null;
     /**
-     * Return the number of videos in the playlist
+     * 
      * @type {number}
      * @memberof VideoPlaylist
+     */
+    'video_count': number;
+}
+/**
+ * Serializer for the VideoPlaylist model
+ * @export
+ * @interface VideoPlaylistRequest
+ */
+export interface VideoPlaylistRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoPlaylistRequest
      */
     'video_count': number;
 }
@@ -5192,15 +5223,15 @@ export interface VideoPlaylistResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof VideoPlaylistResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof VideoPlaylistResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof VideoPlaylistResource
      */
@@ -5488,15 +5519,15 @@ export interface VideoResource {
      * @type {Array<MicroLearningPathRelationship>}
      * @memberof VideoResource
      */
-    'learning_path_parents': Array<MicroLearningPathRelationship> | null;
+    'learning_path_parents': Array<MicroLearningPathRelationship>;
     /**
      * 
      * @type {Array<MicroUserListRelationship>}
      * @memberof VideoResource
      */
-    'user_list_parents': Array<MicroUserListRelationship> | null;
+    'user_list_parents': Array<MicroUserListRelationship>;
     /**
-     * Return the number of views for the resource.
+     * 
      * @type {number}
      * @memberof VideoResource
      */
