@@ -711,6 +711,12 @@ export interface CourseResource {
      * @memberof CourseResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CourseResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -843,6 +849,12 @@ export interface CourseResourceRequest {
      * @memberof CourseResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof CourseResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -1310,6 +1322,12 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningPathResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -1385,6 +1403,12 @@ export interface LearningPathResourceRequest {
      * @memberof LearningPathResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof LearningPathResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -3129,6 +3153,12 @@ export interface PatchedLearningPathResourceRequest {
      * @memberof PatchedLearningPathResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PatchedLearningPathResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -3803,6 +3833,12 @@ export interface PodcastEpisodeResource {
      * @memberof PodcastEpisodeResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastEpisodeResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -3878,6 +3914,12 @@ export interface PodcastEpisodeResourceRequest {
      * @memberof PodcastEpisodeResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastEpisodeResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -4111,6 +4153,12 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -4186,6 +4234,12 @@ export interface PodcastResourceRequest {
      * @memberof PodcastResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -4634,6 +4688,12 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgramResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -4709,6 +4769,12 @@ export interface ProgramResourceRequest {
      * @memberof ProgramResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof ProgramResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -5372,6 +5438,12 @@ export interface VideoPlaylistResource {
      * @memberof VideoPlaylistResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoPlaylistResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -5447,6 +5519,12 @@ export interface VideoPlaylistResourceRequest {
      * @memberof VideoPlaylistResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoPlaylistResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
@@ -5668,6 +5746,12 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoResource
+     */
+    'completeness'?: number;
 }
 
 
@@ -5743,6 +5827,12 @@ export interface VideoResourceRequest {
      * @memberof VideoResourceRequest
      */
     'availability'?: AvailabilityEnum | null;
+    /**
+     * 
+     * @type {number}
+     * @memberof VideoResourceRequest
+     */
+    'completeness'?: number;
 }
 
 
