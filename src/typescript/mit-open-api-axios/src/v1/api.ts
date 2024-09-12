@@ -3347,6 +3347,12 @@ export interface PercolateQuerySubscriptionRequestRequest {
      */
     'dev_mode'?: boolean | null;
     /**
+     * If true sets search_type=dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'use_dfs_query_then_fetch'?: boolean | null;
+    /**
      * The id value for the learning resource
      * @type {Array<number>}
      * @memberof PercolateQuerySubscriptionRequestRequest
@@ -3448,6 +3454,12 @@ export interface PercolateQuerySubscriptionRequestRequest {
      * @memberof PercolateQuerySubscriptionRequestRequest
      */
     'min_score'?: number | null;
+    /**
+     * Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness = 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof PercolateQuerySubscriptionRequestRequest
+     */
+    'max_incompleteness_penalty'?: number | null;
     /**
      * 
      * @type {SourceTypeEnum}
@@ -6393,10 +6405,11 @@ export const ContentFileSearchApiAxiosParamCreator = function (configuration?: C
          * @param {Array<number>} [run_id] The id value of the run that the content file belongs to
          * @param {ContentFileSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contentFileSearchRetrieve: async (aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contentFileSearchRetrieve: async (aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/content_file_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -6461,6 +6474,10 @@ export const ContentFileSearchApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (use_dfs_query_then_fetch !== undefined) {
+                localVarQueryParameter['use_dfs_query_then_fetch'] = use_dfs_query_then_fetch;
+            }
+
 
     
             setSearchParams(localVarUrlObj, localVarQueryParameter);
@@ -6498,11 +6515,12 @@ export const ContentFileSearchApiFp = function(configuration?: Configuration) {
          * @param {Array<number>} [run_id] The id value of the run that the content file belongs to
          * @param {ContentFileSearchRetrieveSortbyEnum} [sortby] if the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;id&#x60; - id * &#x60;-id&#x60; - -id * &#x60;resource_readable_id&#x60; - resource_readable_id * &#x60;-resource_readable_id&#x60; - -resource_readable_id
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contentFileSearchRetrieve(aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contentFileSearchRetrieve(aggregations, content_feature_type, dev_mode, id, limit, offered_by, offset, platform, q, resource_id, run_id, sortby, topic, options);
+        async contentFileSearchRetrieve(aggregations?: Array<ContentFileSearchRetrieveAggregationsEnum>, content_feature_type?: Array<string>, dev_mode?: boolean | null, id?: Array<number>, limit?: number, offered_by?: Array<ContentFileSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<ContentFileSearchRetrievePlatformEnum>, q?: string, resource_id?: Array<number>, run_id?: Array<number>, sortby?: ContentFileSearchRetrieveSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.contentFileSearchRetrieve(aggregations, content_feature_type, dev_mode, id, limit, offered_by, offset, platform, q, resource_id, run_id, sortby, topic, use_dfs_query_then_fetch, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['ContentFileSearchApi.contentFileSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -6525,7 +6543,7 @@ export const ContentFileSearchApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         contentFileSearchRetrieve(requestParameters: ContentFileSearchApiContentFileSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileSearchResponse> {
-            return localVarFp.contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+            return localVarFp.contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -6626,6 +6644,13 @@ export interface ContentFileSearchApiContentFileSearchRetrieveRequest {
      * @memberof ContentFileSearchApiContentFileSearchRetrieve
      */
     readonly topic?: Array<string>
+
+    /**
+     * If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof ContentFileSearchApiContentFileSearchRetrieve
+     */
+    readonly use_dfs_query_then_fetch?: boolean | null
 }
 
 /**
@@ -6644,7 +6669,7 @@ export class ContentFileSearchApi extends BaseAPI {
      * @memberof ContentFileSearchApi
      */
     public contentFileSearchRetrieve(requestParameters: ContentFileSearchApiContentFileSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return ContentFileSearchApiFp(this.configuration).contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return ContentFileSearchApiFp(this.configuration).contentFileSearchRetrieve(requestParameters.aggregations, requestParameters.content_feature_type, requestParameters.dev_mode, requestParameters.id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_id, requestParameters.run_id, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10225,6 +10250,7 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {Array<LearningResourcesSearchRetrieveLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesSearchRetrieveLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesSearchRetrieveOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -10237,11 +10263,12 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSearchRetrieve: async (aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10298,6 +10325,10 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (max_incompleteness_penalty !== undefined) {
+                localVarQueryParameter['max_incompleteness_penalty'] = max_incompleteness_penalty;
+            }
+
             if (min_score !== undefined) {
                 localVarQueryParameter['min_score'] = min_score;
             }
@@ -10346,6 +10377,10 @@ export const LearningResourcesSearchApiAxiosParamCreator = function (configurati
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (use_dfs_query_then_fetch !== undefined) {
+                localVarQueryParameter['use_dfs_query_then_fetch'] = use_dfs_query_then_fetch;
+            }
+
             if (yearly_decay_percent !== undefined) {
                 localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
             }
@@ -10385,6 +10420,7 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {Array<LearningResourcesSearchRetrieveLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesSearchRetrieveLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesSearchRetrieveOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -10397,12 +10433,13 @@ export const LearningResourcesSearchApiFp = function(configuration?: Configurati
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesSearchRetrieveSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesSearchRetrieve(aggregations?: Array<LearningResourcesSearchRetrieveAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesSearchRetrieveCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesSearchRetrieveDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesSearchRetrieveLearningFormatEnum>, level?: Array<LearningResourcesSearchRetrieveLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesSearchRetrieveOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSearchRetrievePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesSearchRetrieveResourceCategoryEnum>, resource_type?: Array<LearningResourcesSearchRetrieveResourceTypeEnum>, search_mode?: LearningResourcesSearchRetrieveSearchModeEnum, slop?: number | null, sortby?: LearningResourcesSearchRetrieveSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<LearningResourcesSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSearchRetrieve(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, max_incompleteness_penalty, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, use_dfs_query_then_fetch, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesSearchApi.learningResourcesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10425,7 +10462,7 @@ export const LearningResourcesSearchApiFactory = function (configuration?: Confi
          * @throws {RequiredError}
          */
         learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<LearningResourcesSearchResponse> {
-            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -10514,6 +10551,13 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
     readonly limit?: number
 
     /**
+     * Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
+     */
+    readonly max_incompleteness_penalty?: number | null
+
+    /**
      * Minimum score value a text query result needs to have to be displayed
      * @type {number}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
@@ -10598,6 +10642,13 @@ export interface LearningResourcesSearchApiLearningResourcesSearchRetrieveReques
     readonly topic?: Array<string>
 
     /**
+     * If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
+     */
+    readonly use_dfs_query_then_fetch?: boolean | null
+
+    /**
      * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
      * @type {number}
      * @memberof LearningResourcesSearchApiLearningResourcesSearchRetrieve
@@ -10621,7 +10672,7 @@ export class LearningResourcesSearchApi extends BaseAPI {
      * @memberof LearningResourcesSearchApi
      */
     public learningResourcesSearchRetrieve(requestParameters: LearningResourcesSearchApiLearningResourcesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesSearchApiFp(this.configuration).learningResourcesSearchRetrieve(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
@@ -10829,6 +10880,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionCheckListLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -10842,11 +10894,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionCheckList: async (aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/check/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -10903,6 +10956,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (max_incompleteness_penalty !== undefined) {
+                localVarQueryParameter['max_incompleteness_penalty'] = max_incompleteness_penalty;
+            }
+
             if (min_score !== undefined) {
                 localVarQueryParameter['min_score'] = min_score;
             }
@@ -10955,6 +11012,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (use_dfs_query_then_fetch !== undefined) {
+                localVarQueryParameter['use_dfs_query_then_fetch'] = use_dfs_query_then_fetch;
+            }
+
             if (yearly_decay_percent !== undefined) {
                 localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
             }
@@ -10984,6 +11045,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionListLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -10996,11 +11058,12 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionList: async (aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11057,6 +11120,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (max_incompleteness_penalty !== undefined) {
+                localVarQueryParameter['max_incompleteness_penalty'] = max_incompleteness_penalty;
+            }
+
             if (min_score !== undefined) {
                 localVarQueryParameter['min_score'] = min_score;
             }
@@ -11105,6 +11172,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['topic'] = topic;
             }
 
+            if (use_dfs_query_then_fetch !== undefined) {
+                localVarQueryParameter['use_dfs_query_then_fetch'] = use_dfs_query_then_fetch;
+            }
+
             if (yearly_decay_percent !== undefined) {
                 localVarQueryParameter['yearly_decay_percent'] = yearly_decay_percent;
             }
@@ -11134,6 +11205,7 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -11147,12 +11219,13 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesUserSubscriptionSubscribeCreate: async (aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v1/learning_resources_user_subscription/subscribe/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -11209,6 +11282,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
                 localVarQueryParameter['limit'] = limit;
             }
 
+            if (max_incompleteness_penalty !== undefined) {
+                localVarQueryParameter['max_incompleteness_penalty'] = max_incompleteness_penalty;
+            }
+
             if (min_score !== undefined) {
                 localVarQueryParameter['min_score'] = min_score;
             }
@@ -11259,6 +11336,10 @@ export const LearningResourcesUserSubscriptionApiAxiosParamCreator = function (c
 
             if (topic) {
                 localVarQueryParameter['topic'] = topic;
+            }
+
+            if (use_dfs_query_then_fetch !== undefined) {
+                localVarQueryParameter['use_dfs_query_then_fetch'] = use_dfs_query_then_fetch;
             }
 
             if (yearly_decay_percent !== undefined) {
@@ -11337,6 +11418,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionCheckListLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -11350,12 +11432,13 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {LearningResourcesUserSubscriptionCheckListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionCheckListSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionCheckList(aggregations?: Array<LearningResourcesUserSubscriptionCheckListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionCheckListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionCheckListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionCheckListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionCheckListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionCheckListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionCheckListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionCheckListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionCheckListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionCheckListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionCheckListSortbyEnum, source_type?: LearningResourcesUserSubscriptionCheckListSourceTypeEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionCheckList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, max_incompleteness_penalty, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, use_dfs_query_then_fetch, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionCheckList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -11374,6 +11457,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionListLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionListLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionListOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -11386,12 +11470,13 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {number | null} [slop] Allowed distance for phrase search
          * @param {LearningResourcesUserSubscriptionListSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, yearly_decay_percent, options);
+        async learningResourcesUserSubscriptionList(aggregations?: Array<LearningResourcesUserSubscriptionListAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionListCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionListDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionListLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionListLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionListPlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionListResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionListResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionListSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionListSortbyEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<PercolateQuery>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionList(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, max_incompleteness_penalty, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, topic, use_dfs_query_then_fetch, yearly_decay_percent, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -11410,6 +11495,7 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>} [learning_format] The format(s) in which the learning resource is offered               * &#x60;online&#x60; - Online * &#x60;hybrid&#x60; - Hybrid * &#x60;in_person&#x60; - In person
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>} [level] 
          * @param {number} [limit] Number of results to return per page
+         * @param {number | null} [max_incompleteness_penalty] Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
          * @param {number | null} [min_score] Minimum score value a text query result needs to have to be displayed
          * @param {Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>} [offered_by] The organization that offers the learning resource               * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results
@@ -11423,13 +11509,14 @@ export const LearningResourcesUserSubscriptionApiFp = function(configuration?: C
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum} [sortby] If the parameter starts with \&#39;-\&#39; the sort is in descending order  * &#x60;featured&#x60; - Featured * &#x60;id&#x60; - Object ID ascending * &#x60;-id&#x60; - Object ID descending * &#x60;readable_id&#x60; - Readable ID ascending * &#x60;-readable_id&#x60; - Readable ID descending * &#x60;last_modified&#x60; - Last Modified Date ascending * &#x60;-last_modified&#x60; - Last Modified Date descending * &#x60;new&#x60; - Newest resources first * &#x60;start_date&#x60; - Start Date ascending * &#x60;-start_date&#x60; - Start Date descending * &#x60;mitcoursenumber&#x60; - MIT course number ascending * &#x60;-mitcoursenumber&#x60; - MIT course number descending * &#x60;views&#x60; - Popularity ascending * &#x60;-views&#x60; - Popularity descending * &#x60;upcoming&#x60; - Next start date ascending
          * @param {LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum} [source_type] The subscription type  * &#x60;search_subscription_type&#x60; - search_subscription_type * &#x60;channel_subscription_type&#x60; - channel_subscription_type
          * @param {Array<string>} [topic] The topic name. To see a list of options go to api/v1/topics/
+         * @param {boolean | null} [use_dfs_query_then_fetch] If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
          * @param {number | null} [yearly_decay_percent] Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
          * @param {PercolateQuerySubscriptionRequestRequest} [PercolateQuerySubscriptionRequestRequest] 
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
+        async learningResourcesUserSubscriptionSubscribeCreate(aggregations?: Array<LearningResourcesUserSubscriptionSubscribeCreateAggregationsEnum>, certification?: boolean | null, certification_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateCertificationTypeEnum>, course_feature?: Array<string>, department?: Array<LearningResourcesUserSubscriptionSubscribeCreateDepartmentEnum>, dev_mode?: boolean | null, free?: boolean | null, id?: Array<number>, learning_format?: Array<LearningResourcesUserSubscriptionSubscribeCreateLearningFormatEnum>, level?: Array<LearningResourcesUserSubscriptionSubscribeCreateLevelEnum>, limit?: number, max_incompleteness_penalty?: number | null, min_score?: number | null, offered_by?: Array<LearningResourcesUserSubscriptionSubscribeCreateOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesUserSubscriptionSubscribeCreatePlatformEnum>, professional?: boolean | null, q?: string, resource_category?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceCategoryEnum>, resource_type?: Array<LearningResourcesUserSubscriptionSubscribeCreateResourceTypeEnum>, search_mode?: LearningResourcesUserSubscriptionSubscribeCreateSearchModeEnum, slop?: number | null, sortby?: LearningResourcesUserSubscriptionSubscribeCreateSortbyEnum, source_type?: LearningResourcesUserSubscriptionSubscribeCreateSourceTypeEnum, topic?: Array<string>, use_dfs_query_then_fetch?: boolean | null, yearly_decay_percent?: number | null, PercolateQuerySubscriptionRequestRequest?: PercolateQuerySubscriptionRequestRequest, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PercolateQuery>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesUserSubscriptionSubscribeCreate(aggregations, certification, certification_type, course_feature, department, dev_mode, free, id, learning_format, level, limit, max_incompleteness_penalty, min_score, offered_by, offset, platform, professional, q, resource_category, resource_type, search_mode, slop, sortby, source_type, topic, use_dfs_query_then_fetch, yearly_decay_percent, PercolateQuerySubscriptionRequestRequest, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesUserSubscriptionApi.learningResourcesUserSubscriptionSubscribeCreate']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -11465,7 +11552,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * View for listing percolate query subscriptions for a user
@@ -11475,7 +11562,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<Array<PercolateQuery>> {
-            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(axios, basePath));
         },
         /**
          * Subscribe a user to query
@@ -11485,7 +11572,7 @@ export const LearningResourcesUserSubscriptionApiFactory = function (configurati
          * @throws {RequiredError}
          */
         learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<PercolateQuery> {
-            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(axios, basePath));
         },
         /**
          * Unsubscribe a user from a query  Args: pk (integer): The id of the query  Returns: PercolateQuerySerializer: The percolate query
@@ -11584,6 +11671,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly limit?: number
 
     /**
+     * Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly max_incompleteness_penalty?: number | null
+
+    /**
      * Minimum score value a text query result needs to have to be displayed
      * @type {number}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
@@ -11673,6 +11767,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
      */
     readonly topic?: Array<string>
+
+    /**
+     * If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckList
+     */
+    readonly use_dfs_query_then_fetch?: boolean | null
 
     /**
      * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
@@ -11766,6 +11867,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly limit?: number
 
     /**
+     * Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
+     */
+    readonly max_incompleteness_penalty?: number | null
+
+    /**
      * Minimum score value a text query result needs to have to be displayed
      * @type {number}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
@@ -11848,6 +11956,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
      */
     readonly topic?: Array<string>
+
+    /**
+     * If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionList
+     */
+    readonly use_dfs_query_then_fetch?: boolean | null
 
     /**
      * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
@@ -11941,6 +12056,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly limit?: number
 
     /**
+     * Maximum score penalty for incomplete OCW courses in percent. An OCW course with completeness &#x3D; 0 will have this score penalty. Partially complete courses have a linear penalty proportional to the degree of incompleteness. Only affects results if there is a search term.
+     * @type {number}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly max_incompleteness_penalty?: number | null
+
+    /**
      * Minimum score value a text query result needs to have to be displayed
      * @type {number}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
@@ -12032,6 +12154,13 @@ export interface LearningResourcesUserSubscriptionApiLearningResourcesUserSubscr
     readonly topic?: Array<string>
 
     /**
+     * If true sets search_type&#x3D;dfs_query_then_fetch which makes Opensearchmake an extra pre-query to calculate term frequencies accross indexes
+     * @type {boolean}
+     * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
+     */
+    readonly use_dfs_query_then_fetch?: boolean | null
+
+    /**
      * Relevance score penalty percent per year for for resources without upcoming runs. Only affects results if there is a search term.
      * @type {number}
      * @memberof LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreate
@@ -12076,7 +12205,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionCheckList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionCheckListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionCheckList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12088,7 +12217,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionList(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionListRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionList(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -12100,7 +12229,7 @@ export class LearningResourcesUserSubscriptionApi extends BaseAPI {
      * @memberof LearningResourcesUserSubscriptionApi
      */
     public learningResourcesUserSubscriptionSubscribeCreate(requestParameters: LearningResourcesUserSubscriptionApiLearningResourcesUserSubscriptionSubscribeCreateRequest = {}, options?: RawAxiosRequestConfig) {
-        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesUserSubscriptionApiFp(this.configuration).learningResourcesUserSubscriptionSubscribeCreate(requestParameters.aggregations, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.department, requestParameters.dev_mode, requestParameters.free, requestParameters.id, requestParameters.learning_format, requestParameters.level, requestParameters.limit, requestParameters.max_incompleteness_penalty, requestParameters.min_score, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.q, requestParameters.resource_category, requestParameters.resource_type, requestParameters.search_mode, requestParameters.slop, requestParameters.sortby, requestParameters.source_type, requestParameters.topic, requestParameters.use_dfs_query_then_fetch, requestParameters.yearly_decay_percent, requestParameters.PercolateQuerySubscriptionRequestRequest, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
