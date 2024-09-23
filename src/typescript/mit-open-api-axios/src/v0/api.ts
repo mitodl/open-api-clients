@@ -521,6 +521,34 @@ export type CurrentEducationEnum = typeof CurrentEducationEnum[keyof typeof Curr
 
 
 /**
+ * * `online` - Online * `hybrid` - Hybrid * `in_person` - In-Person * `offline` - Offline
+ * @export
+ * @enum {string}
+ */
+
+export const DeliveryEnum = {
+    /**
+    * Online
+    */
+    Online: 'online',
+    /**
+    * Hybrid
+    */
+    Hybrid: 'hybrid',
+    /**
+    * In-Person
+    */
+    InPerson: 'in_person',
+    /**
+    * Offline
+    */
+    Offline: 'offline'
+} as const;
+
+export type DeliveryEnum = typeof DeliveryEnum[keyof typeof DeliveryEnum];
+
+
+/**
  * Serializer for Channel model of type department
  * @export
  * @interface DepartmentChannel
@@ -982,30 +1010,6 @@ export const GoalsEnum = {
 } as const;
 
 export type GoalsEnum = typeof GoalsEnum[keyof typeof GoalsEnum];
-
-
-/**
- * * `online` - Online * `hybrid` - Hybrid * `in_person` - In-Person
- * @export
- * @enum {string}
- */
-
-export const LearningFormatEnum = {
-    /**
-    * Online
-    */
-    Online: 'online',
-    /**
-    * Hybrid
-    */
-    Hybrid: 'hybrid',
-    /**
-    * In-Person
-    */
-    InPerson: 'in_person'
-} as const;
-
-export type LearningFormatEnum = typeof LearningFormatEnum[keyof typeof LearningFormatEnum];
 
 
 /**
@@ -1607,10 +1611,10 @@ export interface PatchedProfileRequest {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {Array<LearningFormatEnum>}
+     * @type {Array<DeliveryEnum>}
      * @memberof PatchedProfileRequest
      */
-    'learning_format'?: Array<LearningFormatEnum>;
+    'delivery'?: Array<DeliveryEnum>;
 }
 /**
  * @type PatchedProfileRequestCertificateDesired
@@ -1836,7 +1840,7 @@ export interface PreferencesSearch {
      * @type {Array<string>}
      * @memberof PreferencesSearch
      */
-    'learning_format'?: Array<string>;
+    'delivery'?: Array<string>;
 }
 /**
  * Serializer for Profile
@@ -1954,10 +1958,10 @@ export interface Profile {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {Array<LearningFormatEnum>}
+     * @type {Array<DeliveryEnum>}
      * @memberof Profile
      */
-    'learning_format'?: Array<LearningFormatEnum>;
+    'delivery'?: Array<DeliveryEnum>;
     /**
      * 
      * @type {PreferencesSearch}
@@ -2057,10 +2061,10 @@ export interface ProfileRequest {
     'time_commitment'?: PatchedProfileRequestTimeCommitment;
     /**
      * 
-     * @type {Array<LearningFormatEnum>}
+     * @type {Array<DeliveryEnum>}
      * @memberof ProfileRequest
      */
-    'learning_format'?: Array<LearningFormatEnum>;
+    'delivery'?: Array<DeliveryEnum>;
 }
 /**
  * Serializer for Program Certificates
