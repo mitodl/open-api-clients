@@ -635,6 +635,18 @@ export interface CourseResource {
     'resource_category': string;
     /**
      * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof CourseResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof CourseResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
      * @type {CourseResourceResourceTypeEnum}
      * @memberof CourseResource
      */
@@ -789,6 +801,60 @@ export const CourseResourceDeliveryInnerCodeEnum = {
 } as const;
 
 export type CourseResourceDeliveryInnerCodeEnum = typeof CourseResourceDeliveryInnerCodeEnum[keyof typeof CourseResourceDeliveryInnerCodeEnum];
+
+/**
+ * 
+ * @export
+ * @interface CourseResourceFormatInner
+ */
+export interface CourseResourceFormatInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof CourseResourceFormatInner
+     */
+    'code': CourseResourceFormatInnerCodeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CourseResourceFormatInner
+     */
+    'name': string;
+}
+
+export const CourseResourceFormatInnerCodeEnum = {
+    Synchronous: 'synchronous',
+    Asynchronous: 'asynchronous'
+} as const;
+
+export type CourseResourceFormatInnerCodeEnum = typeof CourseResourceFormatInnerCodeEnum[keyof typeof CourseResourceFormatInnerCodeEnum];
+
+/**
+ * 
+ * @export
+ * @interface CourseResourcePaceInner
+ */
+export interface CourseResourcePaceInner {
+    /**
+     * 
+     * @type {string}
+     * @memberof CourseResourcePaceInner
+     */
+    'code': CourseResourcePaceInnerCodeEnum;
+    /**
+     * 
+     * @type {string}
+     * @memberof CourseResourcePaceInner
+     */
+    'name': string;
+}
+
+export const CourseResourcePaceInnerCodeEnum = {
+    SelfPaced: 'self_paced',
+    InstructorPaced: 'instructor_paced'
+} as const;
+
+export type CourseResourcePaceInnerCodeEnum = typeof CourseResourcePaceInnerCodeEnum[keyof typeof CourseResourcePaceInnerCodeEnum];
 
 /**
  * Serializer for course resources
@@ -1273,6 +1339,18 @@ export interface LearningPathResource {
      * @memberof LearningPathResource
      */
     'resource_category': string;
+    /**
+     * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof LearningPathResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof LearningPathResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {LearningPathResourceResourceTypeEnum}
@@ -1982,6 +2060,18 @@ export interface LearningResourceRun {
      * @memberof LearningResourceRun
      */
     'delivery': Array<CourseResourceDeliveryInner>;
+    /**
+     * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof LearningResourceRun
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof LearningResourceRun
+     */
+    'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {string}
@@ -3889,6 +3979,18 @@ export interface PodcastEpisodeResource {
     'resource_category': string;
     /**
      * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof PodcastEpisodeResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof PodcastEpisodeResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
      * @type {PodcastEpisodeResourceResourceTypeEnum}
      * @memberof PodcastEpisodeResource
      */
@@ -4231,6 +4333,18 @@ export interface PodcastResource {
      * @memberof PodcastResource
      */
     'resource_category': string;
+    /**
+     * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof PodcastResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof PodcastResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {PodcastResourceResourceTypeEnum}
@@ -4790,6 +4904,18 @@ export interface ProgramResource {
      * @memberof ProgramResource
      */
     'resource_category': string;
+    /**
+     * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof ProgramResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof ProgramResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {ProgramResourceResourceTypeEnum}
@@ -5566,6 +5692,18 @@ export interface VideoPlaylistResource {
     'resource_category': string;
     /**
      * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof VideoPlaylistResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof VideoPlaylistResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
+    /**
+     * 
      * @type {VideoPlaylistResourceResourceTypeEnum}
      * @memberof VideoPlaylistResource
      */
@@ -5896,6 +6034,18 @@ export interface VideoResource {
      * @memberof VideoResource
      */
     'resource_category': string;
+    /**
+     * 
+     * @type {Array<CourseResourceFormatInner>}
+     * @memberof VideoResource
+     */
+    'format': Array<CourseResourceFormatInner>;
+    /**
+     * 
+     * @type {Array<CourseResourcePaceInner>}
+     * @memberof VideoResource
+     */
+    'pace': Array<CourseResourcePaceInner>;
     /**
      * 
      * @type {VideoResourceResourceTypeEnum}
