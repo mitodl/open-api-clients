@@ -1530,12 +1530,6 @@ export interface PatchedProfileRequest {
      * @type {string}
      * @memberof PatchedProfileRequest
      */
-    'name'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PatchedProfileRequest
-     */
     'image'?: string | null;
     /**
      * 
@@ -1849,11 +1843,11 @@ export interface PreferencesSearch {
  */
 export interface Profile {
     /**
-     * 
+     * Get the user\'s name
      * @type {string}
      * @memberof Profile
      */
-    'name'?: string | null;
+    'name': string;
     /**
      * 
      * @type {string}
@@ -1975,12 +1969,6 @@ export interface Profile {
  * @interface ProfileRequest
  */
 export interface ProfileRequest {
-    /**
-     * 
-     * @type {string}
-     * @memberof ProfileRequest
-     */
-    'name'?: string | null;
     /**
      * 
      * @type {string}
