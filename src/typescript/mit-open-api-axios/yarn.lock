@@ -42,7 +42,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@mitodl/open-api-axios@workspace:."
   dependencies:
-    "@types/node": "npm:^20.11.19"
+    "@types/node": "npm:^22.0.0"
     axios: "npm:^1.6.5"
     ts-node: "npm:10.9.2"
     typescript: "npm:5.4.5"
@@ -77,12 +77,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:^20.11.19":
-  version: 20.16.1
-  resolution: "@types/node@npm:20.16.1"
+"@types/node@npm:^22.0.0":
+  version: 22.8.6
+  resolution: "@types/node@npm:22.8.6"
   dependencies:
-    undici-types: "npm:~6.19.2"
-  checksum: 10c0/cac13c0f42467df3254805a671ca9e74a6eb7c41568de972e26b10dcc448a45743aaf00e9e5fce4a9214da5bc8444fe902918e105dac5a224e24e83fd9989a97
+    undici-types: "npm:~6.19.8"
+  checksum: 10c0/d3a11f2549234a91a4c5d0ff35ab4bdcb7ba34db4d3f1d189be39b8bd41c19aac98d117150a95a9c5a9d45b1014135477ea240b2b8317c86ae3d3cf1c3b3f8f4
   languageName: node
   linkType: hard
 
@@ -268,7 +268,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~6.19.2":
+"undici-types@npm:~6.19.8":
   version: 6.19.8
   resolution: "undici-types@npm:6.19.8"
   checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
