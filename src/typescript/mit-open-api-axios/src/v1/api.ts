@@ -10066,7 +10066,6 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
          * @param {number} [limit] 
          * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
-         * @param {number} [offset] The initial index from which to return the results.
          * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] Multiple values may be separated by commas.
@@ -10077,7 +10076,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/similar/`
@@ -10127,10 +10126,6 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
 
             if (offered_by) {
                 localVarQueryParameter['offered_by'] = offered_by;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
             }
 
             if (platform) {
@@ -10228,7 +10223,6 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
          * @param {number} [limit] 
          * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
-         * @param {number} [offset] The initial index from which to return the results.
          * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] Multiple values may be separated by commas.
@@ -10239,7 +10233,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesVectorSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesVectorSimilarList: async (id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'id' is not null or undefined
             assertParamExists('learningResourcesVectorSimilarList', 'id', id)
             const localVarPath = `/api/v1/learning_resources/{id}/vector_similar/`
@@ -10289,10 +10283,6 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
 
             if (offered_by) {
                 localVarQueryParameter['offered_by'] = offered_by;
-            }
-
-            if (offset !== undefined) {
-                localVarQueryParameter['offset'] = offset;
             }
 
             if (platform) {
@@ -10478,7 +10468,6 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
          * @param {number} [limit] 
          * @param {Array<LearningResourcesSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
-         * @param {number} [offset] The initial index from which to return the results.
          * @param {Array<LearningResourcesSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] Multiple values may be separated by commas.
@@ -10489,8 +10478,8 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_type, sortby, topic, options);
+        async learningResourcesSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesSimilarListDeliveryEnum>>, department?: Array<LearningResourcesSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>, platform?: Array<LearningResourcesSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesSimilarListResourceTypeEnum>, sortby?: LearningResourcesSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_category, resource_type, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10523,7 +10512,6 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {Array<LearningResourcesVectorSimilarListLevelEnum>} [level] The academic level of the resources  * &#x60;undergraduate&#x60; - Undergraduate * &#x60;graduate&#x60; - Graduate * &#x60;high_school&#x60; - High School * &#x60;noncredit&#x60; - Non-Credit * &#x60;advanced&#x60; - Advanced * &#x60;intermediate&#x60; - Intermediate * &#x60;introductory&#x60; - Introductory
          * @param {number} [limit] 
          * @param {Array<LearningResourcesVectorSimilarListOfferedByEnum>} [offered_by] The organization that offers a learning resource  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
-         * @param {number} [offset] The initial index from which to return the results.
          * @param {Array<LearningResourcesVectorSimilarListPlatformEnum>} [platform] The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
          * @param {boolean} [professional] 
          * @param {Array<string>} [readable_id] Multiple values may be separated by commas.
@@ -10534,8 +10522,8 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesVectorSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedLearningResourceList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, offset, platform, professional, readable_id, resource_category, resource_type, sortby, topic, options);
+        async learningResourcesVectorSimilarList(id: number, certification?: boolean, certification_type?: Array<LearningResourcesVectorSimilarListCertificationTypeEnum>, course_feature?: Array<string>, delivery?: Array<Array<LearningResourcesVectorSimilarListDeliveryEnum>>, department?: Array<LearningResourcesVectorSimilarListDepartmentEnum>, free?: boolean, level?: Array<LearningResourcesVectorSimilarListLevelEnum>, limit?: number, offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>, platform?: Array<LearningResourcesVectorSimilarListPlatformEnum>, professional?: boolean, readable_id?: Array<string>, resource_category?: Array<LearningResourcesVectorSimilarListResourceCategoryEnum>, resource_type?: Array<LearningResourcesVectorSimilarListResourceTypeEnum>, sortby?: LearningResourcesVectorSimilarListSortbyEnum, topic?: Array<string>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<Array<LearningResource>>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesVectorSimilarList(id, certification, certification_type, course_feature, delivery, department, free, level, limit, offered_by, platform, professional, readable_id, resource_category, resource_type, sortby, topic, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesVectorSimilarList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -10627,8 +10615,8 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceList> {
-            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+        learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
+            return localVarFp.learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
         /**
          * Set User List Relationships on a given Learning Resource.
@@ -10647,8 +10635,8 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedLearningResourceList> {
-            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
+        learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig): AxiosPromise<Array<LearningResource>> {
+            return localVarFp.learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -11038,13 +11026,6 @@ export interface LearningResourcesApiLearningResourcesSimilarListRequest {
     readonly offered_by?: Array<LearningResourcesSimilarListOfferedByEnum>
 
     /**
-     * The initial index from which to return the results.
-     * @type {number}
-     * @memberof LearningResourcesApiLearningResourcesSimilarList
-     */
-    readonly offset?: number
-
-    /**
      * The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
      * @type {Array<'bootcamps' | 'csail' | 'ctl' | 'edx' | 'emeritus' | 'globalalumni' | 'mitpe' | 'mitxonline' | 'ocw' | 'oll' | 'podcast' | 'scc' | 'see' | 'simplilearn' | 'susskind' | 'whu' | 'xpro' | 'youtube'>}
      * @memberof LearningResourcesApiLearningResourcesSimilarList
@@ -11199,13 +11180,6 @@ export interface LearningResourcesApiLearningResourcesVectorSimilarListRequest {
     readonly offered_by?: Array<LearningResourcesVectorSimilarListOfferedByEnum>
 
     /**
-     * The initial index from which to return the results.
-     * @type {number}
-     * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
-     */
-    readonly offset?: number
-
-    /**
      * The platform on which learning resources are offered  * &#x60;edx&#x60; - edX * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;oll&#x60; - Open Learning Library * &#x60;mitxonline&#x60; - MITx Online * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;csail&#x60; - CSAIL * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education * &#x60;scc&#x60; - Schwarzman College of Computing * &#x60;ctl&#x60; - Center for Transportation &amp; Logistics * &#x60;whu&#x60; - WHU * &#x60;susskind&#x60; - Susskind * &#x60;globalalumni&#x60; - Global Alumni * &#x60;simplilearn&#x60; - Simplilearn * &#x60;emeritus&#x60; - Emeritus * &#x60;podcast&#x60; - Podcast * &#x60;youtube&#x60; - YouTube
      * @type {Array<'bootcamps' | 'csail' | 'ctl' | 'edx' | 'emeritus' | 'globalalumni' | 'mitpe' | 'mitxonline' | 'ocw' | 'oll' | 'podcast' | 'scc' | 'see' | 'simplilearn' | 'susskind' | 'whu' | 'xpro' | 'youtube'>}
      * @memberof LearningResourcesApiLearningResourcesVectorSimilarList
@@ -11355,7 +11329,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesSimilarList(requestParameters: LearningResourcesApiLearningResourcesSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -11379,7 +11353,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesVectorSimilarList(requestParameters: LearningResourcesApiLearningResourcesVectorSimilarListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesVectorSimilarList(requestParameters.id, requestParameters.certification, requestParameters.certification_type, requestParameters.course_feature, requestParameters.delivery, requestParameters.department, requestParameters.free, requestParameters.level, requestParameters.limit, requestParameters.offered_by, requestParameters.platform, requestParameters.professional, requestParameters.readable_id, requestParameters.resource_category, requestParameters.resource_type, requestParameters.sortby, requestParameters.topic, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
