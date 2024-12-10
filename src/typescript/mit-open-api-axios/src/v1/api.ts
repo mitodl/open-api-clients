@@ -426,7 +426,7 @@ export interface ContentFileSearchResponseMetadataAggregationsValueInner {
     'doc_count': number;
 }
 /**
- * * `page` - page * `file` - file * `vertical` - vertical
+ * * `page` - page * `file` - file * `video` - video * `pdf` - pdf
  * @export
  * @enum {string}
  */
@@ -441,9 +441,13 @@ export const ContentTypeEnum = {
     */
     File: 'file',
     /**
-    * vertical
+    * video
     */
-    Vertical: 'vertical'
+    Video: 'video',
+    /**
+    * pdf
+    */
+    Pdf: 'pdf'
 } as const;
 
 export type ContentTypeEnum = typeof ContentTypeEnum[keyof typeof ContentTypeEnum];
@@ -3971,6 +3975,12 @@ export interface PodcastEpisode {
      * @memberof PodcastEpisode
      */
     'id': number;
+    /**
+     * Get the podcast id(s) the episode belongs to
+     * @type {Array<string>}
+     * @memberof PodcastEpisode
+     */
+    'podcasts': Array<string>;
     /**
      * 
      * @type {string}
