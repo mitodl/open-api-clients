@@ -358,7 +358,7 @@ export interface ContentFile {
      * @type {string}
      * @memberof ContentFile
      */
-    'edx_block_id'?: string | null;
+    'edx_module_id'?: string | null;
 }
 
 
@@ -8095,7 +8095,7 @@ export const ContentfilesApiAxiosParamCreator = function (configuration?: Config
          * @summary List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<ContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -8105,7 +8105,7 @@ export const ContentfilesApiAxiosParamCreator = function (configuration?: Config
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        contentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<ContentfilesListOfferedByEnum>, offset?: number, platform?: Array<ContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        contentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<ContentfilesListOfferedByEnum>, offset?: number, platform?: Array<ContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'learning_resource_id' is not null or undefined
             assertParamExists('contentfilesList', 'learning_resource_id', learning_resource_id)
             const localVarPath = `/api/v1/contentfiles/`
@@ -8125,8 +8125,8 @@ export const ContentfilesApiAxiosParamCreator = function (configuration?: Config
                 localVarQueryParameter['content_feature_type'] = content_feature_type.join(COLLECTION_FORMATS.csv);
             }
 
-            if (edx_block_id) {
-                localVarQueryParameter['edx_block_id'] = edx_block_id.join(COLLECTION_FORMATS.csv);
+            if (edx_module_id) {
+                localVarQueryParameter['edx_module_id'] = edx_module_id.join(COLLECTION_FORMATS.csv);
             }
 
             if (limit !== undefined) {
@@ -8217,7 +8217,7 @@ export const ContentfilesApiFp = function(configuration?: Configuration) {
          * @summary List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<ContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -8227,8 +8227,8 @@ export const ContentfilesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async contentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<ContentfilesListOfferedByEnum>, offset?: number, platform?: Array<ContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.contentfilesList(learning_resource_id, content_feature_type, edx_block_id, limit, offered_by, offset, platform, resource_id, run_id, options);
+        async contentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<ContentfilesListOfferedByEnum>, offset?: number, platform?: Array<ContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.contentfilesList(learning_resource_id, content_feature_type, edx_module_id, limit, offered_by, offset, platform, resource_id, run_id, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['ContentfilesApi.contentfilesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -8265,7 +8265,7 @@ export const ContentfilesApiFactory = function (configuration?: Configuration, b
          * @throws {RequiredError}
          */
         contentfilesList(requestParameters: ContentfilesApiContentfilesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedContentFileList> {
-            return localVarFp.contentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
+            return localVarFp.contentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
         },
         /**
          * Viewset for ContentFiles
@@ -8305,7 +8305,7 @@ export interface ContentfilesApiContentfilesListRequest {
      * @type {Array<string>}
      * @memberof ContentfilesApiContentfilesList
      */
-    readonly edx_block_id?: Array<string>
+    readonly edx_module_id?: Array<string>
 
     /**
      * Number of results to return per page.
@@ -8387,7 +8387,7 @@ export class ContentfilesApi extends BaseAPI {
      * @memberof ContentfilesApi
      */
     public contentfilesList(requestParameters: ContentfilesApiContentfilesListRequest, options?: RawAxiosRequestConfig) {
-        return ContentfilesApiFp(this.configuration).contentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
+        return ContentfilesApiFp(this.configuration).contentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -8671,7 +8671,7 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
          * @summary Learning Resource Content File List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<CoursesContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -8681,7 +8681,7 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        coursesContentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<CoursesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<CoursesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        coursesContentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<CoursesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<CoursesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'learning_resource_id' is not null or undefined
             assertParamExists('coursesContentfilesList', 'learning_resource_id', learning_resource_id)
             const localVarPath = `/api/v1/courses/{learning_resource_id}/contentfiles/`
@@ -8701,8 +8701,8 @@ export const CoursesApiAxiosParamCreator = function (configuration?: Configurati
                 localVarQueryParameter['content_feature_type'] = content_feature_type.join(COLLECTION_FORMATS.csv);
             }
 
-            if (edx_block_id) {
-                localVarQueryParameter['edx_block_id'] = edx_block_id.join(COLLECTION_FORMATS.csv);
+            if (edx_module_id) {
+                localVarQueryParameter['edx_module_id'] = edx_module_id.join(COLLECTION_FORMATS.csv);
             }
 
             if (limit !== undefined) {
@@ -8942,7 +8942,7 @@ export const CoursesApiFp = function(configuration?: Configuration) {
          * @summary Learning Resource Content File List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<CoursesContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -8952,8 +8952,8 @@ export const CoursesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async coursesContentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<CoursesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<CoursesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.coursesContentfilesList(learning_resource_id, content_feature_type, edx_block_id, limit, offered_by, offset, platform, resource_id, run_id, options);
+        async coursesContentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<CoursesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<CoursesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.coursesContentfilesList(learning_resource_id, content_feature_type, edx_module_id, limit, offered_by, offset, platform, resource_id, run_id, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['CoursesApi.coursesContentfilesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9032,7 +9032,7 @@ export const CoursesApiFactory = function (configuration?: Configuration, basePa
          * @throws {RequiredError}
          */
         coursesContentfilesList(requestParameters: CoursesApiCoursesContentfilesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedContentFileList> {
-            return localVarFp.coursesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
+            return localVarFp.coursesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
         },
         /**
          * Show content files for a learning resource
@@ -9092,7 +9092,7 @@ export interface CoursesApiCoursesContentfilesListRequest {
      * @type {Array<string>}
      * @memberof CoursesApiCoursesContentfilesList
      */
-    readonly edx_block_id?: Array<string>
+    readonly edx_module_id?: Array<string>
 
     /**
      * Number of results to return per page.
@@ -9314,7 +9314,7 @@ export class CoursesApi extends BaseAPI {
      * @memberof CoursesApi
      */
     public coursesContentfilesList(requestParameters: CoursesApiCoursesContentfilesListRequest, options?: RawAxiosRequestConfig) {
-        return CoursesApiFp(this.configuration).coursesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
+        return CoursesApiFp(this.configuration).coursesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**
@@ -10344,7 +10344,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @summary Learning Resource Content File List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<LearningResourcesContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -10354,7 +10354,7 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        learningResourcesContentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<LearningResourcesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        learningResourcesContentfilesList: async (learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<LearningResourcesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             // verify required parameter 'learning_resource_id' is not null or undefined
             assertParamExists('learningResourcesContentfilesList', 'learning_resource_id', learning_resource_id)
             const localVarPath = `/api/v1/learning_resources/{learning_resource_id}/contentfiles/`
@@ -10374,8 +10374,8 @@ export const LearningResourcesApiAxiosParamCreator = function (configuration?: C
                 localVarQueryParameter['content_feature_type'] = content_feature_type.join(COLLECTION_FORMATS.csv);
             }
 
-            if (edx_block_id) {
-                localVarQueryParameter['edx_block_id'] = edx_block_id.join(COLLECTION_FORMATS.csv);
+            if (edx_module_id) {
+                localVarQueryParameter['edx_module_id'] = edx_module_id.join(COLLECTION_FORMATS.csv);
             }
 
             if (limit !== undefined) {
@@ -11016,7 +11016,7 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @summary Learning Resource Content File List
          * @param {number} learning_resource_id id of the parent learning resource
          * @param {Array<string>} [content_feature_type] Multiple values may be separated by commas.
-         * @param {Array<string>} [edx_block_id] Multiple values may be separated by commas.
+         * @param {Array<string>} [edx_module_id] Multiple values may be separated by commas.
          * @param {number} [limit] Number of results to return per page.
          * @param {Array<LearningResourcesContentfilesListOfferedByEnum>} [offered_by] The organization that offers a learning resource the content file belongs to  * &#x60;mitx&#x60; - MITx * &#x60;ocw&#x60; - MIT OpenCourseWare * &#x60;bootcamps&#x60; - Bootcamps * &#x60;xpro&#x60; - MIT xPRO * &#x60;mitpe&#x60; - MIT Professional Education * &#x60;see&#x60; - MIT Sloan Executive Education
          * @param {number} [offset] The initial index from which to return the results.
@@ -11026,8 +11026,8 @@ export const LearningResourcesApiFp = function(configuration?: Configuration) {
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async learningResourcesContentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_block_id?: Array<string>, limit?: number, offered_by?: Array<LearningResourcesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesContentfilesList(learning_resource_id, content_feature_type, edx_block_id, limit, offered_by, offset, platform, resource_id, run_id, options);
+        async learningResourcesContentfilesList(learning_resource_id: number, content_feature_type?: Array<string>, edx_module_id?: Array<string>, limit?: number, offered_by?: Array<LearningResourcesContentfilesListOfferedByEnum>, offset?: number, platform?: Array<LearningResourcesContentfilesListPlatformEnum>, resource_id?: Array<number>, run_id?: Array<number>, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PaginatedContentFileList>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.learningResourcesContentfilesList(learning_resource_id, content_feature_type, edx_module_id, limit, offered_by, offset, platform, resource_id, run_id, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['LearningResourcesApi.learningResourcesContentfilesList']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -11224,7 +11224,7 @@ export const LearningResourcesApiFactory = function (configuration?: Configurati
          * @throws {RequiredError}
          */
         learningResourcesContentfilesList(requestParameters: LearningResourcesApiLearningResourcesContentfilesListRequest, options?: RawAxiosRequestConfig): AxiosPromise<PaginatedContentFileList> {
-            return localVarFp.learningResourcesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
+            return localVarFp.learningResourcesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(axios, basePath));
         },
         /**
          * Show content files for a learning resource
@@ -11344,7 +11344,7 @@ export interface LearningResourcesApiLearningResourcesContentfilesListRequest {
      * @type {Array<string>}
      * @memberof LearningResourcesApiLearningResourcesContentfilesList
      */
-    readonly edx_block_id?: Array<string>
+    readonly edx_module_id?: Array<string>
 
     /**
      * Number of results to return per page.
@@ -11930,7 +11930,7 @@ export class LearningResourcesApi extends BaseAPI {
      * @memberof LearningResourcesApi
      */
     public learningResourcesContentfilesList(requestParameters: LearningResourcesApiLearningResourcesContentfilesListRequest, options?: RawAxiosRequestConfig) {
-        return LearningResourcesApiFp(this.configuration).learningResourcesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_block_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
+        return LearningResourcesApiFp(this.configuration).learningResourcesContentfilesList(requestParameters.learning_resource_id, requestParameters.content_feature_type, requestParameters.edx_module_id, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.resource_id, requestParameters.run_id, options).then((request) => request(this.axios, this.basePath));
     }
 
     /**

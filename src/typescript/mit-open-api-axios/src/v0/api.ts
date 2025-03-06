@@ -693,7 +693,7 @@ export interface ContentFile {
      * @type {string}
      * @memberof ContentFile
      */
-    'edx_block_id'?: string | null;
+    'edx_module_id'?: string | null;
 }
 
 
@@ -9321,7 +9321,7 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
          * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
          * @param {Array<string>} [course_number] Course number of the content file
-         * @param {Array<string>} [edx_block_id] The edx_block_id of the content file
+         * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {Array<string>} [key] The filename of the content file
          * @param {number} [limit] Number of results to return per page
@@ -9335,7 +9335,7 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        vectorContentFilesSearchRetrieve: async (collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_block_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+        vectorContentFilesSearchRetrieve: async (collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
             const localVarPath = `/api/v0/vector_content_files_search/`;
             // use dummy base URL string because the URL constructor only accepts absolute URLs.
             const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
@@ -9360,8 +9360,8 @@ export const VectorContentFilesSearchApiAxiosParamCreator = function (configurat
                 localVarQueryParameter['course_number'] = course_number;
             }
 
-            if (edx_block_id) {
-                localVarQueryParameter['edx_block_id'] = edx_block_id;
+            if (edx_module_id) {
+                localVarQueryParameter['edx_module_id'] = edx_module_id;
             }
 
             if (file_extension) {
@@ -9431,7 +9431,7 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {string} [collection_name] Manually specify the name of the Qdrant collection to query
          * @param {Array<string>} [content_feature_type] The feature type of the content file. Possible options are at api/v1/course_features/
          * @param {Array<string>} [course_number] Course number of the content file
-         * @param {Array<string>} [edx_block_id] The edx_block_id of the content file
+         * @param {Array<string>} [edx_module_id] The edx_module_id of the content file
          * @param {Array<string>} [file_extension] The extension of the content file. 
          * @param {Array<string>} [key] The filename of the content file
          * @param {number} [limit] Number of results to return per page
@@ -9445,8 +9445,8 @@ export const VectorContentFilesSearchApiFp = function(configuration?: Configurat
          * @param {*} [options] Override http request option.
          * @throws {RequiredError}
          */
-        async vectorContentFilesSearchRetrieve(collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_block_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
-            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, content_feature_type, course_number, edx_block_id, file_extension, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, options);
+        async vectorContentFilesSearchRetrieve(collection_name?: string, content_feature_type?: Array<string>, course_number?: Array<string>, edx_module_id?: Array<string>, file_extension?: Array<string>, key?: Array<string>, limit?: number, offered_by?: Array<string>, offset?: number, platform?: Array<string>, q?: string, resource_readable_id?: Array<string>, run_readable_id?: Array<string>, sortby?: VectorContentFilesSearchRetrieveSortbyEnum, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<ContentFileVectorSearchResponse>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.vectorContentFilesSearchRetrieve(collection_name, content_feature_type, course_number, edx_module_id, file_extension, key, limit, offered_by, offset, platform, q, resource_readable_id, run_readable_id, sortby, options);
             const index = configuration?.serverIndex ?? 0;
             const operationBasePath = operationServerMap['VectorContentFilesSearchApi.vectorContentFilesSearchRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
@@ -9469,7 +9469,7 @@ export const VectorContentFilesSearchApiFactory = function (configuration?: Conf
          * @throws {RequiredError}
          */
         vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig): AxiosPromise<ContentFileVectorSearchResponse> {
-            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_block_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(axios, basePath));
+            return localVarFp.vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -9502,11 +9502,11 @@ export interface VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequ
     readonly course_number?: Array<string>
 
     /**
-     * The edx_block_id of the content file
+     * The edx_module_id of the content file
      * @type {Array<string>}
      * @memberof VectorContentFilesSearchApiVectorContentFilesSearchRetrieve
      */
-    readonly edx_block_id?: Array<string>
+    readonly edx_module_id?: Array<string>
 
     /**
      * The extension of the content file. 
@@ -9595,7 +9595,7 @@ export class VectorContentFilesSearchApi extends BaseAPI {
      * @memberof VectorContentFilesSearchApi
      */
     public vectorContentFilesSearchRetrieve(requestParameters: VectorContentFilesSearchApiVectorContentFilesSearchRetrieveRequest = {}, options?: RawAxiosRequestConfig) {
-        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_block_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(this.axios, this.basePath));
+        return VectorContentFilesSearchApiFp(this.configuration).vectorContentFilesSearchRetrieve(requestParameters.collection_name, requestParameters.content_feature_type, requestParameters.course_number, requestParameters.edx_module_id, requestParameters.file_extension, requestParameters.key, requestParameters.limit, requestParameters.offered_by, requestParameters.offset, requestParameters.platform, requestParameters.q, requestParameters.resource_readable_id, requestParameters.run_readable_id, requestParameters.sortby, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
