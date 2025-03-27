@@ -531,19 +531,19 @@ export interface ContentFile {
      * @type {number}
      * @memberof ContentFile
      */
-    'run_id': number;
+    'run_id'?: number;
     /**
      * 
      * @type {string}
      * @memberof ContentFile
      */
-    'run_title': string;
+    'run_title'?: string;
     /**
      * 
      * @type {string}
      * @memberof ContentFile
      */
-    'run_slug': string;
+    'run_slug'?: string;
     /**
      * 
      * @type {Array<LearningResourceDepartment>}
@@ -555,13 +555,13 @@ export interface ContentFile {
      * @type {string}
      * @memberof ContentFile
      */
-    'semester': string;
+    'semester'?: string;
     /**
      * 
      * @type {number}
      * @memberof ContentFile
      */
-    'year': number;
+    'year'?: number;
     /**
      * 
      * @type {Array<LearningResourceTopic>}
@@ -687,13 +687,25 @@ export interface ContentFile {
      * @type {string}
      * @memberof ContentFile
      */
-    'run_readable_id': string;
+    'run_readable_id'?: string;
     /**
      * 
      * @type {string}
      * @memberof ContentFile
      */
     'edx_module_id'?: string | null;
+    /**
+     * 
+     * @type {string}
+     * @memberof ContentFile
+     */
+    'summary'?: string;
+    /**
+     * 
+     * @type {any}
+     * @memberof ContentFile
+     */
+    'flashcards'?: any;
 }
 
 
