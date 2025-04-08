@@ -5287,7 +5287,7 @@ export interface User {
      * @type {Profile}
      * @memberof User
      */
-    'profile': Profile;
+    'profile'?: Profile;
     /**
      * 
      * @type {string}
@@ -5312,6 +5312,12 @@ export interface User {
      * @memberof User
      */
     'is_learning_path_editor': boolean;
+    /**
+     * 
+     * @type {boolean}
+     * @memberof User
+     */
+    'is_authenticated': boolean;
 }
 /**
  * Serializer for User
@@ -5324,7 +5330,7 @@ export interface UserRequest {
      * @type {ProfileRequest}
      * @memberof UserRequest
      */
-    'profile': ProfileRequest;
+    'profile'?: ProfileRequest;
     /**
      * 
      * @type {string}
