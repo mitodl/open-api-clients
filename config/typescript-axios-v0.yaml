@@ -1,7 +1,7 @@
 generatorName: typescript-axios
-outputDir: mit-open-api-clients/src/typescript/mit-open-api-axios/src/v0
-inputSpec: mit-open/openapi/specs/v0.yaml
-ignoreFileOverride: mit-open-api-clients/.openapi-generator-ignore
+outputDir: mit-learn-api-clients/src/typescript/mit-open-api-axios/src/v0
+inputSpec: mit-learn/openapi/specs/v0.yaml
+ignoreFileOverride: mit-learn-api-clients/.openapi-generator-ignore
 additionalProperties:
   globalProperty: apis,models
   paramNaming: original
