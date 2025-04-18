@@ -1,5 +1,5 @@
 generatorName: typescript-axios
-outputDir: mit-learn-api-clients/src/typescript/mit-open-api-axios/src/v1
+outputDir: mit-learn-api-clients/src/typescript/mit-learn-api-axios/src/v1
 inputSpec: mit-learn/openapi/specs/v1.yaml
 ignoreFileOverride: mit-learn-api-clients/.openapi-generator-ignore
 additionalProperties:

@@ -38,9 +38,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@mitodl/open-api-axios@workspace:.":
+"@mitodl/mit-learn-api-axios@workspace:.":
   version: 0.0.0-use.local
-  resolution: "@mitodl/open-api-axios@workspace:."
+  resolution: "@mitodl/mit-learn-api-axios@workspace:."
   dependencies:
     "@types/node": "npm:^22.0.0"
     axios: "npm:^1.6.5"
