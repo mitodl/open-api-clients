@@ -389,10 +389,10 @@ export interface ContentFeedback {
     'unit_title'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFeedbackUrl}
      * @memberof ContentFeedback
      */
-    'url'?: string;
+    'url'?: ContentFeedbackUrl;
     /**
      * 
      * @type {ContentFeedbackSentimentEnum}
@@ -452,10 +452,10 @@ export interface ContentFeedbackRequest {
     'unit_title'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFeedbackUrl}
      * @memberof ContentFeedbackRequest
      */
-    'url'?: string;
+    'url'?: ContentFeedbackUrl;
     /**
      * 
      * @type {ContentFeedbackSentimentEnum}
@@ -494,6 +494,12 @@ export const ContentFeedbackSentimentEnum = {
 
 export type ContentFeedbackSentimentEnum = typeof ContentFeedbackSentimentEnum[keyof typeof ContentFeedbackSentimentEnum];
 
+
+/**
+ * @type ContentFeedbackUrl
+ * @export
+ */
+export type ContentFeedbackUrl = string;
 
 /**
  * Serializer class for course run ContentFiles
@@ -635,10 +641,10 @@ export interface ContentFile {
     'checksum'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFileImageSrc}
      * @memberof ContentFile
      */
-    'image_src'?: string | null;
+    'image_src'?: ContentFileImageSrc | null;
     /**
      * 
      * @type {string}
@@ -747,6 +753,12 @@ export const ContentFileContentTypeEnum = {
 
 export type ContentFileContentTypeEnum = typeof ContentFileContentTypeEnum[keyof typeof ContentFileContentTypeEnum];
 
+
+/**
+ * @type ContentFileImageSrc
+ * @export
+ */
+export type ContentFileImageSrc = string;
 
 /**
  * SearchResponseSerializer with OpenAPI annotations for Content Files search
@@ -2810,10 +2822,10 @@ export interface LearningResourceOfferorDetail {
     'content_types'?: Array<string>;
     /**
      * 
-     * @type {string}
+     * @type {LearningResourceOfferorDetailMoreInformation}
      * @memberof LearningResourceOfferorDetail
      */
-    'more_information'?: string;
+    'more_information'?: LearningResourceOfferorDetailMoreInformation;
     /**
      * 
      * @type {string}
@@ -2827,6 +2839,12 @@ export interface LearningResourceOfferorDetail {
      */
     'display_facet'?: boolean;
 }
+/**
+ * @type LearningResourceOfferorDetailMoreInformation
+ * @export
+ */
+export type LearningResourceOfferorDetailMoreInformation = string;
+
 /**
  * Serializer for LearningResourcePlatform
  * @export
@@ -3351,10 +3369,10 @@ export interface NestedContentFile {
     'checksum'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFileImageSrc}
      * @memberof NestedContentFile
      */
-    'image_src'?: string | null;
+    'image_src'?: ContentFileImageSrc | null;
     /**
      * 
      * @type {string}
@@ -3991,11 +4009,11 @@ export interface PodcastEpisode {
      */
     'parent_podcasts': Array<PodcastEpisodeParent>;
     /**
-     * 
-     * @type {string}
+     * Whether a transcript is available from the transcript endpoint.  The text itself is excluded from this serializer, so this is how a client knows whether to fetch it.
+     * @type {boolean}
      * @memberof PodcastEpisode
      */
-    'transcript'?: string;
+    'has_transcript': boolean;
     /**
      * 
      * @type {string}
@@ -4014,12 +4032,6 @@ export interface PodcastEpisode {
      * @memberof PodcastEpisode
      */
     'duration'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PodcastEpisode
-     */
-    'rss'?: string | null;
 }
 /**
  * Minimal parent-podcast summary embedded in an episode.
@@ -6046,16 +6058,16 @@ export interface Video {
     'caption_urls': Array<CaptionUrl>;
     /**
      * 
-     * @type {string}
+     * @type {VideoStreamingUrl}
      * @memberof Video
      */
-    'streaming_url': string | null;
+    'streaming_url': VideoStreamingUrl | null;
     /**
      * 
-     * @type {string}
+     * @type {VideoStreamingUrl}
      * @memberof Video
      */
-    'cover_image_url': string | null;
+    'cover_image_url': VideoStreamingUrl | null;
     /**
      * 
      * @type {string}
@@ -6774,6 +6786,12 @@ export const VideoResourceResourceTypeEnum = {
 
 export type VideoResourceResourceTypeEnum = typeof VideoResourceResourceTypeEnum[keyof typeof VideoResourceResourceTypeEnum];
 
+
+/**
+ * @type VideoStreamingUrl
+ * @export
+ */
+export type VideoStreamingUrl = string;
 
 /**
  * WidgetInstance serializer

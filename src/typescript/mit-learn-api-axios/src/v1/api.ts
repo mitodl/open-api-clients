@@ -329,10 +329,10 @@ export interface ContentFile {
     'checksum'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFileImageSrc}
      * @memberof ContentFile
      */
-    'image_src'?: string | null;
+    'image_src'?: ContentFileImageSrc | null;
     /**
      * 
      * @type {string}
@@ -441,6 +441,12 @@ export const ContentFileContentTypeEnum = {
 
 export type ContentFileContentTypeEnum = typeof ContentFileContentTypeEnum[keyof typeof ContentFileContentTypeEnum];
 
+
+/**
+ * @type ContentFileImageSrc
+ * @export
+ */
+export type ContentFileImageSrc = string;
 
 /**
  * SearchResponseSerializer with OpenAPI annotations for Content Files search
@@ -4193,10 +4199,10 @@ export interface LearningResourceOfferorDetail {
     'content_types'?: Array<string>;
     /**
      * 
-     * @type {string}
+     * @type {LearningResourceOfferorDetailMoreInformation}
      * @memberof LearningResourceOfferorDetail
      */
-    'more_information'?: string;
+    'more_information'?: LearningResourceOfferorDetailMoreInformation;
     /**
      * 
      * @type {string}
@@ -4210,6 +4216,12 @@ export interface LearningResourceOfferorDetail {
      */
     'display_facet'?: boolean;
 }
+/**
+ * @type LearningResourceOfferorDetailMoreInformation
+ * @export
+ */
+export type LearningResourceOfferorDetailMoreInformation = string;
+
 /**
  * Serializer for LearningResourceOfferor with basic details
  * @export
@@ -5242,10 +5254,10 @@ export interface NestedContentFile {
     'checksum'?: string;
     /**
      * 
-     * @type {string}
+     * @type {ContentFileImageSrc}
      * @memberof NestedContentFile
      */
-    'image_src'?: string | null;
+    'image_src'?: ContentFileImageSrc | null;
     /**
      * 
      * @type {string}
@@ -6364,12 +6376,18 @@ export interface PatchedWebsiteContentRequest {
     'is_published'?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {PatchedWebsiteContentRequestSlug}
      * @memberof PatchedWebsiteContentRequest
      */
-    'slug'?: string;
+    'slug'?: PatchedWebsiteContentRequestSlug;
 }
 
+
+/**
+ * @type PatchedWebsiteContentRequestSlug
+ * @export
+ */
+export type PatchedWebsiteContentRequestSlug = string;
 
 /**
  * Serializer for PercolateQuery objects
@@ -6813,11 +6831,11 @@ export interface PodcastEpisode {
      */
     'parent_podcasts': Array<PodcastEpisodeParent>;
     /**
-     * 
-     * @type {string}
+     * Whether a transcript is available from the transcript endpoint.  The text itself is excluded from this serializer, so this is how a client knows whether to fetch it.
+     * @type {boolean}
      * @memberof PodcastEpisode
      */
-    'transcript'?: string;
+    'has_transcript': boolean;
     /**
      * 
      * @type {string}
@@ -6836,12 +6854,6 @@ export interface PodcastEpisode {
      * @memberof PodcastEpisode
      */
     'duration'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PodcastEpisode
-     */
-    'rss'?: string | null;
 }
 /**
  * Minimal parent-podcast summary embedded in an episode.
@@ -6879,12 +6891,6 @@ export interface PodcastEpisodeRequest {
      * @type {string}
      * @memberof PodcastEpisodeRequest
      */
-    'transcript'?: string;
-    /**
-     * 
-     * @type {string}
-     * @memberof PodcastEpisodeRequest
-     */
     'audio_url': string;
     /**
      * 
@@ -6898,12 +6904,6 @@ export interface PodcastEpisodeRequest {
      * @memberof PodcastEpisodeRequest
      */
     'duration'?: string | null;
-    /**
-     * 
-     * @type {string}
-     * @memberof PodcastEpisodeRequest
-     */
-    'rss'?: string | null;
 }
 /**
  * Serializer for podcast episode resources
@@ -7362,6 +7362,25 @@ export const PodcastEpisodeResourceResourceTypeEnum = {
 export type PodcastEpisodeResourceResourceTypeEnum = typeof PodcastEpisodeResourceResourceTypeEnum[keyof typeof PodcastEpisodeResourceResourceTypeEnum];
 
 
+/**
+ * Serializer for a single podcast episode\'s transcript.  Kept out of PodcastEpisodeSerializer so the text is only ever sent when a client asks for this one episode\'s transcript.
+ * @export
+ * @interface PodcastEpisodeTranscript
+ */
+export interface PodcastEpisodeTranscript {
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastEpisodeTranscript
+     */
+    'id': number;
+    /**
+     * 
+     * @type {string}
+     * @memberof PodcastEpisodeTranscript
+     */
+    'transcript'?: string;
+}
 /**
  * Serializer for Podcasts
  * @export
@@ -9121,16 +9140,16 @@ export interface Video {
     'caption_urls': Array<CaptionUrl>;
     /**
      * 
-     * @type {string}
+     * @type {VideoStreamingUrl}
      * @memberof Video
      */
-    'streaming_url': string | null;
+    'streaming_url': VideoStreamingUrl | null;
     /**
      * 
-     * @type {string}
+     * @type {VideoStreamingUrl}
      * @memberof Video
      */
-    'cover_image_url': string | null;
+    'cover_image_url': VideoStreamingUrl | null;
     /**
      * 
      * @type {string}
@@ -10172,6 +10191,12 @@ export type VideoResourceResourceTypeEnum = typeof VideoResourceResourceTypeEnum
 
 
 /**
+ * @type VideoStreamingUrl
+ * @export
+ */
+export type VideoStreamingUrl = string;
+
+/**
  * Serializer for webhook responses.
  * @export
  * @interface WebhookResponse
@@ -10264,16 +10289,16 @@ export interface WebsiteContent {
     'is_published'?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {PatchedWebsiteContentRequestSlug}
      * @memberof WebsiteContent
      */
-    'slug'?: string;
+    'slug'?: PatchedWebsiteContentRequestSlug;
     /**
      * 
-     * @type {string}
+     * @type {WebsiteContentCoverImage}
      * @memberof WebsiteContent
      */
-    'cover_image': string;
+    'cover_image': WebsiteContentCoverImage;
 }
 
 
@@ -10296,6 +10321,12 @@ export const WebsiteContentContentTypeEnum = {
 
 export type WebsiteContentContentTypeEnum = typeof WebsiteContentContentTypeEnum[keyof typeof WebsiteContentContentTypeEnum];
 
+
+/**
+ * @type WebsiteContentCoverImage
+ * @export
+ */
+export type WebsiteContentCoverImage = string;
 
 /**
  * Serializer for WebsiteContent model.
@@ -10335,10 +10366,10 @@ export interface WebsiteContentRequest {
     'is_published'?: boolean;
     /**
      * 
-     * @type {string}
+     * @type {PatchedWebsiteContentRequestSlug}
      * @memberof WebsiteContentRequest
      */
-    'slug'?: string;
+    'slug'?: PatchedWebsiteContentRequestSlug;
 }
 
 
@@ -22106,6 +22137,40 @@ export const PodcastEpisodesApiAxiosParamCreator = function (configuration?: Con
                 options: localVarRequestOptions,
             };
         },
+        /**
+         * Fetch one episode\'s transcript.  Served separately from the episode payload because the text runs tens of kilobytes; `podcast_episode.has_transcript` says whether there is anything here to fetch.  Args: id (integer): The id of the podcast episode  Returns: The episode id and its transcript text
+         * @summary Get a podcast episode transcript
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        podcastEpisodesTranscriptRetrieve: async (id: number, options: RawAxiosRequestConfig = {}): Promise<RequestArgs> => {
+            // verify required parameter 'id' is not null or undefined
+            assertParamExists('podcastEpisodesTranscriptRetrieve', 'id', id)
+            const localVarPath = `/api/v1/podcast_episodes/{id}/transcript/`
+                .replace(`{${"id"}}`, encodeURIComponent(String(id)));
+            // use dummy base URL string because the URL constructor only accepts absolute URLs.
+            const localVarUrlObj = new URL(localVarPath, DUMMY_BASE_URL);
+            let baseOptions;
+            if (configuration) {
+                baseOptions = configuration.baseOptions;
+            }
+
+            const localVarRequestOptions = { method: 'GET', ...baseOptions, ...options};
+            const localVarHeaderParameter = {} as any;
+            const localVarQueryParameter = {} as any;
+
+
+    
+            setSearchParams(localVarUrlObj, localVarQueryParameter);
+            let headersFromBaseOptions = baseOptions && baseOptions.headers ? baseOptions.headers : {};
+            localVarRequestOptions.headers = {...localVarHeaderParameter, ...headersFromBaseOptions, ...options.headers};
+
+            return {
+                url: toPathString(localVarUrlObj),
+                options: localVarRequestOptions,
+            };
+        },
     }
 };
 
@@ -22159,6 +22224,19 @@ export const PodcastEpisodesApiFp = function(configuration?: Configuration) {
             const operationBasePath = operationServerMap['PodcastEpisodesApi.podcastEpisodesRetrieve']?.[index]?.url;
             return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
         },
+        /**
+         * Fetch one episode\'s transcript.  Served separately from the episode payload because the text runs tens of kilobytes; `podcast_episode.has_transcript` says whether there is anything here to fetch.  Args: id (integer): The id of the podcast episode  Returns: The episode id and its transcript text
+         * @summary Get a podcast episode transcript
+         * @param {number} id 
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        async podcastEpisodesTranscriptRetrieve(id: number, options?: RawAxiosRequestConfig): Promise<(axios?: AxiosInstance, basePath?: string) => AxiosPromise<PodcastEpisodeTranscript>> {
+            const localVarAxiosArgs = await localVarAxiosParamCreator.podcastEpisodesTranscriptRetrieve(id, options);
+            const index = configuration?.serverIndex ?? 0;
+            const operationBasePath = operationServerMap['PodcastEpisodesApi.podcastEpisodesTranscriptRetrieve']?.[index]?.url;
+            return (axios, basePath) => createRequestFunction(localVarAxiosArgs, globalAxios, BASE_PATH, configuration)(axios, operationBasePath || basePath);
+        },
     }
 };
 
@@ -22188,6 +22266,16 @@ export const PodcastEpisodesApiFactory = function (configuration?: Configuration
          */
         podcastEpisodesRetrieve(requestParameters: PodcastEpisodesApiPodcastEpisodesRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<PodcastEpisodeResource> {
             return localVarFp.podcastEpisodesRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
+        },
+        /**
+         * Fetch one episode\'s transcript.  Served separately from the episode payload because the text runs tens of kilobytes; `podcast_episode.has_transcript` says whether there is anything here to fetch.  Args: id (integer): The id of the podcast episode  Returns: The episode id and its transcript text
+         * @summary Get a podcast episode transcript
+         * @param {PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest} requestParameters Request parameters.
+         * @param {*} [options] Override http request option.
+         * @throws {RequiredError}
+         */
+        podcastEpisodesTranscriptRetrieve(requestParameters: PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest, options?: RawAxiosRequestConfig): AxiosPromise<PodcastEpisodeTranscript> {
+            return localVarFp.podcastEpisodesTranscriptRetrieve(requestParameters.id, options).then((request) => request(axios, basePath));
         },
     };
 };
@@ -22340,6 +22428,20 @@ export interface PodcastEpisodesApiPodcastEpisodesRetrieveRequest {
 }
 
 /**
+ * Request parameters for podcastEpisodesTranscriptRetrieve operation in PodcastEpisodesApi.
+ * @export
+ * @interface PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest
+ */
+export interface PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest {
+    /**
+     * 
+     * @type {number}
+     * @memberof PodcastEpisodesApiPodcastEpisodesTranscriptRetrieve
+     */
+    readonly id: number
+}
+
+/**
  * PodcastEpisodesApi - object-oriented interface
  * @export
  * @class PodcastEpisodesApi
@@ -22368,6 +22470,18 @@ export class PodcastEpisodesApi extends BaseAPI {
      */
     public podcastEpisodesRetrieve(requestParameters: PodcastEpisodesApiPodcastEpisodesRetrieveRequest, options?: RawAxiosRequestConfig) {
         return PodcastEpisodesApiFp(this.configuration).podcastEpisodesRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
+    }
+
+    /**
+     * Fetch one episode\'s transcript.  Served separately from the episode payload because the text runs tens of kilobytes; `podcast_episode.has_transcript` says whether there is anything here to fetch.  Args: id (integer): The id of the podcast episode  Returns: The episode id and its transcript text
+     * @summary Get a podcast episode transcript
+     * @param {PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest} requestParameters Request parameters.
+     * @param {*} [options] Override http request option.
+     * @throws {RequiredError}
+     * @memberof PodcastEpisodesApi
+     */
+    public podcastEpisodesTranscriptRetrieve(requestParameters: PodcastEpisodesApiPodcastEpisodesTranscriptRetrieveRequest, options?: RawAxiosRequestConfig) {
+        return PodcastEpisodesApiFp(this.configuration).podcastEpisodesTranscriptRetrieve(requestParameters.id, options).then((request) => request(this.axios, this.basePath));
     }
 }
 
