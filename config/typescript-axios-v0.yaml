@@ -6,3 +6,6 @@ additionalProperties:
   globalProperty: apis,models
   paramNaming: original
   useSingleRequestParameter: true
+globalProperties:
+  apiDocs: "false"
+  modelDocs: "false"
