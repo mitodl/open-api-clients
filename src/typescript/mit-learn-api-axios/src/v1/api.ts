@@ -332,6 +332,10 @@ export interface CourseResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': CourseResourceResourceTypeEnum;
     'course': Course;
     'readable_id': string;
@@ -692,6 +696,10 @@ export interface DocumentResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': DocumentResourceResourceTypeEnum;
     'content_files': Array<NestedContentFile> | null;
     'description': string | null;
@@ -1080,6 +1088,10 @@ export interface LearningPathResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': LearningPathResourceResourceTypeEnum;
     /**
      * The display category for this resource.
@@ -2382,6 +2394,10 @@ export interface PodcastEpisodeResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': PodcastEpisodeResourceResourceTypeEnum;
     'podcast_episode': PodcastEpisode;
     'readable_id': string;
@@ -2518,6 +2534,10 @@ export interface PodcastResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': PodcastResourceResourceTypeEnum;
     'podcast': Podcast;
     'readable_id': string;
@@ -2712,6 +2732,10 @@ export interface ProgramResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': ProgramResourceResourceTypeEnum;
     'program': Program;
     'readable_id': string;
@@ -3219,6 +3243,10 @@ export interface VideoPlaylistResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': VideoPlaylistResourceResourceTypeEnum;
     'video_playlist': VideoPlaylist;
     'readable_id': string;
@@ -3345,6 +3373,10 @@ export interface VideoResource {
      * Where this resource lives within Learn
      */
     'learn_url': string;
+    /**
+     * Slug derived from the title, for use in this resource\'s URL. It is cosmetic: lookups ignore it, and it changes whenever the title does. Titles that yield no ASCII slug get the literal \"resource\", so this is never blank.
+     */
+    'url_slug': string;
     'resource_type': VideoResourceResourceTypeEnum;
     'video': Video | null;
     /**

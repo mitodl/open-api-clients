@@ -1,6 +1,6 @@
 {
   "name": "@mitodl/mit-learn-api-axios",
-  "version": "2026.9.9",
+  "version": "2026.9.10",
   "description": "Library for requesting data from mit-learn APIs",
   "main": "dist/cjs/index.js",
   "scripts": {
